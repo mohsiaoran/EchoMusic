@@ -6,10 +6,10 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SB"
-        tools:layout_editor_absoluteX="176dp"
-        tools:layout_editor_absoluteY="118dp" />
-
+        android:text="看得到吗！！！"
+        tools:layout_editor_absoluteX="150dp"
+        tools:layout_editor_absoluteY="182dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
