@@ -1,8 +1,10 @@
-package cn.edu.fjzzit.echomusic;
+package cn.edu.fjzzit.echomusic.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import cn.edu.fjzzit.echomusic.R;
 
 public class MainActivity extends AppCompatActivity {
 
