@@ -11,4 +11,12 @@
         android:text="SB"
         tools:layout_editor_absoluteX="176dp"
         tools:layout_editor_absoluteY="118dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ssBBBB"
+        tools:layout_editor_absoluteX="154dp"
+        tools:layout_editor_absoluteY="170dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
