@@ -97,7 +97,7 @@
         android:layout_height="27dp"
         android:text="登录"
         tools:layout_editor_absoluteX="185dp"
-        tools:layout_editor_absoluteY="36dp" />
+        tools:layout_editor_absoluteY="40dp" />
 
     <TextView
         android:id="@+id/textView13"
