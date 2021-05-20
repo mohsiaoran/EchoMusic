@@ -6,14 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".activity.HomePageActivity">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/btn_star"
-        tools:layout_editor_absoluteX="18dp"
-        tools:layout_editor_absoluteY="18dp" />
-
     <TextView
         android:id="@+id/textView3"
         android:layout_width="210dp"
@@ -22,19 +14,76 @@
         tools:layout_editor_absoluteX="100dp"
         tools:layout_editor_absoluteY="23dp" />
 
-    <RadioButton
-        android:id="@+id/radioButton"
-        android:layout_width="32dp"
-        android:layout_height="27dp"
-        tools:layout_editor_absoluteX="363dp"
-        tools:layout_editor_absoluteY="23dp" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="46dp"
+        android:layout_height="40dp"
+        app:srcCompat="@drawable/雪花"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="13dp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="36dp"
+        android:layout_height="29dp"
+        app:srcCompat="@drawable/听歌识曲"
+        tools:layout_editor_absoluteX="358dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="375dp"
+        android:layout_height="219dp"
+        app:srcCompat="@drawable/音乐广告"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="91dp" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="397dp"
-        android:layout_height="201dp"
-        app:srcCompat="@drawable/音乐广告"
-        tools:layout_editor_absoluteX="7dp"
-        tools:layout_editor_absoluteY="94dp" />
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        app:srcCompat="@drawable/周计划"
+        tools:layout_editor_absoluteX="62dp"
+        tools:layout_editor_absoluteY="315dp" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        app:srcCompat="@drawable/排行"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="315dp" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:srcCompat="@drawable/分类"
+        tools:layout_editor_absoluteX="302dp"
+        tools:layout_editor_absoluteY="320dp" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        app:srcCompat="@drawable/歌单"
+        tools:layout_editor_absoluteX="219dp"
+        tools:layout_editor_absoluteY="315dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="89dp"
+        android:layout_height="35dp"
+        android:text="精选内容"
+        tools:layout_editor_absoluteX="59dp"
+        tools:layout_editor_absoluteY="399dp" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="81dp"
+        android:layout_height="75dp"
+        tools:layout_editor_absoluteX="54dp"
+        tools:layout_editor_absoluteY="435dp"
+        tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
