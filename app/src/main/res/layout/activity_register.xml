@@ -6,26 +6,89 @@
     android:layout_height="match_parent"
     tools:context=".activity.RegisterActivity">
 
+    <ImageView
+        android:id="@+id/user_avatar"
+        android:layout_width="99dp"
+        android:layout_height="92dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.532"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/userPsdConfir_edittext"
         android:layout_width="200dp"
         android:layout_height="40dp"
-        android:layout_marginTop="164dp"
+        android:layout_marginTop="344dp"
         android:ems="10"
+        android:gravity="center"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text="@string/reg_phone_userpsd_edittext"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintHorizontal_bias="0.597"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/userpsd_edittext"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="272dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:text="@string/reg_phone_userpsd_edittext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.597"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/username_edittext"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="204dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:text="@string/reg_phone_username_edittext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.597"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:gravity="center_vertical"
+        android:id="@+id/username"
+        android:layout_width="52dp"
+        android:layout_height="33dp"
+        android:gravity="center|center_vertical"
         android:text="@string/reg_phone_label_txt"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName"
-        app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName" />
+        app:layout_constraintBottom_toBottomOf="@+id/username_edittext"
+        app:layout_constraintEnd_toStartOf="@+id/username_edittext"
+        app:layout_constraintTop_toTopOf="@+id/username_edittext" />
+
+    <TextView
+        android:id="@+id/userpsd_confirm"
+        android:layout_width="74dp"
+        android:layout_height="31dp"
+        android:gravity="center"
+        android:text="@string/reg_phone_userpsd_confirm"
+        app:layout_constraintBottom_toBottomOf="@+id/userPsdConfir_edittext"
+        app:layout_constraintEnd_toStartOf="@+id/userPsdConfir_edittext"
+        app:layout_constraintTop_toTopOf="@+id/userPsdConfir_edittext"
+        app:layout_constraintVertical_bias="0.578" />
+
+    <TextView
+        android:id="@+id/user_psd"
+        android:layout_width="54dp"
+        android:layout_height="25dp"
+        android:gravity="center"
+        android:text="@string/reg_pone_label_psd"
+        app:layout_constraintBottom_toBottomOf="@+id/userpsd_edittext"
+        app:layout_constraintEnd_toStartOf="@+id/userpsd_edittext"
+        app:layout_constraintTop_toTopOf="@+id/userpsd_edittext"
+        app:layout_constraintVertical_bias="0.466" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

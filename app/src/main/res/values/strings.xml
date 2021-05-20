@@ -3,5 +3,9 @@
     <string name="login_btn_txt">登入</string>
     <string name="reg_btn_txt">注册</string>
     <string name="visitor_btn_txt">游客登入</string>
-    <string name="reg_phone_label_txt">手机号:</string>
+    <string name="reg_phone_label_txt">用户名:</string>
+    <string name="reg_pone_label_psd">密码:</string>
+    <string name="reg_phone_username_edittext">请输入用户名</string>
+    <string name="reg_phone_userpsd_edittext">请输入密码</string>
+    <string name="reg_phone_userpsd_confirm">确认密码：</string>
 </resources>
