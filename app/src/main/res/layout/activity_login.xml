@@ -93,11 +93,11 @@
 
     <TextView
         android:id="@+id/textView12"
-        android:layout_width="41dp"
-        android:layout_height="27dp"
+        android:layout_width="32dp"
+        android:layout_height="17dp"
         android:text="登录"
-        tools:layout_editor_absoluteX="185dp"
-        tools:layout_editor_absoluteY="40dp" />
+        tools:layout_editor_absoluteX="191dp"
+        tools:layout_editor_absoluteY="45dp" />
 
     <TextView
         android:id="@+id/textView13"
