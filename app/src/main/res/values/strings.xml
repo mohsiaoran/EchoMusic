@@ -11,4 +11,6 @@
     <string name="QQ">QQ</string>
     <string name="WeChat">微信</string>
     <string name="forget_password">忘记密码</string>
+    <string name="search">搜索</string>
+    <string name="Highlights">精选内容</string>
 </resources>

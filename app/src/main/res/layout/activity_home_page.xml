@@ -10,7 +10,7 @@
         android:id="@+id/textView3"
         android:layout_width="210dp"
         android:layout_height="27dp"
-        android:text="搜索"
+        android:text="@string/search"
         tools:layout_editor_absoluteX="100dp"
         tools:layout_editor_absoluteY="23dp" />
 
@@ -74,7 +74,7 @@
         android:id="@+id/textView2"
         android:layout_width="89dp"
         android:layout_height="35dp"
-        android:text="精选内容"
+        android:text="@string/Highlights"
         tools:layout_editor_absoluteX="18dp"
         tools:layout_editor_absoluteY="357dp" />
 
