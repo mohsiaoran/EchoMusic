@@ -6,4 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".activity.HomePageActivity">
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/btn_star"
+        tools:layout_editor_absoluteX="18dp"
+        tools:layout_editor_absoluteY="18dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="210dp"
+        android:layout_height="27dp"
+        android:text="搜索"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="23dp" />
+
+    <RadioButton
+        android:id="@+id/radioButton"
+        android:layout_width="32dp"
+        android:layout_height="27dp"
+        tools:layout_editor_absoluteX="363dp"
+        tools:layout_editor_absoluteY="23dp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="267dp"
+        android:layout_height="140dp"
+        app:srcCompat="@mipmap/音乐广告"
+        tools:layout_editor_absoluteX="72dp"
+        tools:layout_editor_absoluteY="92dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
