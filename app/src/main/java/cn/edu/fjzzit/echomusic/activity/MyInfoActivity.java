@@ -6,13 +6,11 @@ import android.os.Bundle;
 
 import cn.edu.fjzzit.echomusic.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MyInfoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start);
+        setContentView(R.layout.activity_my_info);
     }
 }
-
-

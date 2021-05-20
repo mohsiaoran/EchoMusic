@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">EchoMusic</string>
+    <string name="login_btn_txt">登入</string>
+    <string name="reg_btn_txt">注册</string>
+    <string name="visitor_btn_txt">游客登入</string>
+    <string name="reg_phone_label_txt">手机号:</string>
 </resources>
