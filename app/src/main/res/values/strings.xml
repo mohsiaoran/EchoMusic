@@ -4,4 +4,11 @@
     <string name="reg_btn_txt">注册</string>
     <string name="visitor_btn_txt">游客登入</string>
     <string name="reg_phone_label_txt">手机号:</string>
+    <string name="account">账号</string>
+    <string name="password">密码</string>
+    <string name="tip_acount">请输入账号</string>
+    <string name="tip_password">请输入密码</string>
+    <string name="QQ">QQ</string>
+    <string name="WeChat">微信</string>
+    <string name="forget_password">忘记密码</string>
 </resources>
