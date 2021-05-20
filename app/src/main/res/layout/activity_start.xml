@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/start_bg">
+    android:background="@drawable/start_bg">
 
     <ImageView
         android:id="@+id/icon_login"
@@ -12,10 +12,11 @@
         android:layout_height="100dp"
         android:layout_marginTop="108dp"
         android:background="@drawable/shape_corner"
+        android:backgroundTint="#00FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:srcCompat="@drawable/echoLogo" />
 
     <Button
         android:id="@+id/reg_btn"
