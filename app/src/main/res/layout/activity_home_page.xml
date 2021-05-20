@@ -30,11 +30,11 @@
         tools:layout_editor_absoluteY="23dp" />
 
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="267dp"
-        android:layout_height="140dp"
-        app:srcCompat="@mipmap/音乐广告"
-        tools:layout_editor_absoluteX="72dp"
-        tools:layout_editor_absoluteY="92dp" />
+        android:id="@+id/imageView4"
+        android:layout_width="397dp"
+        android:layout_height="201dp"
+        app:srcCompat="@drawable/音乐广告"
+        tools:layout_editor_absoluteX="7dp"
+        tools:layout_editor_absoluteY="94dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
