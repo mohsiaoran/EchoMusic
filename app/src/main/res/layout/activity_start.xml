@@ -21,41 +21,40 @@
         android:id="@+id/reg_btn"
         android:layout_width="280dp"
         android:layout_height="35dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/shape_corner"
         android:text="@string/reg_btn_txt"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/visitor_btn"
+        app:layout_constraintEnd_toEndOf="@+id/visitor_btn"
         app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_btn" />
+        app:layout_constraintStart_toStartOf="@+id/visitor_btn" />
 
     <Button
         android:id="@+id/login_btn"
         android:layout_width="280dp"
         android:layout_height="35dp"
-        android:layout_marginTop="325dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/shape_corner"
         android:text="@string/login_btn_txt"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icon_login" />
+        app:layout_constraintBottom_toTopOf="@+id/reg_btn"
+        app:layout_constraintEnd_toEndOf="@+id/reg_btn"
+        app:layout_constraintHorizontal_bias="0.592"
+        app:layout_constraintStart_toStartOf="@+id/reg_btn" />
 
     <Button
         android:id="@+id/visitor_btn"
         android:layout_width="280dp"
         android:layout_height="35dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/shape_corner"
         android:text="@string/visitor_btn_txt"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reg_btn" />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
