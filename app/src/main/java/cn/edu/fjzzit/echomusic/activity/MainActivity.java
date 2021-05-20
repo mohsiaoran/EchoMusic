@@ -29,6 +29,24 @@ public class MainActivity extends Activity {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, LoginActivity.class);
                 MainActivity.this.startActivity(intent);
+            }
+        });
+
+        regBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, RegisterActivity.class);
+                MainActivity.this.startActivity(intent);
+            }
+        });
+
+        visitorBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, HomePageActivity.class);
+                MainActivity.this.startActivity(intent);
                 finish();
             }
         });
