@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -19,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.fjzzit.echomusic.R;
+import cn.edu.fjzzit.echomusic.adapter.PostAdapter;
+import cn.edu.fjzzit.echomusic.entity.PostInfo;
 
 public class SocialFragment extends Fragment {
 
@@ -26,6 +30,7 @@ public class SocialFragment extends Fragment {
     private TabLayout nav;
     private List<Fragment> fragmentList = new ArrayList<>();
     private int[] titleList = new int[]{R.string.dynamic_state,R.string.attention};
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_social, container, false);          //关联布局文件
