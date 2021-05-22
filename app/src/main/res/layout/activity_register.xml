@@ -8,66 +8,66 @@
     tools:context=".activity.RegisterActivity">
 
     <TextView
-        android:id="@+id/reg_interface"
+        android:id="@+id/register_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:text="@string/reg_interface_txt"
-        android:textColor="#121111"
+        android:text="@string/welcome"
+        android:textColor="@android:color/black"
         android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.576"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/user_avatar"
-        android:layout_width="99dp"
-        android:layout_height="92dp"
-        android:layout_marginTop="140dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.532"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.052" />
+
+    <ImageView
+        android:id="@+id/register_user_img"
+        android:layout_width="99dp"
+        android:layout_height="92dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.178"
         tools:srcCompat="@tools:sample/avatars" />
 
     <EditText
-        android:id="@+id/userPsdConfir_edittext"
+        android:id="@+id/register_psd_confirm"
         android:layout_width="200dp"
         android:layout_height="40dp"
         android:layout_marginTop="432dp"
         android:ems="10"
         android:gravity="center"
+        android:hint="@string/please_enter_password"
         android:inputType="textPersonName"
-        android:text="@string/reg_phone_userpsd_edittext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/userpsd_edittext"
+        android:id="@+id/register_psd_text"
         android:layout_width="200dp"
         android:layout_height="40dp"
         android:layout_marginTop="364dp"
         android:ems="10"
         android:gravity="center"
+        android:hint="@string/please_enter_password"
         android:inputType="textPersonName"
-        android:text="@string/reg_phone_userpsd_edittext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/username_edittext"
+        android:id="@+id/register_username_text"
         android:layout_width="200dp"
         android:layout_height="40dp"
         android:layout_marginTop="292dp"
         android:ems="10"
         android:gravity="center"
+        android:hint="@string/please_enter_username"
         android:inputType="textPersonName"
-        android:text="@string/reg_phone_username_edittext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.53"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,31 +78,34 @@
         android:layout_width="52dp"
         android:layout_height="33dp"
         android:gravity="center|center_vertical"
-        android:text="@string/reg_phone_label_txt"
-        app:layout_constraintBottom_toBottomOf="@+id/username_edittext"
-        app:layout_constraintEnd_toStartOf="@+id/username_edittext"
-        app:layout_constraintTop_toTopOf="@+id/username_edittext" />
+        android:text="@string/username"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/register_username_text"
+        app:layout_constraintEnd_toStartOf="@+id/register_username_text"
+        app:layout_constraintTop_toTopOf="@+id/register_username_text" />
 
     <TextView
         android:id="@+id/userpsd_confirm"
         android:layout_width="74dp"
         android:layout_height="31dp"
         android:gravity="center"
-        android:text="@string/reg_phone_userpsd_confirm"
-        app:layout_constraintBottom_toBottomOf="@+id/userPsdConfir_edittext"
-        app:layout_constraintEnd_toStartOf="@+id/userPsdConfir_edittext"
-        app:layout_constraintTop_toTopOf="@+id/userPsdConfir_edittext"
+        android:text="@string/confirm_password"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/register_psd_confirm"
+        app:layout_constraintEnd_toStartOf="@+id/register_psd_confirm"
+        app:layout_constraintTop_toTopOf="@+id/register_psd_confirm"
         app:layout_constraintVertical_bias="0.578" />
 
     <TextView
-        android:id="@+id/user_psd"
+        android:id="@+id/userpsd"
         android:layout_width="54dp"
         android:layout_height="25dp"
         android:gravity="center"
-        android:text="@string/reg_pone_label_psd"
-        app:layout_constraintBottom_toBottomOf="@+id/userpsd_edittext"
-        app:layout_constraintEnd_toStartOf="@+id/userpsd_edittext"
-        app:layout_constraintTop_toTopOf="@+id/userpsd_edittext"
+        android:text="@string/password"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/register_psd_text"
+        app:layout_constraintEnd_toStartOf="@+id/register_psd_text"
+        app:layout_constraintTop_toTopOf="@+id/register_psd_text"
         app:layout_constraintVertical_bias="0.466" />
 
     <Button
@@ -111,7 +114,7 @@
         android:layout_height="38dp"
         android:layout_marginTop="512dp"
         android:background="@drawable/shape_corner"
-        android:text="@string/reg_btn_txt"
+        android:text="@string/register"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.535"
@@ -119,12 +122,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <RadioButton
-        android:id="@+id/agreement_rbtn"
+        android:id="@+id/register_agreement"
         android:layout_width="319dp"
         android:layout_height="28dp"
         android:layout_marginTop="628dp"
-        android:text="@string/agreement_rbtn_txt"
-        android:textColor="#454444"
+        android:text="@string/agreement"
+        android:textColor="@android:color/black"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
