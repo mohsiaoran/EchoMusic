@@ -2,17 +2,12 @@ package cn.edu.fjzzit.echomusic.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -59,9 +54,9 @@ public class EchoActivity extends AppCompatActivity{
                 vp.setCurrentItem(0,true);
 
                 homePageIcon.setImageResource(R.drawable.earth);
-                creationIcon.setImageResource(R.drawable.lights_cray);
-                socialIcon.setImageResource(R.drawable.social_cray);
-                myInfoIcon.setImageResource(R.drawable.myinfo_cray);
+                creationIcon.setImageResource(R.drawable.lights_gray);
+                socialIcon.setImageResource(R.drawable.social_gray);
+                myInfoIcon.setImageResource(R.drawable.myinfo_gray);
 
                 homePageTxt.setTextColor(Color.parseColor("#152B93"));
                 creationTxt.setTextColor(Color.parseColor("#797979"));
@@ -75,10 +70,10 @@ public class EchoActivity extends AppCompatActivity{
             public void onClick(View v) {
                 vp.setCurrentItem(1,true);
 
-                homePageIcon.setImageResource(R.drawable.earth_cray);
+                homePageIcon.setImageResource(R.drawable.earth_gray);
                 creationIcon.setImageResource(R.drawable.lights);
-                socialIcon.setImageResource(R.drawable.social_cray);
-                myInfoIcon.setImageResource(R.drawable.myinfo_cray);
+                socialIcon.setImageResource(R.drawable.social_gray);
+                myInfoIcon.setImageResource(R.drawable.myinfo_gray);
 
                 homePageTxt.setTextColor(Color.parseColor("#797979"));
                 creationTxt.setTextColor(Color.parseColor("#152B93"));
@@ -92,10 +87,10 @@ public class EchoActivity extends AppCompatActivity{
             public void onClick(View v) {
                 vp.setCurrentItem(2,true);
 
-                homePageIcon.setImageResource(R.drawable.earth_cray);
-                creationIcon.setImageResource(R.drawable.lights_cray);
+                homePageIcon.setImageResource(R.drawable.earth_gray);
+                creationIcon.setImageResource(R.drawable.lights_gray);
                 socialIcon.setImageResource(R.drawable.social);
-                myInfoIcon.setImageResource(R.drawable.myinfo_cray);
+                myInfoIcon.setImageResource(R.drawable.myinfo_gray);
 
                 homePageTxt.setTextColor(Color.parseColor("#797979"));
                 creationTxt.setTextColor(Color.parseColor("#797979"));
@@ -109,9 +104,9 @@ public class EchoActivity extends AppCompatActivity{
             public void onClick(View v) {
                 vp.setCurrentItem(3,true);
 
-                homePageIcon.setImageResource(R.drawable.earth_cray);
-                creationIcon.setImageResource(R.drawable.lights_cray);
-                socialIcon.setImageResource(R.drawable.social_cray);
+                homePageIcon.setImageResource(R.drawable.earth_gray);
+                creationIcon.setImageResource(R.drawable.lights_gray);
+                socialIcon.setImageResource(R.drawable.social_gray);
                 myInfoIcon.setImageResource(R.drawable.myinfo);
 
                 homePageTxt.setTextColor(Color.parseColor("#797979"));

@@ -1,13 +1,54 @@
 <resources>
+    <!--内容相同的字符串最早为例，不在重复!翻译主要来自360翻译-->
+    <!--开始、登录、注册界面-->
     <string name="app_name">EchoMusic</string>
-    <string name="login_btn_txt">登入</string>
-    <string name="reg_btn_txt">注册</string>
-    <string name="visitor_btn_txt">游客登入</string>
-    <string name="reg_phone_label_txt">用户名:</string>
-    <string name="reg_pone_label_psd">密码:</string>
-    <string name="reg_phone_username_edittext">请输入用户名</string>
-    <string name="reg_phone_userpsd_edittext">请输入密码</string>
-    <string name="reg_phone_userpsd_confirm">确认密码：</string>
-    <string name="reg_interface_txt">欢迎注册ECHO音乐帐号</string>
-    <string name="agreement_rbtn_txt">请您阅读并且，同意EchoMusic用户协议和隐私协议</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="visitor_login">游客登录</string>
+    <string name="username">用户名:</string>
+    <string name="password">密码:</string>
+    <string name="please_enter_username">请输入用户名</string>
+    <string name="please_enter_password">请输入密码</string>
+    <string name="forget_password">忘记密码</string>
+    <string name="confirm_password">确认密码</string>
+    <!--底边栏、搜索栏-->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search">搜索</string>
+    <string name="find">发现</string>
+    <string name="creation">创作</string>
+    <string name="social">乐圈</string>
+    <string name="my_info">我的</string>
+    <!--首页-->
+    <string name="study_plan">学习计划</string>
+    <string name="leader_board">排行榜</string>
+    <string name="song_set">曲集</string>
+    <string name="classification">分类</string>
+    <string name="highlights">精选内容</string>
+    <string name="more">更多</string>
+    <!--创作-->
+    <string name="compose">作曲</string>
+    <string name="spectrum">谱曲</string>
+    <string name="creation_square">创作广场</string>
+    <string name="tutorial">教程</string>
+    <string name="Highlights">作品管理</string>
+    <string name="browsing_history">浏览历史</string>
+    <string name="collection_management">收藏管理</string>
+    <string name="creative_management">创作管理</string>
+    <string name="activities">活动</string>
+    <string name="recommended_tutorials">推荐教程</string>
+    <!--乐圈-->
+    <string name="dynamic_state">动态</string>
+    <string name="attention">关注</string>
+    <!--我的-->
+    <string name="edit">编辑</string>
+    <string name="fans">粉丝</string>
+    <string name="news">消息</string>
+    <string name="my_songbook">我的曲集</string>
+    <string name="my_favorite">我的喜爱</string>
+    <string name="local_music">本地音乐</string>
+    <string name="my_download">我的下载</string>
+    <string name="purchased_music">已购乐曲</string>
+    <string name="play_history">播放历史</string>
+    <!--待定-->
+
 </resources>
