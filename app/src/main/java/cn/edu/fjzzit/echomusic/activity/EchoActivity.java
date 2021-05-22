@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.material.tabs.TabLayout;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,100 +31,20 @@ public class EchoActivity extends AppCompatActivity{
     private ImageView homePageIcon,creationIcon,socialIcon,myInfoIcon;
     private TextView homePageTxt,creationTxt,socialTxt,myInfoTxt;
     private ViewPager2 vp;
+    private TabLayout nav;
+
+    private String[] titles = new String[]{"发现","创作","乐圈","我的"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_echo);
 
-        initFragment();
+        init();
         vp.setCurrentItem(0,false);
-
-        homePageBtn = findViewById(R.id.home_page_bottom);
-        creationBtn = findViewById(R.id.creation_bottom);
-        socialBtn = findViewById(R.id.social_bottom);
-        myInfoBtn = findViewById(R.id.my_info_bottom);
-
-        homePageIcon = findViewById(R.id.nav_home_page_icon);
-        creationIcon = findViewById(R.id.nav_creation_icon);
-        socialIcon = findViewById(R.id.nav_social_icon);
-        myInfoIcon = findViewById(R.id.nav_my_info_icon);
-
-        homePageTxt = findViewById(R.id.nav_home_page_txt);
-        creationTxt = findViewById(R.id.nav_creation_txt);
-        socialTxt = findViewById(R.id.nav_social_txt);
-        myInfoTxt = findViewById(R.id.nav_my_info_txt);
-
-        homePageBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                vp.setCurrentItem(0,true);
-
-                homePageIcon.setImageResource(R.drawable.earth);
-                creationIcon.setImageResource(R.drawable.lights_cray);
-                socialIcon.setImageResource(R.drawable.social_cray);
-                myInfoIcon.setImageResource(R.drawable.myinfo_cray);
-
-                homePageTxt.setTextColor(Color.parseColor("#152B93"));
-                creationTxt.setTextColor(Color.parseColor("#797979"));
-                socialTxt.setTextColor(Color.parseColor("#797979"));
-                myInfoTxt.setTextColor(Color.parseColor("#797979"));
-            }
-        });
-
-        creationBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                vp.setCurrentItem(1,true);
-
-                homePageIcon.setImageResource(R.drawable.earth_cray);
-                creationIcon.setImageResource(R.drawable.lights);
-                socialIcon.setImageResource(R.drawable.social_cray);
-                myInfoIcon.setImageResource(R.drawable.myinfo_cray);
-
-                homePageTxt.setTextColor(Color.parseColor("#797979"));
-                creationTxt.setTextColor(Color.parseColor("#152B93"));
-                socialTxt.setTextColor(Color.parseColor("#797979"));
-                myInfoTxt.setTextColor(Color.parseColor("#797979"));
-            }
-        });
-
-        socialBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                vp.setCurrentItem(2,true);
-
-                homePageIcon.setImageResource(R.drawable.earth_cray);
-                creationIcon.setImageResource(R.drawable.lights_cray);
-                socialIcon.setImageResource(R.drawable.social);
-                myInfoIcon.setImageResource(R.drawable.myinfo_cray);
-
-                homePageTxt.setTextColor(Color.parseColor("#797979"));
-                creationTxt.setTextColor(Color.parseColor("#797979"));
-                socialTxt.setTextColor(Color.parseColor("#152B93"));
-                myInfoTxt.setTextColor(Color.parseColor("#797979"));
-            }
-        });
-
-        myInfoBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                vp.setCurrentItem(3,true);
-
-                homePageIcon.setImageResource(R.drawable.earth_cray);
-                creationIcon.setImageResource(R.drawable.lights_cray);
-                socialIcon.setImageResource(R.drawable.social_cray);
-                myInfoIcon.setImageResource(R.drawable.myinfo);
-
-                homePageTxt.setTextColor(Color.parseColor("#797979"));
-                creationTxt.setTextColor(Color.parseColor("#797979"));
-                socialTxt.setTextColor(Color.parseColor("#797979"));
-                myInfoTxt.setTextColor(Color.parseColor("#152B93"));
-            }
-        });
     }
 
-    private void initFragment(){
+    private void init(){
         final List<Fragment> list=new ArrayList<>();
         list.add(new HomePageFragment());
         list.add(new CreationFragment());
@@ -145,5 +67,13 @@ public class EchoActivity extends AppCompatActivity{
         };
 
         vp.setAdapter(adapter);                     //把适配器添加给ViewPager2
+
+        for(int i=0;i<titles.length;i++){
+            nav.addTab(nav.newTab());
+        }
+        for(int i=0;i<titles.length;i++){
+            nav.getTabAt(i).setText(titles[i]);
+        }
     }
+
 }

@@ -10,7 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="670dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.viewpager2.widget.ViewPager2>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,24 +24,35 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_nav"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            app:tabIndicatorHeight="0dp"
+            app:tabSelectedTextColor="#152B93"
+            app:tabTextColor="#797979">
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/nav_home_page"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Monday" />
+                android:text="@string/find" />
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/nav_creation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tuesday" />
+                android:text="@string/creation" />
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/nav_social"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Wednesday" />
+                android:text="@string/social" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/nav_my_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/my_info" />
         </com.google.android.material.tabs.TabLayout>
 
     </LinearLayout>
