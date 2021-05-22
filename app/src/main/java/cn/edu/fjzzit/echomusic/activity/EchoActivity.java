@@ -10,6 +10,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -19,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +34,10 @@ public class EchoActivity extends AppCompatActivity{
     private TextView homePageTxt,creationTxt,socialTxt,myInfoTxt;
     private ViewPager2 vp;
     private TabLayout nav;
+    private List<Fragment> fragmentList = new ArrayList<>();
+    private int[] titleList = new int[]{R.string.find,R.string.creation,R.string.social,R.string.my_info};
+    private int[] iconList = new int[]{R.drawable.tab_icon_home_page,R.drawable.tab_icon_creation,R.drawable.tab_icon_social,R.drawable.tab_icon_my_info};
 
-    private String[] titles = new String[]{"发现","创作","乐圈","我的"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,36 +48,38 @@ public class EchoActivity extends AppCompatActivity{
         vp.setCurrentItem(0,false);
     }
 
-    private void init(){
-        final List<Fragment> list=new ArrayList<>();
-        list.add(new HomePageFragment());
-        list.add(new CreationFragment());
-        list.add(new SocialFragment());
-        list.add(new MyInfoFragment());
+    private void init() {
+        fragmentList.add(new HomePageFragment());
+        fragmentList.add(new CreationFragment());
+        fragmentList.add(new SocialFragment());
+        fragmentList.add(new MyInfoFragment());
 
-        vp=findViewById(R.id.main_viewpager);               //获得ViewPager2控件
+        vp = findViewById(R.id.main_viewpager);               //获得ViewPager2控件
+
+        nav = findViewById(R.id.tab_nav);
         //设置预加载的Fragment页面数量，可防止流式布局StaggeredGrid数组越界错误。
-        vp.setOffscreenPageLimit(list.size() - 1);                                                                     													//设置适配器
-        FragmentStateAdapter adapter=new FragmentStateAdapter(EchoActivity.this) {
+        vp.setOffscreenPageLimit(fragmentList.size() - 1);                                                                                                                        //设置适配器
+        FragmentStateAdapter adapter = new FragmentStateAdapter(EchoActivity.this) {
             @NonNull
             @Override
             public Fragment createFragment(int position) {
-                return list.get(position);
+                return fragmentList.get(position);
             }
+
             @Override
             public int getItemCount() {
-                return list.size();
+                return fragmentList.size();
             }
         };
 
         vp.setAdapter(adapter);                     //把适配器添加给ViewPager2
 
-        for(int i=0;i<titles.length;i++){
-            nav.addTab(nav.newTab());
-        }
-        for(int i=0;i<titles.length;i++){
-            nav.getTabAt(i).setText(titles[i]);
-        }
+        new TabLayoutMediator(nav, vp, new TabLayoutMediator.TabConfigurationStrategy() {
+            @Override
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                tab.setText(titleList[position]);
+                tab.setIcon(iconList[position]);
+            }
+        }).attach();
     }
-
 }
