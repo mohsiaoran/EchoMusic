@@ -56,7 +56,7 @@ public class EchoActivity extends AppCompatActivity{
         homePageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vp.setCurrentItem(0,false);
+                vp.setCurrentItem(0,true);
 
                 homePageIcon.setImageResource(R.drawable.earth);
                 creationIcon.setImageResource(R.drawable.lights_cray);
@@ -73,7 +73,7 @@ public class EchoActivity extends AppCompatActivity{
         creationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vp.setCurrentItem(1,false);
+                vp.setCurrentItem(1,true);
 
                 homePageIcon.setImageResource(R.drawable.earth_cray);
                 creationIcon.setImageResource(R.drawable.lights);
@@ -90,7 +90,7 @@ public class EchoActivity extends AppCompatActivity{
         socialBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vp.setCurrentItem(2,false);
+                vp.setCurrentItem(2,true);
 
                 homePageIcon.setImageResource(R.drawable.earth_cray);
                 creationIcon.setImageResource(R.drawable.lights_cray);
@@ -107,7 +107,7 @@ public class EchoActivity extends AppCompatActivity{
         myInfoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vp.setCurrentItem(3,false);
+                vp.setCurrentItem(3,true);
 
                 homePageIcon.setImageResource(R.drawable.earth_cray);
                 creationIcon.setImageResource(R.drawable.lights_cray);
