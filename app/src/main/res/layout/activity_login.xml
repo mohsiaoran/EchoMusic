@@ -1,8 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--这是登陆页面-->
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity.LoginActivity"/>
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/login_interface"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/login_interface_txt"
+        android:textColor="#0C0C0C"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/user_avatar"
+        android:layout_width="83dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="148dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="63dp"
+        android:layout_height="28dp"
+        android:layout_marginEnd="4dp"
+        android:gravity="center"
+        android:text="@string/username"
+        android:textColor="#191717"
+        app:layout_constraintBottom_toBottomOf="@+id/username_edit"
+        app:layout_constraintEnd_toStartOf="@+id/username_edit"
+        app:layout_constraintTop_toTopOf="@+id/username_edit"
+        app:layout_constraintVertical_bias="0.411" />
+
+    <EditText
+        android:id="@+id/username_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="312dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/please_enter_username"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.587"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/userpsd_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/please_enter_password"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.587"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/user_psd"
+        android:layout_width="67dp"
+        android:layout_height="28dp"
+        android:layout_marginEnd="4dp"
+        android:gravity="center"
+        android:text="@string/password"
+        android:textColor="#151414"
+        app:layout_constraintBottom_toBottomOf="@+id/userpsd_edit"
+        app:layout_constraintEnd_toStartOf="@+id/userpsd_edit"
+        app:layout_constraintTop_toTopOf="@+id/userpsd_edit"
+        app:layout_constraintVertical_bias="0.47" />
+
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="202dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="168dp"
+        android:background="@drawable/shape_corner"
+        android:text="@string/login"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <RadioButton
+        android:id="@+id/agreement_rbtn"
+        android:layout_width="325dp"
+        android:layout_height="27dp"
+        android:layout_marginBottom="52dp"
+        android:text="@string/agreement_rbtn_txt"
+        android:textColor="#333232"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
