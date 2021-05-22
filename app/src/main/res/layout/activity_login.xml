@@ -64,7 +64,7 @@
         android:ems="10"
         android:gravity="center"
         android:hint="@string/please_enter_password"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.587"
         app:layout_constraintStart_toStartOf="parent"
