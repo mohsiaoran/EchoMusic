@@ -46,13 +46,21 @@
     <string name="attention">关注</string>
     <!--我的-->
     <string name="edit">编辑</string>
+    <string name="logo">logo</string>
+    <string name="level">Lv.2</string>
+    <string name="name">张三</string>
+    <string name="sign">屌！！！</string>
     <string name="fans">粉丝</string>
     <string name="news">消息</string>
-    <string name="my_songbook">我的曲集</string>
-    <string name="my_favorite">我的喜爱</string>
-    <string name="local_music">本地音乐</string>
-    <string name="my_download">我的下载</string>
-    <string name="purchased_music">已购乐曲</string>
-    <string name="play_history">播放历史</string>
+    <string name="attention_num">14</string>
+    <string name="fans_num">1236</string>
+    <string name="dynamic_state_num">14</string>
+    <string name="news_num">0</string>
+    <string name="my_songbook">我的曲集></string>
+    <string name="my_favorite">我的喜爱></string>
+    <string name="local_music">本地音乐></string>
+    <string name="my_download">我的下载></string>
+    <string name="purchased_music">已购乐曲></string>
+    <string name="play_history">播放历史></string>
     <!--待定ing-->
 </resources>
