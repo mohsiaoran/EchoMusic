@@ -1,5 +1,5 @@
 <resources>
-    <!--内容相同的字符串最早为例，不在重复!翻译主要来自360翻译-->
+    <!--内容相同的字符串最早为例，不在重复！翻译主要来自360翻译-->
     <!--开始、登录界面-->
     <string name="app_name">EchoMusic</string>
     <string name="login">登录</string>
