@@ -20,96 +20,27 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <LinearLayout
-            android:id="@+id/home_page_bottom"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_nav"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal|center_vertical"
-            android:orientation="vertical">
+            android:layout_weight="1">
 
-            <ImageView
-                android:id="@+id/nav_home_page_icon"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                app:srcCompat="@drawable/earth" />
-
-            <TextView
-                android:id="@+id/nav_home_page_txt"
+            <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/nav_home_page_label"
-                android:textColor="#152B93"
-                android:textSize="16sp" />
-        </LinearLayout>
+                android:text="Monday" />
 
-        <LinearLayout
-            android:id="@+id/creation_bottom"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal|center_vertical"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/nav_creation_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="32dp"
-                app:srcCompat="@drawable/lights_cray" />
-
-            <TextView
-                android:id="@+id/nav_creation_txt"
+            <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/nav_creation_label"
-                android:textColor="#797979"
-                android:textSize="16sp" />
-        </LinearLayout>
+                android:text="Tuesday" />
 
-        <LinearLayout
-            android:id="@+id/social_bottom"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal|center_vertical"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/nav_social_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="32dp"
-                app:srcCompat="@drawable/social_cray" />
-
-            <TextView
-                android:id="@+id/nav_social_txt"
+            <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/nav_social_label"
-                android:textColor="#797979"
-                android:textSize="16sp" />
-        </LinearLayout>
+                android:text="Wednesday" />
+        </com.google.android.material.tabs.TabLayout>
 
-        <LinearLayout
-            android:id="@+id/my_info_bottom"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal|center_vertical"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/nav_my_info_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="32dp"
-                app:srcCompat="@drawable/myinfo_cray" />
-
-            <TextView
-                android:id="@+id/nav_my_info_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/nav_my_info_label"
-                android:textColor="#797979"
-                android:textSize="16sp" />
-        </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
