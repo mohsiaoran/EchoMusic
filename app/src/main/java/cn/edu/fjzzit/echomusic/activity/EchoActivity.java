@@ -14,29 +14,36 @@ import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.fjzzit.echomusic.R;
 
-public class EchoActivity extends AppCompatActivity{
+public class EchoActivity extends AppCompatActivity implements View.OnClickListener{
 
     private LinearLayout homePageBtn,creationBtn,socialBtn,myInfoBtn;
     private ImageView homePageIcon,creationIcon,socialIcon,myInfoIcon;
     private TextView homePageTxt,creationTxt,socialTxt,myInfoTxt;
     private ViewPager2 vp;
+    private TabLayout tab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_echo);
-
         initFragment();
         vp.setCurrentItem(0,false);
+
+        tab = findViewById(R.id.tab_nav);
 
         homePageBtn = findViewById(R.id.home_page_bottom);
         creationBtn = findViewById(R.id.creation_bottom);
@@ -53,71 +60,22 @@ public class EchoActivity extends AppCompatActivity{
         socialTxt = findViewById(R.id.nav_social_txt);
         myInfoTxt = findViewById(R.id.nav_my_info_txt);
 
-        homePageBtn.setOnClickListener(new View.OnClickListener() {
+
+        vp.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
-            public void onClick(View v) {
-                vp.setCurrentItem(0,true);
+            public void onPageSelected(int position) {
+                switch (position){
+                    case 0:
 
-                homePageIcon.setImageResource(R.drawable.earth);
-                creationIcon.setImageResource(R.drawable.lights_cray);
-                socialIcon.setImageResource(R.drawable.social_cray);
-                myInfoIcon.setImageResource(R.drawable.myinfo_cray);
-
-                homePageTxt.setTextColor(Color.parseColor("#152B93"));
-                creationTxt.setTextColor(Color.parseColor("#797979"));
-                socialTxt.setTextColor(Color.parseColor("#797979"));
-                myInfoTxt.setTextColor(Color.parseColor("#797979"));
-            }
-        });
-
-        creationBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                vp.setCurrentItem(1,true);
-
-                homePageIcon.setImageResource(R.drawable.earth_cray);
-                creationIcon.setImageResource(R.drawable.lights);
-                socialIcon.setImageResource(R.drawable.social_cray);
-                myInfoIcon.setImageResource(R.drawable.myinfo_cray);
-
-                homePageTxt.setTextColor(Color.parseColor("#797979"));
-                creationTxt.setTextColor(Color.parseColor("#152B93"));
-                socialTxt.setTextColor(Color.parseColor("#797979"));
-                myInfoTxt.setTextColor(Color.parseColor("#797979"));
-            }
-        });
-
-        socialBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                vp.setCurrentItem(2,true);
-
-                homePageIcon.setImageResource(R.drawable.earth_cray);
-                creationIcon.setImageResource(R.drawable.lights_cray);
-                socialIcon.setImageResource(R.drawable.social);
-                myInfoIcon.setImageResource(R.drawable.myinfo_cray);
-
-                homePageTxt.setTextColor(Color.parseColor("#797979"));
-                creationTxt.setTextColor(Color.parseColor("#797979"));
-                socialTxt.setTextColor(Color.parseColor("#152B93"));
-                myInfoTxt.setTextColor(Color.parseColor("#797979"));
-            }
-        });
-
-        myInfoBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                vp.setCurrentItem(3,true);
-
-                homePageIcon.setImageResource(R.drawable.earth_cray);
-                creationIcon.setImageResource(R.drawable.lights_cray);
-                socialIcon.setImageResource(R.drawable.social_cray);
-                myInfoIcon.setImageResource(R.drawable.myinfo);
-
-                homePageTxt.setTextColor(Color.parseColor("#797979"));
-                creationTxt.setTextColor(Color.parseColor("#797979"));
-                socialTxt.setTextColor(Color.parseColor("#797979"));
-                myInfoTxt.setTextColor(Color.parseColor("#152B93"));
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                }
+                super.onPageSelected(position);
             }
         });
     }
@@ -145,5 +103,33 @@ public class EchoActivity extends AppCompatActivity{
         };
 
         vp.setAdapter(adapter);                     //把适配器添加给ViewPager2
+    }
+    public void setSelected(){
+        homePageBtn.setSelected(false);
+        creationBtn.setSelected(false);
+        socialBtn.setSelected(false);
+        myInfoBtn.setSelected(false);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.home_page_bottom:
+                setSelected();
+                homePageBtn.setSelected(true);
+                break;
+            case R.id.creation_bottom:
+                setSelected();
+                creationBtn.setSelected(true);
+                break;
+            case R.id.social_bottom:
+                setSelected();
+                socialBtn.setSelected(true);
+                break;
+            case R.id.my_info_bottom:
+                setSelected();
+                myInfoBtn.setSelected(true);
+                break;
+        }
     }
 }
