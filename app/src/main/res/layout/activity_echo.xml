@@ -26,7 +26,9 @@
             android:id="@+id/tab_nav"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:longClickable="false"
             app:tabIndicatorHeight="0dp"
+            app:tabRippleColor="#00FFFFFF"
             app:tabSelectedTextColor="#152B93"
             app:tabTextColor="#797979">
 
@@ -34,6 +36,7 @@
                 android:id="@+id/nav_home_page"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:icon="@drawable/earth_gray"
                 android:text="@string/find" />
 
             <com.google.android.material.tabs.TabItem
