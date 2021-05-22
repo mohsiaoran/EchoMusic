@@ -1,7 +1,5 @@
 package cn.edu.fjzzit.echomusic.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -45,7 +43,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(MainActivity.this, HomePageActivity.class);
+                intent.setClass(MainActivity.this, EchoActivity.class);
                 MainActivity.this.startActivity(intent);
                 finish();
             }
