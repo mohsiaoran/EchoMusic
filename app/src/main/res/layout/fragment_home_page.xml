@@ -15,6 +15,7 @@
         android:layout_marginTop="15dp"
         android:src="@drawable/echologo_l" />
 
+
     <EditText
         android:id="@+id/search_text"
         android:layout_width="wrap_content"
@@ -26,7 +27,8 @@
         android:gravity="center"
         android:hint="@string/search"
         android:inputType="textPersonName"
-        android:textColorHighlight="@color/colorAccent" />
+        android:textColorHighlight="@color/colorAccent"
+        android:textColorHint="#9B9A99" />
 
     <ImageView
         android:id="@+id/know_img"
@@ -192,6 +194,22 @@
 
                 <TextView
                     android:id="@+id/textView10"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:text="TextView" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="90dp">
+
+                <ImageView
+                    android:id="@+id/imageView12"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/ic_launcher_background" />
+
+                <TextView
+                    android:id="@+id/textView11"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:text="TextView" />
