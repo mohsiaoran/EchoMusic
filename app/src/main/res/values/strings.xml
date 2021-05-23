@@ -29,7 +29,7 @@
     <string name="song_set">曲集</string>
     <string name="classification">分类</string>
     <string name="highlights">精选内容</string>
-    <string name="more">更多</string>
+    <string name="more">更多></string>
     <!--创作-->
     <string name="compose">作曲</string>
     <string name="spectrum">谱曲</string>
@@ -38,7 +38,7 @@
     <string name="Highlights">作品管理</string>
     <string name="browsing_history">浏览历史</string>
     <string name="collection_management">收藏管理</string>
-    <string name="creative_management">创作管理</string>
+    <string name="creative_pay">创作激励</string>
     <string name="activities">活动</string>
     <string name="recommended_tutorials">推荐教程</string>
     <!--乐圈-->
