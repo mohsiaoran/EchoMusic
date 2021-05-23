@@ -139,7 +139,8 @@
         android:layout_width="match_parent"
         android:layout_height="275dp"
         android:layout_gravity="center"
-        android:layout_marginTop="120dp">
+        android:layout_marginTop="160dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -197,51 +198,4 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_gravity="bottom|center"
-        android:background="#D6D6D6"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_nav"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:longClickable="false"
-            app:tabIndicatorHeight="0dp"
-            app:tabRippleColor="#00FFFFFF"
-            app:tabSelectedTextColor="#152B93"
-            app:tabTextColor="#797979">
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/nav_home_page"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:icon="@drawable/earth_gray"
-                android:text="@string/find" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/nav_creation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/creation" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/nav_social"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/social" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/nav_my_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/my_info" />
-        </com.google.android.material.tabs.TabLayout>
-
-    </LinearLayout>
 </FrameLayout>
