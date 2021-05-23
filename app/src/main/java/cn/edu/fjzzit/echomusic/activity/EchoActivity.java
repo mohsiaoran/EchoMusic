@@ -2,19 +2,11 @@ package cn.edu.fjzzit.echomusic.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -37,6 +29,7 @@ public class EchoActivity extends AppCompatActivity{
     private List<Fragment> fragmentList = new ArrayList<>();
     private int[] titleList = new int[]{R.string.find,R.string.creation,R.string.social,R.string.my_info};
     private int[] iconList = new int[]{R.drawable.tab_icon_home_page,R.drawable.tab_icon_creation,R.drawable.tab_icon_social,R.drawable.tab_icon_my_info};
+
 
 
     @Override
@@ -77,8 +70,9 @@ public class EchoActivity extends AppCompatActivity{
         new TabLayoutMediator(nav, vp, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                tab.setText(titleList[position]);
+
                 tab.setIcon(iconList[position]);
+                tab.setText(titleList[position]);
             }
         }).attach();
     }

@@ -2,6 +2,7 @@ package cn.edu.fjzzit.echomusic.adapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         holder.userName.setText(postInfo.getUserName());
         holder.postTime.setText(postInfo.getPostTime());
         holder.postContent.setText(postInfo.getPostContent());
+        if (postInfo.getState()==1){
+            holder.attState.setText(R.string.get_attention_btn_txt);
+            holder.attState.setBackgroundResource(R.drawable.social_get_attention_shape_corner);
+        }
 
 //        holder.icon.setImageResource(context.getResources().getIdentifier(dailyForecast.getIcon(), "drawable", context.getPackageName()));
     }
@@ -52,11 +57,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         TextView userName;
         TextView postTime;
         TextView postContent;
+        TextView attState;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             userName = itemView.findViewById(R.id.social_username);
             postTime = itemView.findViewById(R.id.social_post_time);
             postContent = itemView.findViewById(R.id.post_content);
+            attState = itemView.findViewById(R.id.social_attention_btn);
         }
     }
 }

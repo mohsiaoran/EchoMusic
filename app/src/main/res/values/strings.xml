@@ -44,6 +44,8 @@
     <!--乐圈-->
     <string name="dynamic_state">动态</string>
     <string name="attention">关注</string>
+    <string name="add_attention_btn_txt">+   关注</string>
+    <string name="get_attention_btn_txt">✔  已关注</string>
     <!--我的-->
     <string name="edit">编辑</string>
     <string name="logo">logo</string>

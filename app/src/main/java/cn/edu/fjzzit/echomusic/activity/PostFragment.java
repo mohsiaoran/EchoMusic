@@ -27,9 +27,12 @@ public class PostFragment extends Fragment {
 
         mPostRecyclerView = view.findViewById(R.id.post_rlv);
 
+        String oSt = "测试一下长文字动态会有什么效果";
+        String content = "";
         List<PostInfo> postInfoList = new ArrayList<PostInfo>();
         for (int i =0;i<10;i++){
-            PostInfo postInfo = new PostInfo("username"+i,"time","测试");
+            content = content+oSt;
+            PostInfo postInfo = new PostInfo("username"+i,"time",content,0);
             postInfoList.add(postInfo);
         }
 
