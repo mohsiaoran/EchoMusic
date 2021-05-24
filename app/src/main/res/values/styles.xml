@@ -7,6 +7,9 @@
         <item name="colorAccent">@color/colorAccent</item>
 
     </style>
+    <style name="Translucent">
+        <item name="android:windowIsTranslucent">false</item>
+    </style>
     <style name="StyleShapeAppearanceImage" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">16dp</item>
