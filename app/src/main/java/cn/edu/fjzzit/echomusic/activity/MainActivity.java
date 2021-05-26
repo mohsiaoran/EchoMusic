@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import cn.edu.fjzzit.echomusic.R;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     private Button loginBtn,regBtn,visitorBtn;
 

@@ -67,5 +67,6 @@
     <string name="purchased_music">已购乐曲></string>
     <string name="play_history">播放历史></string>
     <string name="music_list">曲集</string>
+    <string name="echo_txt">Echo</string>
     <!--待定ing-->
 </resources>
