@@ -211,7 +211,7 @@
                 android:id="@+id/local_music"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:drawableStart="@drawable/music"
+                android:drawableStart="@drawable/make"
                 android:gravity="center"
                 android:text="@string/local_music" />
 
