@@ -6,7 +6,11 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -31,7 +35,6 @@ public class EchoActivity extends AppCompatActivity{
     private int[] iconList = new int[]{R.drawable.tab_icon_home_page,R.drawable.tab_icon_creation,R.drawable.tab_icon_social,R.drawable.tab_icon_my_info};
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +42,22 @@ public class EchoActivity extends AppCompatActivity{
 
         init();
         vp.setCurrentItem(0,false);
+
+
+        //定位按钮
+        View play_bar_music_info_img= (View) findViewById(R.id.play_bar_music_info_img);
+
+        //添加监听器
+        play_bar_music_info_img.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EchoActivity.this, MusicPlayerActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
     }
 
     private void init() {
@@ -76,4 +95,6 @@ public class EchoActivity extends AppCompatActivity{
             }
         }).attach();
     }
+
+
 }
