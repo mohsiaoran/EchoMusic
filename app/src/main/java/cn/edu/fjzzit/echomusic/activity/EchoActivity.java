@@ -7,8 +7,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -24,7 +24,7 @@ import java.util.List;
 import cn.edu.fjzzit.echomusic.R;
 
 public class EchoActivity extends AppCompatActivity{
-
+    String flag = "true";
     private LinearLayout homePageBtn,creationBtn,socialBtn,myInfoBtn;
     private ImageView homePageIcon,creationIcon,socialIcon,myInfoIcon;
     private TextView homePageTxt,creationTxt,socialTxt,myInfoTxt;
@@ -33,7 +33,7 @@ public class EchoActivity extends AppCompatActivity{
     private List<Fragment> fragmentList = new ArrayList<>();
     private int[] titleList = new int[]{R.string.find,R.string.creation,R.string.social,R.string.my_info};
     private int[] iconList = new int[]{R.drawable.tab_icon_home_page,R.drawable.tab_icon_creation,R.drawable.tab_icon_social,R.drawable.tab_icon_my_info};
-
+    MediaPlayer mediaPlayer1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,20 +43,39 @@ public class EchoActivity extends AppCompatActivity{
         init();
         vp.setCurrentItem(0,false);
 
-
-        //定位按钮
+        //定位音乐播放界面图标
         View play_bar_music_info_img= (View) findViewById(R.id.play_bar_music_info_img);
-
         //添加监听器
         play_bar_music_info_img.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(EchoActivity.this, MusicPlayerActivity.class);
+                Intent intent=new Intent(EchoActivity.this, MusicPlayerActivity.class);
                 startActivity(intent);
-
             }
         });
+
+        //定位音乐播放图标
+        final Button btn_play=(Button) findViewById(R.id.btn_play);
+        mediaPlayer1 = MediaPlayer.create(EchoActivity.this, R.raw.canon);;
+        //添加监听器
+        btn_play.setOnClickListener(new View.OnClickListener(){
+            //音乐播放与暂停
+            @Override
+            public void onClick(View v) {
+                if(flag.equals("true")){
+                    mediaPlayer1.start();
+                    flag = "false";
+                }else{
+                    mediaPlayer1.pause();
+                    flag = "true";
+                }
+            }
+        });
+
+
+
+
 
     }
 
