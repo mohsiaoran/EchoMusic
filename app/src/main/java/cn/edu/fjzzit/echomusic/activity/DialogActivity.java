@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -15,8 +16,10 @@ import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -54,25 +57,23 @@ public class DialogActivity extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_content_normal);
-
-        // 设置弹窗
-        Window dialogWindow = getWindow();  //得到弹框
-        dialogWindow.setGravity(Gravity.BOTTOM); //设为在底部
+        // 获取当前Activity所在的窗体
+        Window dialogWindow = getWindow();
+        //设置Dialog从窗体底部弹出
+        dialogWindow.setGravity(Gravity.BOTTOM);
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-        lp.width = 1440;  //宽度设置
-        lp.y = 0;  //离底部距离为0
+        //设置宽
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        //设置高
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        dialogWindow.setBackgroundDrawableResource(android.R.color.white);
         dialogWindow.setAttributes(lp);
+
         // 设置适配器
         MusicAdapter musicAdapter = new MusicAdapter();
         List<String> data = musicAdapter.getData();
         lv = (ListView) findViewById(R.id.lv);
         lv.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, data));
-
-        Iterator it1 = data.iterator();
-        while (it1.hasNext()) {
-            System.out.println(it1.next());
-        }
-
 
         // ListView每个item点击事件
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -81,17 +82,18 @@ public class DialogActivity extends Dialog {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //获取item值
                 itemValue = (String) parent.getItemAtPosition(position);
+
+                TextView text_top =(TextView) findViewById(R.id.text_top);
+                text_top.setText("当前播放的是："+itemValue);
+
                 //通过字符串获取资源id
                 Resources res = getContext().getResources();
                 int num = res.getIdentifier(itemValue, "raw", getContext().getPackageName());
                 Intent intent = new Intent(getContext(), EchoActivity.class);
                 intent.putExtra("id", num+"");
                 getContext().startActivity(intent);
-
-
             }
         });
-
     }
 
 }
