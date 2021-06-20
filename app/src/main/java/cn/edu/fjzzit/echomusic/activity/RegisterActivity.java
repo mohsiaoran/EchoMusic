@@ -75,6 +75,13 @@ public class RegisterActivity extends AppCompatActivity {
                         String n = name.getText().toString().trim();
                         String psw = password.getText().toString().trim();
                         String cf_psw = confirmPassword.getText().toString().trim();
+                        if (n.equals("") || psw.equals("")) {
+                            Looper.prepare();
+                            Toast toast = Toast.makeText(RegisterActivity.this, "输入不能为空！", Toast.LENGTH_SHORT);
+                            toast.show();
+                            Looper.loop();
+                        }
+
                         if (!psw.equals(cf_psw)){
                             Looper.prepare();
                             Toast cf = Toast.makeText(RegisterActivity.this, "密码不一样！", Toast.LENGTH_SHORT);

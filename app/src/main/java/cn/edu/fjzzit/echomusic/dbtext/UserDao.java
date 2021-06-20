@@ -42,7 +42,7 @@ public class UserDao {
             Log.i(TAG,"register:conn is null");
             return false;
         }else {
-            String sql = "select * from user where name=? and password=?";
+            String sql = "select * from userinfo where userName=? and password=?";
             try {
                 PreparedStatement pres = conn.prepareStatement(sql);
                 pres.setString(1,name);
