@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.content.Intent;
+import android.app.Dialog;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -24,7 +26,6 @@ import java.util.List;
 import cn.edu.fjzzit.echomusic.R;
 
 public class EchoActivity extends AppCompatActivity{
-    String flag = "true";
     private LinearLayout homePageBtn,creationBtn,socialBtn,myInfoBtn;
     private ImageView homePageIcon,creationIcon,socialIcon,myInfoIcon;
     private TextView homePageTxt,creationTxt,socialTxt,myInfoTxt;
@@ -33,6 +34,9 @@ public class EchoActivity extends AppCompatActivity{
     private List<Fragment> fragmentList = new ArrayList<>();
     private int[] titleList = new int[]{R.string.find,R.string.creation,R.string.social,R.string.my_info};
     private int[] iconList = new int[]{R.drawable.tab_icon_home_page,R.drawable.tab_icon_creation,R.drawable.tab_icon_social,R.drawable.tab_icon_my_info};
+    String flag = "true";
+    String TAG = "";
+    Button btn_play;
     MediaPlayer mediaPlayer1;
 
     @Override
@@ -43,21 +47,13 @@ public class EchoActivity extends AppCompatActivity{
         init();
         vp.setCurrentItem(0,false);
 
-        //定位音乐播放界面图标
-        View play_bar_music_info_img= (View) findViewById(R.id.play_bar_music_info_img);
-        //添加监听器
-        play_bar_music_info_img.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(EchoActivity.this, MusicPlayerActivity.class);
-                startActivity(intent);
-            }
-        });
 
         //定位音乐播放图标
-        final Button btn_play=(Button) findViewById(R.id.btn_play);
-        mediaPlayer1 = MediaPlayer.create(EchoActivity.this, R.raw.canon);;
+        btn_play=(Button) findViewById(R.id.btn_play);
+        if(mediaPlayer1 == null){
+            mediaPlayer1 = MediaPlayer.create(EchoActivity.this, 2131623936);   //默认播放canon
+        }
+
         //添加监听器
         btn_play.setOnClickListener(new View.OnClickListener(){
             //音乐播放与暂停
@@ -73,11 +69,38 @@ public class EchoActivity extends AppCompatActivity{
             }
         });
 
+        // 弹出底部音乐列表
+        View musicList= (View) findViewById(R.id.musicList);
+        //添加监听器
+        musicList.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                mediaPlayer1.release();
+                DialogActivity dialogActivity = new DialogActivity(EchoActivity.this);
+                dialogActivity.show();
+
+            }
+        });
+
+        // 音乐列表播放
+        String sID=getIntent().getStringExtra("id");
+        while(sID != null){
+
+            int id=Integer.parseInt(sID);      //String转int
+
+
+            mediaPlayer1 = MediaPlayer.create(EchoActivity.this, id);
+            mediaPlayer1.start();
+            //添加监听器
+            sID = null;
+        }
 
 
 
 
     }
+
+
 
     private void init() {
         fragmentList.add(new HomePageFragment());
