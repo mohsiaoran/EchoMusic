@@ -6,6 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.RegisterActivity">
+    <!--tools:context=".dbtext.Register_db">-->
+
 
     <TextView
         android:id="@+id/register_title"
@@ -87,6 +89,8 @@
         android:layout_height="38dp"
         android:layout_marginBottom="112dp"
         android:background="@drawable/shape_corner"
+        android:onClick="fun"
+        android:clickable="true"
         android:text="@string/register"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
