@@ -11,7 +11,10 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -51,7 +54,7 @@ public class EchoActivity extends AppCompatActivity{
         //定位音乐播放图标
         btn_play=(Button) findViewById(R.id.btn_play);
         if(mediaPlayer1 == null){
-            mediaPlayer1 = MediaPlayer.create(EchoActivity.this, 2131623936);   //默认播放canon
+            mediaPlayer1 = MediaPlayer.create(EchoActivity.this, R.raw.canon);   //默认播放canon
         }
 
         //添加监听器
@@ -85,19 +88,11 @@ public class EchoActivity extends AppCompatActivity{
         // 音乐列表播放
         String sID=getIntent().getStringExtra("id");
         while(sID != null){
-
             int id=Integer.parseInt(sID);      //String转int
-
-
             mediaPlayer1 = MediaPlayer.create(EchoActivity.this, id);
             mediaPlayer1.start();
-            //添加监听器
             sID = null;
         }
-
-
-
-
     }
 
 
