@@ -7,6 +7,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.Dialog;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -65,7 +67,13 @@ public class EchoActivity extends AppCompatActivity{
                 if(flag.equals("true")){
                     mediaPlayer1.start();
                     flag = "false";
+                    Resources resources = getApplicationContext().getResources();
+                    Drawable pause = resources.getDrawable(R.drawable.pause);
+                    btn_play.setBackground(pause);
                 }else{
+                    Resources resources = getApplicationContext().getResources();
+                    Drawable play = resources.getDrawable(R.drawable.play);
+                    btn_play.setBackground(play);
                     mediaPlayer1.pause();
                     flag = "true";
                 }
