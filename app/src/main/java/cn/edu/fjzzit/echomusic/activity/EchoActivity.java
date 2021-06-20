@@ -99,6 +99,9 @@ public class EchoActivity extends AppCompatActivity{
             int id=Integer.parseInt(sID);      //String转int
             mediaPlayer1 = MediaPlayer.create(EchoActivity.this, id);
             mediaPlayer1.start();
+            Resources resources = getApplicationContext().getResources();
+            Drawable pause = resources.getDrawable(R.drawable.pause);
+            btn_play.setBackground(pause);
             flag = "false";
             sID = null;
         }
