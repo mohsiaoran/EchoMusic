@@ -57,13 +57,6 @@ public class DialogActivity extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_content_normal);
-//        // 设置弹窗
-//        Window dialogWindow = getWindow();  //得到弹框
-//        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-//        lp.width = 1440;
-//        lp.y = 2880;  //离部距离为0
-//        lp.alpha = 0.8f;
-//        dialogWindow.setAttributes(lp);
         // 获取当前Activity所在的窗体
         Window dialogWindow = getWindow();
         //设置Dialog从窗体底部弹出
