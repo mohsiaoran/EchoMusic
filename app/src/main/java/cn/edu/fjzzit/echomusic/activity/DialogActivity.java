@@ -57,8 +57,6 @@ public class DialogActivity extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_content_normal);
-
-
 //        // 设置弹窗
 //        Window dialogWindow = getWindow();  //得到弹框
 //        WindowManager.LayoutParams lp = dialogWindow.getAttributes();

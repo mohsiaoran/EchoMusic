@@ -91,6 +91,7 @@ public class EchoActivity extends AppCompatActivity{
             int id=Integer.parseInt(sID);      //String转int
             mediaPlayer1 = MediaPlayer.create(EchoActivity.this, id);
             mediaPlayer1.start();
+            flag = "false";
             sID = null;
         }
     }
