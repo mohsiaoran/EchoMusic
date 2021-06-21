@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/play_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="月光"
@@ -37,7 +37,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/play_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="贝多芬"
@@ -55,17 +55,18 @@
         app:srcCompat="@drawable/music_img_lg" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/play_time_now"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="00:00"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/play_page_btn"
-        app:layout_constraintEnd_toStartOf="@+id/seekBar"
-        app:layout_constraintTop_toTopOf="@+id/seekBar" />
+        app:layout_constraintEnd_toStartOf="@+id/play_page_seekBar"
+        app:layout_constraintTop_toTopOf="@+id/play_page_seekBar" />
 
     <SeekBar
-        android:id="@+id/seekBar"
+        android:id="@+id/play_page_seekBar"
+        style="@style/CustomSeekbarStyle"
         android:layout_width="0dp"
         android:layout_height="25dp"
         android:layout_marginStart="50dp"
@@ -75,14 +76,14 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/play_time_total"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="03:22"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/seekBar"
-        app:layout_constraintStart_toEndOf="@+id/seekBar"
-        app:layout_constraintTop_toTopOf="@+id/seekBar" />
+        android:textColor="#B5B5B5"
+        app:layout_constraintBottom_toBottomOf="@+id/play_page_seekBar"
+        app:layout_constraintStart_toEndOf="@+id/play_page_seekBar"
+        app:layout_constraintTop_toTopOf="@+id/play_page_seekBar" />
 
     <Button
         android:id="@+id/play_page_btn"
@@ -109,7 +110,7 @@
         app:layout_constraintTop_toTopOf="@+id/play_page_btn" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/next_btn"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="20dp"

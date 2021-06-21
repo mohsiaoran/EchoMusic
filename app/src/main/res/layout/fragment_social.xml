@@ -66,7 +66,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
-        android:paddingBottom="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,9 +74,10 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/social_vp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="#F2F2F2">
+            android:background="#F2F2F2"
+            android:paddingBottom="110dp">
 
         </androidx.viewpager2.widget.ViewPager2>
     </cn.edu.fjzzit.echomusic.NestedScrollableHost>
