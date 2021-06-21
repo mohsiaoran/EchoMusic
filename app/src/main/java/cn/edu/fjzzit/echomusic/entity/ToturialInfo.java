@@ -1,5 +1,7 @@
 package cn.edu.fjzzit.echomusic.entity;
 
+
+//教程
 public class ToturialInfo {
     private String imgRes;
     private String title;

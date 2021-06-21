@@ -1,5 +1,7 @@
 package cn.edu.fjzzit.echomusic.entity;
 
+
+//动态
 public class PostInfo {
     private String userName;
     private String postTime;

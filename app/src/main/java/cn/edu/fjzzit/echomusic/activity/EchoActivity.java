@@ -2,11 +2,13 @@ package cn.edu.fjzzit.echomusic.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -42,12 +44,15 @@ public class EchoActivity extends AppCompatActivity{
     String flag = "true";
     String TAG = "";
     Button btn_play;
+    ConstraintLayout musicBar;
     MediaPlayer mediaPlayer1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_echo);
+
+        musicBar = findViewById(R.id.music_play_bar);
 
         init();
         vp.setCurrentItem(0,false);
@@ -105,6 +110,16 @@ public class EchoActivity extends AppCompatActivity{
             flag = "false";
             sID = null;
         }
+
+
+        musicBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(EchoActivity.this, PlayActivity.class);
+                EchoActivity.this.startActivity(intent);
+            }
+        });
     }
 
 
