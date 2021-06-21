@@ -92,9 +92,7 @@ public class SpeechActivity extends AppCompatActivity implements View.OnClickLis
         mIat = SpeechRecognizer.createRecognizer(SpeechActivity.this, mInitListener);
         // 使用UI听写功能，请根据sdk文件目录下的notice.txt,放置布局文件和图片资源
         mIatDialog = new RecognizerDialog(SpeechActivity.this, mInitListener);
-        mSharedPreferences = getSharedPreferences("ASR",
-                Activity.MODE_PRIVATE);
-
+        mSharedPreferences = getSharedPreferences("ASR", Activity.MODE_PRIVATE);
     }
 
 

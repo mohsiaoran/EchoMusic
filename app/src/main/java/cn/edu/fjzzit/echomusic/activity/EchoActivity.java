@@ -6,17 +6,17 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,19 +30,21 @@ import java.util.List;
 
 import cn.edu.fjzzit.echomusic.R;
 
-public class EchoActivity extends AppCompatActivity{
-    private LinearLayout homePageBtn,creationBtn,socialBtn,myInfoBtn;
-    private ImageView homePageIcon,creationIcon,socialIcon,myInfoIcon;
-    private TextView homePageTxt,creationTxt,socialTxt,myInfoTxt;
+public class EchoActivity extends AppCompatActivity {
+    private LinearLayout homePageBtn, creationBtn, socialBtn, myInfoBtn;
+    private ImageView homePageIcon, creationIcon, socialIcon, myInfoIcon;
+    private TextView homePageTxt, creationTxt, socialTxt, myInfoTxt;
     private ViewPager2 vp;
     private TabLayout nav;
     private List<Fragment> fragmentList = new ArrayList<>();
-    private int[] titleList = new int[]{R.string.find,R.string.creation,R.string.social,R.string.my_info};
-    private int[] iconList = new int[]{R.drawable.tab_icon_home_page,R.drawable.tab_icon_creation,R.drawable.tab_icon_social,R.drawable.tab_icon_my_info};
-    String flag = "true";
-    String TAG = "";
-    Button btn_play;
-    MediaPlayer mediaPlayer1;
+    private int[] titleList = new int[]{R.string.find, R.string.creation, R.string.social, R.string.my_info};
+    private int[] iconList = new int[]{R.drawable.tab_icon_home_page, R.drawable.tab_icon_creation, R.drawable.tab_icon_social, R.drawable.tab_icon_my_info};
+    private String flag = "true";
+    private String TAG = "TAG";
+    private Button btn_play;
+    private MediaPlayer mediaPlayer1 = null;
+    private MyReceiver myreceiver;
+    private static String sID = "2131623937";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,27 +52,27 @@ public class EchoActivity extends AppCompatActivity{
         setContentView(R.layout.activity_echo);
 
         init();
-        vp.setCurrentItem(0,false);
+        vp.setCurrentItem(0, false);
 
 
         //定位音乐播放图标
-        btn_play=(Button) findViewById(R.id.btn_play);
-        if(mediaPlayer1 == null){
-            mediaPlayer1 = MediaPlayer.create(EchoActivity.this, R.raw.canon);   //默认播放canon
+        btn_play = (Button) findViewById(R.id.btn_play);
+        if (mediaPlayer1 == null) {
+            mediaPlayer1 = MediaPlayer.create(EchoActivity.this, R.raw.canon);   //默认播放
         }
 
         //添加监听器
-        btn_play.setOnClickListener(new View.OnClickListener(){
+        btn_play.setOnClickListener(new View.OnClickListener() {
             //音乐播放与暂停
             @Override
             public void onClick(View v) {
-                if(flag.equals("true")){
+                if (flag.equals("true")) {
                     mediaPlayer1.start();
-                    flag = "false";
                     Resources resources = getApplicationContext().getResources();
                     Drawable pause = resources.getDrawable(R.drawable.pause);
                     btn_play.setBackground(pause);
-                }else{
+                    flag = "false";
+                } else {
                     Resources resources = getApplicationContext().getResources();
                     Drawable play = resources.getDrawable(R.drawable.play);
                     btn_play.setBackground(play);
@@ -81,32 +83,50 @@ public class EchoActivity extends AppCompatActivity{
         });
 
         // 弹出底部音乐列表
-        View musicList= (View) findViewById(R.id.musicList);
+        View musicList = (View) findViewById(R.id.musicList);
         //添加监听器
-        musicList.setOnClickListener(new View.OnClickListener(){
+        musicList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mediaPlayer1.release();
                 DialogActivity dialogActivity = new DialogActivity(EchoActivity.this);
                 dialogActivity.show();
-
             }
         });
 
-        // 音乐列表播放
-        String sID=getIntent().getStringExtra("id");
-        while(sID != null){
-            int id=Integer.parseInt(sID);      //String转int
-            mediaPlayer1 = MediaPlayer.create(EchoActivity.this, id);
-            mediaPlayer1.start();
-            Resources resources = getApplicationContext().getResources();
-            Drawable pause = resources.getDrawable(R.drawable.pause);
-            btn_play.setBackground(pause);
-            flag = "false";
-            sID = null;
-        }
+        //注册“网络变化”的广播接收器
+        myreceiver = new MyReceiver();
+        //实例化过滤器并设置要过滤的广播
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("com.test.send.message");
+        //注册广播
+        EchoActivity.this.registerReceiver(myreceiver, intentFilter);
+
     }
 
+    // 广播
+    public class MyReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            Log.d(TAG, "action  = " + action);
+            if (action.equals("com.test.send.message")) {
+                // 接收到广播传来的数据
+                sID = intent.getStringExtra("id");
+                // 播放列表选中的音乐
+                int id = Integer.parseInt(sID);                 //String转int
+                mediaPlayer1 = MediaPlayer.create(EchoActivity.this, id);
+                mediaPlayer1.start();
+                Resources resources = getApplicationContext().getResources();
+                Drawable pause = resources.getDrawable(R.drawable.pause);
+                btn_play.setBackground(pause);
+                flag = "false";
+            } else {
+                Log.d(TAG, "MyReceiver error");
+            }
+        }
+
+    }
 
 
     private void init() {
@@ -147,3 +167,4 @@ public class EchoActivity extends AppCompatActivity{
 
 
 }
+

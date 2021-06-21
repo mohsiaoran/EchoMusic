@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.nfc.Tag;
 import android.os.Bundle;
+import android.os.Message;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
@@ -38,8 +40,10 @@ import cn.edu.fjzzit.echomusic.adapter.MusicAdapter;
 public class DialogActivity extends Dialog {
     private ListView lv;
     private String itemValue;
-    final String TAG="";
+    EchoActivity myReceiver;
+    int RESULT_OK = -1;
 
+    final String TAG="";
 
     public DialogActivity(@NonNull Context context) {
         super(context);
@@ -66,6 +70,7 @@ public class DialogActivity extends Dialog {
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
         //设置高
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        //设置背景颜色
         dialogWindow.setBackgroundDrawableResource(android.R.color.white);
         dialogWindow.setAttributes(lp);
 
@@ -78,21 +83,25 @@ public class DialogActivity extends Dialog {
         // ListView每个item点击事件
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //获取item值
                 itemValue = (String) parent.getItemAtPosition(position);
-
                 TextView text_top =(TextView) findViewById(R.id.text_top);
                 text_top.setText("当前播放的是："+itemValue);
-
                 //通过字符串获取资源id
                 Resources res = getContext().getResources();
                 int num = res.getIdentifier(itemValue, "raw", getContext().getPackageName());
-                Intent intent = new Intent(getContext(), EchoActivity.class);
-                intent.putExtra("id", num+"");
-                getContext().startActivity(intent);
-            }
+                //1、准备意图
+                Intent intent=new Intent("com.test.send.message");
+                //2、传值
+                intent.putExtra("id", num+"");//第一个参数是key键，第二个是值
+                //3、发送广播
+                //有序广播
+                DialogActivity.this.getContext().sendBroadcast(intent);
+                //关闭
+                DialogActivity.this.dismiss();
+        }
         });
     }
 
