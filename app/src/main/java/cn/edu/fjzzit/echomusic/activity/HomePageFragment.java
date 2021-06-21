@@ -1,5 +1,6 @@
 package cn.edu.fjzzit.echomusic.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,10 +12,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,8 +36,9 @@ public class HomePageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);          //关联布局文件
 
         get_music =  (Button) view.findViewById(R.id.get_music);
-
         mChosenRecyclerView = view.findViewById(R.id.chosen_rlv);
+
+
 
         List<ChosenInfo> chosenInfoList = new ArrayList<ChosenInfo>();
 
@@ -47,6 +51,8 @@ public class HomePageFragment extends Fragment {
         mChosenRecyclerView.setLayoutManager(chosenLayouManager);
         ChosenAdapter chosenAdapter = new ChosenAdapter(chosenInfoList, view.getContext());
         mChosenRecyclerView.setAdapter(chosenAdapter);
+
+
 
         return view;
     }
@@ -72,6 +78,7 @@ public class HomePageFragment extends Fragment {
 
             }
         });
+
     }
 
 }

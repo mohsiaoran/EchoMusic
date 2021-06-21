@@ -1,5 +1,7 @@
 package cn.edu.fjzzit.echomusic.entity;
 
+
+//首页推荐
 public class ChosenInfo {
     private String image;
     private String title;

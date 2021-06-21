@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -13,10 +14,13 @@ import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,15 +34,15 @@ import java.util.List;
 
 import cn.edu.fjzzit.echomusic.R;
 
-public class EchoActivity extends AppCompatActivity {
-    private LinearLayout homePageBtn, creationBtn, socialBtn, myInfoBtn;
-    private ImageView homePageIcon, creationIcon, socialIcon, myInfoIcon;
-    private TextView homePageTxt, creationTxt, socialTxt, myInfoTxt;
+public class EchoActivity extends AppCompatActivity{
+    private LinearLayout homePageBtn,creationBtn,socialBtn,myInfoBtn;
+    private ImageView homePageIcon,creationIcon,socialIcon,myInfoIcon;
+    private TextView homePageTxt,creationTxt,socialTxt,myInfoTxt;
     private ViewPager2 vp;
     private TabLayout nav;
     private List<Fragment> fragmentList = new ArrayList<>();
-    private int[] titleList = new int[]{R.string.find, R.string.creation, R.string.social, R.string.my_info};
-    private int[] iconList = new int[]{R.drawable.tab_icon_home_page, R.drawable.tab_icon_creation, R.drawable.tab_icon_social, R.drawable.tab_icon_my_info};
+    private int[] titleList = new int[]{R.string.find,R.string.creation,R.string.social,R.string.my_info};
+    private int[] iconList = new int[]{R.drawable.tab_icon_home_page,R.drawable.tab_icon_creation,R.drawable.tab_icon_social,R.drawable.tab_icon_my_info};
     private String flag = "true";
     private String TAG = "TAG";
     private Button btn_play;
@@ -52,27 +56,27 @@ public class EchoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_echo);
 
         init();
-        vp.setCurrentItem(0, false);
+        vp.setCurrentItem(0,false);
 
 
         //定位音乐播放图标
-        btn_play = (Button) findViewById(R.id.btn_play);
-        if (mediaPlayer1 == null) {
-            mediaPlayer1 = MediaPlayer.create(EchoActivity.this, R.raw.canon);   //默认播放
+        btn_play=(Button) findViewById(R.id.btn_play);
+        if(mediaPlayer1 == null){
+            mediaPlayer1 = MediaPlayer.create(EchoActivity.this, R.raw.canon);   //默认播放canon
         }
 
         //添加监听器
-        btn_play.setOnClickListener(new View.OnClickListener() {
+        btn_play.setOnClickListener(new View.OnClickListener(){
             //音乐播放与暂停
             @Override
             public void onClick(View v) {
-                if (flag.equals("true")) {
+                if(flag.equals("true")){
                     mediaPlayer1.start();
                     Resources resources = getApplicationContext().getResources();
                     Drawable pause = resources.getDrawable(R.drawable.pause);
                     btn_play.setBackground(pause);
                     flag = "false";
-                } else {
+                }else{
                     Resources resources = getApplicationContext().getResources();
                     Drawable play = resources.getDrawable(R.drawable.play);
                     btn_play.setBackground(play);
@@ -83,14 +87,15 @@ public class EchoActivity extends AppCompatActivity {
         });
 
         // 弹出底部音乐列表
-        View musicList = (View) findViewById(R.id.musicList);
+        View musicList= (View) findViewById(R.id.musicList);
         //添加监听器
-        musicList.setOnClickListener(new View.OnClickListener() {
+        musicList.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 mediaPlayer1.release();
                 DialogActivity dialogActivity = new DialogActivity(EchoActivity.this);
                 dialogActivity.show();
+
             }
         });
 
@@ -125,7 +130,6 @@ public class EchoActivity extends AppCompatActivity {
                 Log.d(TAG, "MyReceiver error");
             }
         }
-
     }
 
 
@@ -167,4 +171,3 @@ public class EchoActivity extends AppCompatActivity {
 
 
 }
-

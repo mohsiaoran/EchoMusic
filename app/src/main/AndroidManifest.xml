@@ -20,16 +20,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".activity.SpeechActivity"/>
-        <activity android:name=".activity.EchoActivity"/>
+        <activity android:name=".activity.EchoActivity" />
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.PlayActivity"/>
 
         <!--注册：广播接受者 静态注册-->
         <receiver android:name=".activity.EchoActivity" android:enabled="true" android:exported="true" >
