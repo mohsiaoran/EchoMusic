@@ -20,12 +20,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
@@ -33,6 +35,8 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import cn.edu.fjzzit.echomusic.R;
 
@@ -48,18 +52,24 @@ public class EchoActivity extends AppCompatActivity{
     private String flag = "true";
     private String TAG = "TAG";
     private Button btn_play;
-    private MediaPlayer mediaPlayer1 = null;
+    public static MediaPlayer mediaPlayer1 = null;
+    public static boolean playState = false;
     private MyReceiver myreceiver;
     private static String sID = "2131623937";
-    ConstraintLayout playBar;
+    private ConstraintLayout playBar;
+    private Button barPlayBtn;
+    private ProgressBar playProgessBar;
+    private Timer timer;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_echo);
-
+        //初始化
         playBar = findViewById(R.id.music_play_bar);
+        barPlayBtn = findViewById(R.id.btn_play);
+        playProgessBar = findViewById(R.id.play_bar_progressBar);
 
         init();
         vp.setCurrentItem(0,false);
@@ -89,14 +99,28 @@ public class EchoActivity extends AppCompatActivity{
                 if(flag.equals("true")){
                     // 音频开始
                     mediaPlayer1.start();
+                    playState = true;
                     // 切换暂停图标
                     Resources resources = getApplicationContext().getResources();
                     Drawable pause = resources.getDrawable(R.drawable.pause);
                     btn_play.setBackground(pause);
+                    playProgessBar.setMax(mediaPlayer1.getDuration());
+                    timer = new Timer();
+                    timer.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            if(playState){
+                                //Log.d(TAG, " test");
+                                playProgessBar.setProgress(mediaPlayer1.getCurrentPosition());
+                            }
+                        }
+                    },0,50);
                     flag = "false";
                 }else{
                     // 音频暂停
                     mediaPlayer1.pause();
+                    playState = false;
+                    timer.purge(); //定时器停止
                     // 切换播放图标
                     Resources resources = getApplicationContext().getResources();
                     Drawable play = resources.getDrawable(R.drawable.play);
@@ -125,6 +149,21 @@ public class EchoActivity extends AppCompatActivity{
         //注册广播
         EchoActivity.this.registerReceiver(myreceiver, intentFilter);
 
+        //播放bar点击事件
+        playBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(EchoActivity.this, PlayActivity.class);
+                EchoActivity.this.startActivity(intent);
+            }
+        });
+
+        //播放按钮触摸事件
+
+        //进度条处理
+
+
     }
 
     // 广播
@@ -143,7 +182,6 @@ public class EchoActivity extends AppCompatActivity{
                 Resources resources = getApplicationContext().getResources();
                 Drawable pause = resources.getDrawable(R.drawable.pause);
                 btn_play.setBackground(pause);
-                flag = "false";
             } else {
                 Log.d(TAG, "MyReceiver error");
             }
@@ -188,6 +226,7 @@ public class EchoActivity extends AppCompatActivity{
         }).attach();
     }
 
+    //设置返回键不推出程序
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {

@@ -73,6 +73,7 @@
         android:layout_marginEnd="50dp"
         app:layout_constraintBottom_toTopOf="@+id/play_page_btn"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -87,9 +88,9 @@
 
     <Button
         android:id="@+id/play_page_btn"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="20dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/play_btn"
         android:paddingStart="0dp"
         android:paddingTop="0dp"
@@ -101,9 +102,8 @@
 
     <Button
         android:id="@+id/previous_btn"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="20dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:background="@drawable/arrow_left"
         app:layout_constraintBottom_toBottomOf="@+id/play_page_btn"
         app:layout_constraintEnd_toStartOf="@+id/play_page_btn"
@@ -111,9 +111,8 @@
 
     <Button
         android:id="@+id/next_btn"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="20dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:background="@drawable/arrow_right"
         app:layout_constraintBottom_toBottomOf="@+id/play_page_btn"
         app:layout_constraintStart_toEndOf="@+id/play_page_btn"
