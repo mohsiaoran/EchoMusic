@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single"
+        android:id="@+id/nav_item1">
+        <item
+            android:id="@+id/nav_mainpage"
+            android:icon="@android:drawable/btn_star_big_on"
+            android:title="      我  的  主  页" />
+    </group>
+
+    <group
+        android:id="@+id/nav_item2"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_explore"
+            android:icon="@android:drawable/btn_dialog"
+            android:title="      我  的  发  现" />
+    </group>
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/nav_item3">
+        <item
+            android:id="@+id/nav_pay"
+            android:icon="@android:drawable/editbox_dropdown_light_frame"
+            android:title="      闪  付  钱  包" />
+    </group>
+    <group android:checkableBehavior="single"
+        android:id="@+id/nav_item4">
+        <item
+            android:id="@+id/nav_cloud"
+            android:icon="@android:drawable/checkbox_on_background"
+            android:title="      文  件  之  家" />
+    </group>
+
+    <item android:title="关于应用">
+        <menu>
+            <item
+                android:id="@+id/menu_setting"
+                android:checkable="true"
+                android:icon="@android:drawable/ic_dialog_dialer"
+                android:title="      设  置  中  心" />
+            <item
+                android:id="@+id/menu_exit"
+                android:checkable="true"
+                android:icon="@android:drawable/ic_lock_idle_low_battery"
+                android:title="      退  出  账  号" />
+        </menu>
+    </item>
+</menu>

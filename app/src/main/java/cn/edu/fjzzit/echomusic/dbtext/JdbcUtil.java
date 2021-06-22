@@ -1,5 +1,7 @@
 package cn.edu.fjzzit.echomusic.dbtext;
 
+import android.util.Log;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
@@ -15,11 +17,11 @@ public class JdbcUtil {
         }
         return instance;
     }
-    //目前用到的是第一个  ip地址改成自己的127.0.0.1 192.168.124.9 10.0.2.2
+    //目前用到的是第一个  ip地址改成自己的 本机 192.168.2.123   虚拟10.0.2.2
     public Connection getConnection(String dbName,String name,String password) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://192.168.124.9:3307/"+dbName;
+            String url = "jdbc:mysql://192.168.2.123:3307/"+dbName;
             return DriverManager.getConnection(url,name,password);
         } catch (Exception e) {
             return null;

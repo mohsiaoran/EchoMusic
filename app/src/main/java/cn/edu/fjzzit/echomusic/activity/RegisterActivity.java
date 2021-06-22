@@ -96,6 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
                             Looper.loop();
                         }
 
+
                         UserDao ud = new UserDao();
                         boolean result = ud.register(n, psw);
                         if (!result) {
