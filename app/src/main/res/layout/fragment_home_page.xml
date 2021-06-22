@@ -32,14 +32,16 @@
             android:background="@drawable/home_page_search_shape_corner"
             android:ems="10"
             android:gravity="center"
-            android:inputType="textPersonName"
             android:hint="@string/search"
+            android:inputType="textPersonName"
             android:textColor="#A1A1A1"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.466" />
 
         <Button
             android:id="@+id/get_music"
