@@ -2,6 +2,7 @@ package cn.edu.fjzzit.echomusic.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
@@ -18,6 +19,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -49,6 +51,7 @@ public class EchoActivity extends AppCompatActivity{
     private MediaPlayer mediaPlayer1 = null;
     private MyReceiver myreceiver;
     private static String sID = "2131623937";
+    ConstraintLayout playBar;
 
 
     @Override
@@ -56,8 +59,20 @@ public class EchoActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_echo);
 
+        playBar = findViewById(R.id.music_play_bar);
+
         init();
         vp.setCurrentItem(0,false);
+
+        //打开play页面
+        playBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(EchoActivity.this, PlayActivity.class);
+                EchoActivity.this.startActivity(intent);
+            }
+        });
 
 
         //定位音乐播放图标
@@ -173,5 +188,16 @@ public class EchoActivity extends AppCompatActivity{
         }).attach();
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent home = new Intent(Intent.ACTION_MAIN);
+            home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            home.addCategory(Intent.CATEGORY_HOME);
+            startActivity(home);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
 }
