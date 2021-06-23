@@ -28,7 +28,7 @@ public class SearchActivity extends AppCompatActivity {
     List<String> list;
     ArrayAdapter<String> adapter;
     EditText editText;
-    ImageButton play_page_return_btn;
+    ImageButton return_btn;
     private String itemValue;
     String TAG="";
 
@@ -39,8 +39,6 @@ public class SearchActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView);
         editText = (EditText) findViewById(R.id.etSearch);
         list = new ArrayList<String>();
-        //读取全部数据
-//        DBOperate.getDBInstance(this).readData(list);
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
         listView.setAdapter(adapter);
         //对editText进行文本改变监听
@@ -62,9 +60,9 @@ public class SearchActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
-        
-        play_page_return_btn = (ImageButton) findViewById(R.id.play_page_return_btn);
-        play_page_return_btn.setOnClickListener(new android.view.View.OnClickListener() {
+
+        return_btn = (ImageButton) findViewById(R.id.return_btn);
+        return_btn.setOnClickListener(new android.view.View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -78,9 +76,6 @@ public class SearchActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //获取item值
                 itemValue = (String) parent.getItemAtPosition(position);
-                //以下报错了两句
-//                TextView text_top =(TextView) findViewById(R.id.text_top);
-//                text_top.setText("当前播放的是："+itemValue);
                 //通过字符串获取资源id
                 Resources res = SearchActivity.this.getResources();
                 int num = res.getIdentifier(itemValue, "raw", SearchActivity.this.getPackageName());
