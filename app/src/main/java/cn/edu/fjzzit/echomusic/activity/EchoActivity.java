@@ -126,6 +126,7 @@ public class EchoActivity extends AppCompatActivity{
         musicService = new MusicService();
         musicService.animator = ObjectAnimator.ofFloat(musicImg, "rotation", 0, 359);
 
+        updataMediaState();
         switch (current_status) {
             case MusicService.STATUS_PLAYING:
                 //Log.d("test:","1");
@@ -305,7 +306,7 @@ public class EchoActivity extends AppCompatActivity{
         }
     }
 */
-    public static void updataMediaState(){
+    public void updataMediaState(){
         playProgessBar.setMax(MusicService.mediaPlayer.getDuration()/100);
         playProgessBar.setProgress(MusicService.mediaPlayer.getCurrentPosition()/100);
         //初始化按钮
