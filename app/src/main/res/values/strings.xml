@@ -68,5 +68,9 @@
     <string name="play_history">播放历史></string>
     <string name="music_list">曲集</string>
     <string name="echo_txt">Echo</string>
+    <string name="top_hot">热度榜</string>
+    <string name="new_top">新歌榜</string>
+    <string name="download_top">下载榜</string>
+    <string name="history_top">历史榜</string>
     <!--待定ing-->
 </resources>

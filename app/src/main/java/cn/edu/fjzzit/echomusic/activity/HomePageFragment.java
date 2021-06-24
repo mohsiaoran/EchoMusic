@@ -2,11 +2,11 @@ package cn.edu.fjzzit.echomusic.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
@@ -27,12 +27,17 @@ public class HomePageFragment extends Fragment {
     Button get_music;
     String TAG="";
     EditText editTextTextPersonName;
+    private ImageView topImage;//排行榜图标
+    private ImageView planIv;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);          //关联布局文件
 
         get_music =  (Button) view.findViewById(R.id.get_music);
         mChosenRecyclerView = view.findViewById(R.id.chosen_rlv);
+        topImage = view.findViewById(R.id.top_iv);
+        planIv = view.findViewById(R.id.plan_iv);
+        topImage = view.findViewById(R.id.top_iv);
 
         // 当搜索框获得焦点和点击时时跳转到搜索页面
         editTextTextPersonName = (EditText) view.findViewById(R.id.editTextTextPersonName);
@@ -60,6 +65,30 @@ public class HomePageFragment extends Fragment {
         ChosenAdapter chosenAdapter = new ChosenAdapter(chosenInfoList, view.getContext());
         mChosenRecyclerView.setAdapter(chosenAdapter);
 
+
+        //跳转排行榜
+        topImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent intent = new Intent();
+                intent.setClass(getContext(), TopDetailActivity.class);
+                getContext().startActivity(intent);
+
+            }
+        });
+
+        //跳转到学习计划
+        planIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(getContext(), PlanActivity.class);
+                getContext().startActivity(intent);
+            }
+        });
+
+
         return view;
     }
 
@@ -72,10 +101,7 @@ public class HomePageFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onActivityCreated(savedInstanceState);
-
-
         get_music.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
