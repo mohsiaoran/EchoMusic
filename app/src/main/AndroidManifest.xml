@@ -26,7 +26,9 @@
             android:enabled="true"
             android:exported="true"></service>
 
+        <activity android:name=".activity.TopDetailActivity" />
         <activity android:name=".activity.PlayActivity" />
+        <activity android:name=".activity.PlanActivity" />
         <activity android:name=".activity.SpeechActivity" />
         <activity android:name=".activity.EchoActivity" />
         <activity android:name=".activity.RegisterActivity" />
@@ -49,6 +51,6 @@
                 <action android:name="com.test.send.message" />
             </intent-filter>
         </receiver>
-    </application>
 
+    </application>
 </manifest>
