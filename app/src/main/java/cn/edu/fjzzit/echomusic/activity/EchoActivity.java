@@ -126,6 +126,25 @@ public class EchoActivity extends AppCompatActivity{
         musicService = new MusicService();
         musicService.animator = ObjectAnimator.ofFloat(musicImg, "rotation", 0, 359);
 
+        switch (current_status) {
+            case MusicService.STATUS_PLAYING:
+                //Log.d("test:","1");
+                timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        //Log.d("test",String.valueOf(mediaPlayer.getCurrentPosition()));
+                        playProgessBar.setProgress(MusicService.mediaPlayer.getCurrentPosition() / 100);
+                        current_progress = playProgessBar.getProgress();
+                        //Log.d("progress:",String.valueOf(current_progress));
+                        if (current_status == MusicService.STATUS_PAUSED) {
+                            timer.cancel();//stop
+                        }
+                    }
+                }, 0, 50);
+                break;
+        }
+
         //获取intent里面的信息
         Intent myIntent = getIntent();
         current_number = myIntent.getIntExtra("current_number",0);
@@ -295,7 +314,6 @@ public class EchoActivity extends AppCompatActivity{
                 barPlayBtn.setBackgroundResource(R.drawable.pause);//设置按钮为暂停
                 break;
             case MusicService.STATUS_PAUSED:
-
                 barPlayBtn.setBackgroundResource(R.drawable.play);//设置按钮为播放
                 break;
         }
