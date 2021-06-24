@@ -156,6 +156,7 @@ public class EchoActivity extends AppCompatActivity{
                         //Log.d("test:","1");
                         mUpdateHandler.sendEmptyMessage(MusicService.STATUS_PLAYING);
                         playProgessBar.setMax(MusicService.mediaPlayer.getDuration()/100);
+
                         timer = new Timer();
                         timer.schedule(new TimerTask() {
                             @Override

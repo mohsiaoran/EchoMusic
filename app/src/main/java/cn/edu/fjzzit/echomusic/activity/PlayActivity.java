@@ -134,7 +134,6 @@ public class PlayActivity extends AppCompatActivity {
         }
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-
             //进度调改变时
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -153,16 +152,17 @@ public class PlayActivity extends AppCompatActivity {
             public void onStopTrackingTouch(final SeekBar seekBar) {
                 int progress = seekBar.getProgress();
                 mediaPlayer.seekTo(progress*100);
+                timer.cancel();
                 timer = new Timer();
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
                         //Log.d("test",String.valueOf(mediaPlayer.getCurrentPosition()));
                         seekBar.setProgress(mediaPlayer.getCurrentPosition()/100);
+                        if(playState==MusicService.STATUS_PAUSED) {
+                            timer.cancel();//stop
+                        }
                     }},0,50);
-                if(playState==MusicService.STATUS_PAUSED){
-                    timer.cancel();//stop
-                }
             }
         });
 
@@ -186,16 +186,15 @@ public class PlayActivity extends AppCompatActivity {
                         //Log.d("test:","1");
                         mUpdateHandler.sendEmptyMessage(MusicService.STATUS_PLAYING);
                         //playProgessBar.setMax(MusicService.mediaPlayer.getDuration()/100);
-                        timer = new Timer();
                         timer.schedule(new TimerTask() {
                             @Override
                             public void run() {
                                 //Log.d("test",String.valueOf(mediaPlayer.getCurrentPosition()));
                                 seekBar.setProgress(MusicService.mediaPlayer.getCurrentPosition()/100);
+                                if(EchoActivity.current_status==MusicService.STATUS_PAUSED){
+                                    timer.cancel();//stop
+                                }
                             }},0,50);
-                        if(EchoActivity.current_status==MusicService.STATUS_PAUSED){
-                            timer.cancel();//stop
-                        }
                         break;
                     case MusicService.STATUS_PLAYING:
                         //Log.d("test:","2");
