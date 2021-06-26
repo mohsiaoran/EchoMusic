@@ -4,6 +4,7 @@ package cn.edu.fjzzit.echomusic.activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -13,14 +14,13 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.fjzzit.echomusic.R;
-import cn.edu.fjzzit.echomusic.dbtext.DBOperate;
+import cn.edu.fjzzit.echomusic.dbtext.UserDao;
 
 // 搜索界面
 public class SearchActivity extends AppCompatActivity {
@@ -56,7 +56,13 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 //查询字符所对应的音乐
-                DBOperate.getDBInstance(SearchActivity.this).readData(list, s.toString());
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        UserDao userDao = new UserDao();
+                        userDao.search(list, s.toString());
+                    }
+                }).start();
                 adapter.notifyDataSetChanged();
             }
         });
