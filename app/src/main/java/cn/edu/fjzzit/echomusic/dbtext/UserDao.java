@@ -97,5 +97,60 @@ public class UserDao {
             }
         }
     }
+    //登录
+    //USE `echo_music`;
+    //
+    ///*Table structure for table `myinfo` */
+    //
+    //DROP TABLE IF EXISTS `myinfo`;
+    //
+    //CREATE TABLE `myinfo` (
+    //  `id` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+    //  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+    //  `level` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+    //  `sign` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+    //  `attention` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+    //  `dynamic` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+    //  `fans` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+    //  `news` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+    //  KEY `fk_id` (`id`),
+    //  CONSTRAINT `fk_id` FOREIGN KEY (`id`) REFERENCES `userinfo` (`username`)
+    //) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    //
+    ///*Data for the table `myinfo` */
+    //
+    //insert  into `myinfo`(`id`,`name`,`level`,`sign`,`attention`,`dynamic`,`fans`,`news`) values
+    //('101','李四','LV.2','法外狂徒','108','666','10000','500');
+    public MyInfo getMyInfo(String id){
+        MyInfo myInfo = new MyInfo();
+        if (conn==null){
+            Log.i(TAG,"getMyInfo:conn is null");
+        }else {
+            String sql = "select * from myinfo where id=?";
+            try {
+                PreparedStatement pres = conn.prepareStatement(sql);
+                pres.setString(1,id);
+                ResultSet res = pres.executeQuery();
+                while(res.next()){
+                    myInfo.setName(res.getString("name"));
+                    myInfo.setLevel(res.getString("level"));
+                    myInfo.setSign(res.getString("sign"));
+                    myInfo.setAttention(res.getString("attention"));
+                    myInfo.setDynamic(res.getString("dynamic"));
+                    myInfo.setFans(res.getString("fans"));
+                    myInfo.setNews(res.getString("news"));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }finally {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return myInfo;
+    }
 
 }

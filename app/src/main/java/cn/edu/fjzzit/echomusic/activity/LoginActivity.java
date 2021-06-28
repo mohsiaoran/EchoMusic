@@ -2,7 +2,11 @@ package cn.edu.fjzzit.echomusic.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
 import android.view.View;
@@ -13,6 +17,7 @@ import android.widget.Toast;
 
 import cn.edu.fjzzit.echomusic.R;
 import cn.edu.fjzzit.echomusic.dbtext.UserDao;
+import cn.edu.fjzzit.echomusic.entity.MyInfo;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -64,9 +69,17 @@ public class LoginActivity extends AppCompatActivity {
                     Toast toast = Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT);
                     toast.show();
 
-
                     Intent intent=new Intent(LoginActivity.this,EchoActivity.class);
-                    //intent.putExtra("name",n);
+
+                    UserDao userDao = new UserDao();
+                    MyInfo myInfo = new MyInfo();
+                    myInfo = userDao.getMyInfo(n);
+                    //用Bundle携带数据
+                    Bundle bundle=new Bundle();
+                    //传递name参数
+                    bundle.putSerializable("myInfo", myInfo);
+                    intent.putExtras(bundle);
+
                     startActivity(intent);
                     Looper.loop();
 
@@ -76,4 +89,5 @@ public class LoginActivity extends AppCompatActivity {
             }
         }).start();
     }
+
 }
