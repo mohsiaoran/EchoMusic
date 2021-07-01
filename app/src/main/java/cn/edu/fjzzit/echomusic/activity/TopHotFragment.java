@@ -18,7 +18,7 @@ import cn.edu.fjzzit.echomusic.R;
 import cn.edu.fjzzit.echomusic.adapter.TopHotAdapter;
 import cn.edu.fjzzit.echomusic.entity.TopInfo;
 
-public class TopDetailyFragment extends Fragment {
+public class TopHotFragment extends Fragment {
     private RecyclerView mTopRecyclerView;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class TopDetailyFragment extends Fragment {
         mTopRecyclerView = inflate.findViewById(R.id.top_hot_rlv);
         List<TopInfo> topInfoList = new ArrayList<TopInfo>();
 
-        for (int i=0;i<5;i++){
+        for (int i=0;i<4;i++){
             TopInfo topInfo = new TopInfo("","Piano Concerto","Author","C大调第三钢琴协奏曲");
             topInfoList.add(topInfo);
         }

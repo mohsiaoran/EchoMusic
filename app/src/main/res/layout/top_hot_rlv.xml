@@ -11,7 +11,7 @@
     android:layout_marginBottom="10dp">
 
     <ImageView
-        android:id="@+id/chosen_img_iv"
+        android:id="@+id/top_img_iv"
         android:layout_width="100dp"
         android:layout_height="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,7 +20,7 @@
         app:srcCompat="@drawable/social_attention_shape_corner" />
 
     <TextView
-        android:id="@+id/chosen_title_tv"
+        android:id="@+id/top_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -29,7 +29,7 @@
         android:textColor="#000000"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/chosen_img_iv"
+        app:layout_constraintStart_toEndOf="@+id/top_img_iv"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -38,12 +38,12 @@
         android:layout_height="wrap_content"
         android:text="—"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/chosen_title_tv"
-        app:layout_constraintStart_toEndOf="@+id/chosen_title_tv"
-        app:layout_constraintTop_toTopOf="@+id/chosen_title_tv" />
+        app:layout_constraintBottom_toBottomOf="@+id/top_title_tv"
+        app:layout_constraintStart_toEndOf="@+id/top_title_tv"
+        app:layout_constraintTop_toTopOf="@+id/top_title_tv" />
 
     <TextView
-        android:id="@+id/chosen_author_tv"
+        android:id="@+id/top_author_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Author"
@@ -53,12 +53,12 @@
         app:layout_constraintTop_toTopOf="@+id/gang" />
 
     <TextView
-        android:id="@+id/chosen_content_tv"
+        android:id="@+id/top_content_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="C大调第三钢琴协奏曲"
         android:textColor="#050505"
-        app:layout_constraintStart_toStartOf="@+id/chosen_title_tv"
-        app:layout_constraintTop_toBottomOf="@+id/chosen_title_tv" />
+        app:layout_constraintStart_toStartOf="@+id/top_title_tv"
+        app:layout_constraintTop_toBottomOf="@+id/top_title_tv" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -42,10 +41,10 @@ public class TopDetailActivity extends AppCompatActivity {
         titleList.add("历史榜");
 
         //添加Fragment进去    没有分详细榜单
-        fragmentList.add(new TopDetailyFragment());
-        fragmentList.add(new TopDetailyFragment());
-        fragmentList.add(new TopDetailyFragment());
-        fragmentList.add(new TopDetailyFragment());
+        fragmentList.add(new TopHotFragment());
+        fragmentList.add(new TopHotFragment());
+        fragmentList.add(new TopHotFragment());
+        fragmentList.add(new TopHotFragment());
 
         //实例化适配器
         TopAdapter topAdapter=new TopAdapter(getSupportFragmentManager(),getLifecycle(),fragmentList);
@@ -62,10 +61,7 @@ public class TopDetailActivity extends AppCompatActivity {
         returnBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(TopDetailActivity.this, EchoActivity.class);
-                TopDetailActivity.this.startActivity(intent);
-               // finish();
+                 finish();
             }
         });
 
