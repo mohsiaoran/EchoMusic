@@ -61,9 +61,9 @@ public class TopHotAdapter extends RecyclerView.Adapter<TopHotAdapter.ViewHolder
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.chosen_title_tv);
-            author = itemView.findViewById(R.id.chosen_author_tv);
-            content = itemView.findViewById(R.id.chosen_content_tv);
+            title = itemView.findViewById(R.id.top_title_tv);
+            author = itemView.findViewById(R.id.top_author_tv);
+            content = itemView.findViewById(R.id.top_content_tv);
         }
     }
 }

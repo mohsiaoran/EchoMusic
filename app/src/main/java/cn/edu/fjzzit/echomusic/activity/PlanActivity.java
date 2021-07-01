@@ -29,9 +29,7 @@ public class PlanActivity extends AppCompatActivity{
         returnImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(PlanActivity.this,EchoActivity.class);
-                PlanActivity.this.startActivity(intent);
+                finish();
             }
         });
     }
