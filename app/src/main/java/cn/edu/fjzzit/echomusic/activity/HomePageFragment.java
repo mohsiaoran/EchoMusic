@@ -38,6 +38,7 @@ public class HomePageFragment extends Fragment {
     private LinearLayout ll_dots_container;
     private int previousSelectedPosition = 0;
     boolean isRunning = false;
+    private ImageView listImage;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);          //关联布局文件
@@ -47,6 +48,7 @@ public class HomePageFragment extends Fragment {
         topImage = view.findViewById(R.id.top_iv);
         planIv = view.findViewById(R.id.plan_iv);
         topImage = view.findViewById(R.id.top_iv);
+        listImage = view.findViewById(R.id.list_iv);
 
         // 轮播图相关
         viewPager = (ViewPager) view.findViewById(R.id.loopviewpager);
@@ -103,6 +105,17 @@ public class HomePageFragment extends Fragment {
             }
         });
 
+        //跳转曲集
+        listImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent intent = new Intent();
+                intent.setClass(getContext(), ListActivity.class);
+                getContext().startActivity(intent);
+
+            }
+        });
 
         return view;
     }
