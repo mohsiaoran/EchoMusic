@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Timer;
@@ -33,6 +34,8 @@ public class PlayActivity extends AppCompatActivity {
     SeekBar seekBar;
     TextView nowTv,totalTv;
     Button playPageBtn;
+    private TextView titleTv,authorTv;
+    private Button prevBtn,nextBtn;
     private MediaPlayer mediaPlayer;
     private Timer timer;
     private int playState;
@@ -79,6 +82,18 @@ public class PlayActivity extends AppCompatActivity {
                     break;
                 case MusicService.STATUS_COMPLETED:
                     break;
+                case MusicService.COMMAND_NEXT:
+                    timer.cancel();
+                    EchoActivity.musicService.prevOrNextMusic(0);
+                    updateCOMPO();
+                    setTimer();
+                    break;
+                case MusicService.COMMAND_PREVIOUS:
+                    timer.cancel();
+                    EchoActivity.musicService.prevOrNextMusic(1);
+                    updateCOMPO();
+                    setTimer();
+                    break;
             }
             return false;
         }
@@ -94,7 +109,10 @@ public class PlayActivity extends AppCompatActivity {
         nowTv = findViewById(R.id.play_time_now);
         totalTv = findViewById(R.id.play_time_total);
         playPageBtn = findViewById(R.id.play_page_btn);
-        MusicService musicService;
+        prevBtn = findViewById(R.id.previous_btn);
+        nextBtn = findViewById(R.id.next_btn);
+        titleTv = findViewById(R.id.play_title);
+        authorTv = findViewById(R.id.play_author);
 
 
 
@@ -103,8 +121,8 @@ public class PlayActivity extends AppCompatActivity {
         playState = EchoActivity.current_status;
 
         seekBar.getThumb().setColorFilter(Color.LTGRAY, PorterDuff.Mode.SRC_ATOP);
-        seekBar.setMax(mediaPlayer.getDuration()/100);
-        seekBar.setProgress(mediaPlayer.getCurrentPosition()/100);
+
+        updateCOMPO();
 
         //初始化按钮
         switch (playState){
@@ -118,20 +136,9 @@ public class PlayActivity extends AppCompatActivity {
                 break;
         }
 
-        //时间赋值
-        nowTv.setText(getTime(mediaPlayer.getCurrentPosition()/1000));
-        totalTv.setText(getTime(mediaPlayer.getDuration()/1000));
 
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                //Log.d("test",String.valueOf(mediaPlayer.getCurrentPosition()));
-                seekBar.setProgress(mediaPlayer.getCurrentPosition()/100);
-            }},0,50);
-        if(playState==MusicService.STATUS_PAUSED){
-            timer.cancel();//stop
-        }
+
+        setTimer();
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             //进度调改变时
@@ -153,16 +160,7 @@ public class PlayActivity extends AppCompatActivity {
                 int progress = seekBar.getProgress();
                 mediaPlayer.seekTo(progress*100);
                 timer.cancel();
-                timer = new Timer();
-                timer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        //Log.d("test",String.valueOf(mediaPlayer.getCurrentPosition()));
-                        seekBar.setProgress(mediaPlayer.getCurrentPosition()/100);
-                        if(playState==MusicService.STATUS_PAUSED) {
-                            timer.cancel();//stop
-                        }
-                    }},0,50);
+                setTimer();
             }
         });
 
@@ -178,34 +176,81 @@ public class PlayActivity extends AppCompatActivity {
         playPageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Log.d("current_status:",String.valueOf(current_status));
-                //Log.d("MusicService:",String.valueOf(MusicService.STATUS_PLAYING));
-                switch (EchoActivity.current_status){
-                    case MusicService.STATUS_STOPPED:
-                        //Log.d("test:","1");
-                        mUpdateHandler.sendEmptyMessage(MusicService.STATUS_PLAYING);
-                        //playProgessBar.setMax(MusicService.mediaPlayer.getDuration()/100);
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                //Log.d("test",String.valueOf(mediaPlayer.getCurrentPosition()));
-                                seekBar.setProgress(MusicService.mediaPlayer.getCurrentPosition()/100);
-                                if(EchoActivity.current_status==MusicService.STATUS_PAUSED){
-                                    timer.cancel();//stop
-                                }
-                            }},0,50);
-                        break;
-                    case MusicService.STATUS_PLAYING:
-                        //Log.d("test:","2");
-                        mUpdateHandler.sendEmptyMessage(MusicService.STATUS_PAUSED);
-                        break;
-                    case MusicService.STATUS_PAUSED:
-                        //Log.d("test:","3");
-                        mUpdateHandler.sendEmptyMessage(MusicService.STATUS_PLAYING);
-                        break;
+                if(EchoActivity.musicList.size()==0){
+                    Toast.makeText(getBaseContext(),"没有音乐可播放",Toast.LENGTH_LONG).show();
+                }else {
+                    //Log.d("current_status:",String.valueOf(current_status));
+                    //Log.d("MusicService:",String.valueOf(MusicService.STATUS_PLAYING));
+                    switch (EchoActivity.current_status){
+                        case MusicService.STATUS_STOPPED:
+                            //Log.d("test:","1");
+                            mUpdateHandler.sendEmptyMessage(MusicService.STATUS_PLAYING);
+                            //playProgessBar.setMax(MusicService.mediaPlayer.getDuration()/100);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    //Log.d("test",String.valueOf(mediaPlayer.getCurrentPosition()));
+                                    seekBar.setProgress(MusicService.mediaPlayer.getCurrentPosition()/100);
+                                    if(EchoActivity.current_status==MusicService.STATUS_PAUSED){
+                                        timer.cancel();//stop
+                                    }
+                                }},0,50);
+                            break;
+                        case MusicService.STATUS_PLAYING:
+                            //Log.d("test:","2");
+                            mUpdateHandler.sendEmptyMessage(MusicService.STATUS_PAUSED);
+                            break;
+                        case MusicService.STATUS_PAUSED:
+                            //Log.d("test:","3");
+                            mUpdateHandler.sendEmptyMessage(MusicService.STATUS_PLAYING);
+                            break;
+                    }
                 }
             }
         });
+
+        prevBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mUpdateHandler.sendEmptyMessage(MusicService.COMMAND_NEXT);
+            }
+        });
+
+        nextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mUpdateHandler.sendEmptyMessage(MusicService.COMMAND_PREVIOUS);
+            }
+        });
+    }
+
+    private void setTimer(){
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                //Log.d("test",String.valueOf(mediaPlayer.getCurrentPosition()));
+                seekBar.setProgress(mediaPlayer.getCurrentPosition()/100);
+            }},0,50);
+        if(playState==MusicService.STATUS_PAUSED){
+            timer.cancel();//stop
+        }
+    }
+
+    private void updateCOMPO(){
+        seekBar.setMax(mediaPlayer.getDuration()/100);
+        seekBar.setProgress(mediaPlayer.getCurrentPosition()/100);
+        //时间赋值
+        nowTv.setText(getTime(mediaPlayer.getCurrentPosition()/1000));
+        totalTv.setText(getTime(mediaPlayer.getDuration()/1000));
+
+        String title = EchoActivity.musicService.nowMusicInfo.getTitle();
+        String author = EchoActivity.musicService.nowMusicInfo.getArtist();
+        if(title.length()>=15){
+            title = title.substring(0,15)+"..";
+        }
+        titleTv.setText(title);
+        authorTv.setText(author);
     }
 
 

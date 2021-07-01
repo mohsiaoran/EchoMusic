@@ -19,6 +19,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -41,23 +42,30 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import cn.edu.fjzzit.echomusic.R;
+import cn.edu.fjzzit.echomusic.entity.MusicInfo;
 import cn.edu.fjzzit.echomusic.service.MusicService;
 
 public class EchoActivity extends AppCompatActivity{
     private LinearLayout homePageBtn,creationBtn,socialBtn,myInfoBtn;
     private ImageView homePageIcon,creationIcon,socialIcon,myInfoIcon;
-    private TextView homePageTxt,creationTxt,socialTxt,myInfoTxt;
+    private TextView homePageTxt,creationTxt,socialTxt,myInfoTxt,titleTv,authorTv;
     private ViewPager2 vp;
     private TabLayout nav;
     private List<Fragment> fragmentList = new ArrayList<>();
@@ -76,6 +84,8 @@ public class EchoActivity extends AppCompatActivity{
     private ConstraintLayout playBar;
     public static Button barPlayBtn;
     public static ProgressBar playProgessBar;
+    public static List<MusicInfo> musicList;
+    public static int nowPlayIndex;
     //当前播放的歌曲,播放状态,播放进度,当前的歌曲的总时长,当前播放模式
     public static int current_number,current_status,current_progress,duration,current_PlayMode;
     private Timer timer;
@@ -110,6 +120,7 @@ public class EchoActivity extends AppCompatActivity{
     });
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,16 +130,38 @@ public class EchoActivity extends AppCompatActivity{
 
         //初始化
 
+        try {
+            SharedPreferences sp = getSharedPreferences("MusicList", MusicService.MODE_PRIVATE);
+            String data = sp.getString("musicData", "");
+            //Log.d("test:",String.valueOf(data));
+            Gson gson = new Gson();
+            Type listType = new TypeToken<List<MusicInfo>>() {
+            }.getType();
+            musicList = gson.fromJson(data, listType);
+        }catch (Exception e){
+
+        }
+        try {
+            nowPlayIndex = getNowPlay();
+        }catch (Exception e){
+
+        }
+
         playBar = findViewById(R.id.music_play_bar);
         barPlayBtn = findViewById(R.id.btn_play);
         playProgessBar = findViewById(R.id.play_bar_progressBar);
         musicImg = findViewById(R.id.play_bar_music_info_img);
+        titleTv = findViewById(R.id.play_bar_music_title);
+        authorTv = findViewById(R.id.play_bar_auther);
+
         bindServiceConnection();
-        musicService = new MusicService();
         current_status=musicService.STATUS_PAUSED;
+        musicService = new MusicService();
         musicService.animator = ObjectAnimator.ofFloat(musicImg, "rotation", 0, 359);
 
-        updataMediaState();
+
+        //
+
         switch (current_status) {
             case MusicService.STATUS_PLAYING:
                 //Log.d("test:","1");
@@ -142,6 +175,9 @@ public class EchoActivity extends AppCompatActivity{
                         //Log.d("progress:",String.valueOf(current_progress));
                         if (current_status == MusicService.STATUS_PAUSED) {
                             timer.cancel();//stop
+                        }
+                        if (playProgessBar.getProgress()==playProgessBar.getMax()){
+                            barPlayBtn.setBackgroundResource(R.drawable.play);//设置按钮为播放
                         }
                     }
                 }, 0, 50);
@@ -157,6 +193,7 @@ public class EchoActivity extends AppCompatActivity{
         init();
         vp.setCurrentItem(0,false);
 
+        updateMediaState();
         //打开play页面
         playBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,36 +208,41 @@ public class EchoActivity extends AppCompatActivity{
         barPlayBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Log.d("current_status:",String.valueOf(current_status));
-                //Log.d("MusicService:",String.valueOf(MusicService.STATUS_PLAYING));
-                switch (current_status){
-                    case MusicService.STATUS_STOPPED:
-                        //Log.d("test:","1");
-                        mUpdateHandler.sendEmptyMessage(MusicService.STATUS_PLAYING);
-                        playProgessBar.setMax(MusicService.mediaPlayer.getDuration()/100);
+                if (musicList.size()==0){
+                    Toast.makeText(getBaseContext(),"没有音乐可播放",Toast.LENGTH_LONG).show();
+                }else{
+                    //Log.d("current_status:",String.valueOf(current_status));
+                    //Log.d("MusicService:",String.valueOf(MusicService.STATUS_PLAYING));
+                    switch (current_status){
+                        case MusicService.STATUS_STOPPED:
+                            //Log.d("test:","1");
+                            mUpdateHandler.sendEmptyMessage(MusicService.STATUS_PLAYING);
+                            playProgessBar.setMax(MusicService.mediaPlayer.getDuration()/100);
 
-                        timer = new Timer();
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                //Log.d("test",String.valueOf(mediaPlayer.getCurrentPosition()));
-                                playProgessBar.setProgress(MusicService.mediaPlayer.getCurrentPosition()/100);
-                                current_progress = playProgessBar.getProgress();
-                                //Log.d("progress:",String.valueOf(current_progress));
-                                if(current_status==MusicService.STATUS_PAUSED) {
-                                    timer.cancel();//stop
-                                }
-                            }},0,50);
-                        break;
-                    case MusicService.STATUS_PLAYING:
-                        //Log.d("test:","2");
-                        mUpdateHandler.sendEmptyMessage(MusicService.STATUS_PAUSED);
-                        break;
-                    case MusicService.STATUS_PAUSED:
-                        //Log.d("test:","3");
-                        mUpdateHandler.sendEmptyMessage(MusicService.STATUS_PLAYING);
-                        break;
+                            timer = new Timer();
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    //Log.d("test",String.valueOf(mediaPlayer.getCurrentPosition()));
+                                    playProgessBar.setProgress(MusicService.mediaPlayer.getCurrentPosition()/100);
+                                    current_progress = playProgessBar.getProgress();
+                                    //Log.d("progress:",String.valueOf(current_progress));
+                                    if(current_status==MusicService.STATUS_PAUSED) {
+                                        timer.cancel();//stop
+                                    }
+                                }},0,50);
+                            break;
+                        case MusicService.STATUS_PLAYING:
+                            //Log.d("test:","2");
+                            mUpdateHandler.sendEmptyMessage(MusicService.STATUS_PAUSED);
+                            break;
+                        case MusicService.STATUS_PAUSED:
+                            //Log.d("test:","3");
+                            mUpdateHandler.sendEmptyMessage(MusicService.STATUS_PLAYING);
+                            break;
+                    }
                 }
+
             }
         });
 
@@ -215,14 +257,6 @@ public class EchoActivity extends AppCompatActivity{
                 dialogActivity.show();
             }
         });
-
-        //注册“网络变化”的广播接收器
-        //myreceiver = new MyReceiver();
-        //实例化过滤器并设置要过滤的广播
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("com.test.send.message");
-        //注册广播
-        //EchoActivity.this.registerReceiver(myreceiver, intentFilter);
 
         //播放bar点击事件
         playBar.setOnClickListener(new View.OnClickListener() {
@@ -241,31 +275,42 @@ public class EchoActivity extends AppCompatActivity{
 
     }
 
-    /*// 广播
-    public class MyReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (action.equals("com.test.send.message")) {
-                mediaPlayer1.release();
-                // 接收到广播传来的数据
-                sID = intent.getStringExtra("id");
-                // 播放列表选中的音乐
-                int id = Integer.parseInt(sID);                 //String转int
-                mediaPlayer1 = MediaPlayer.create(EchoActivity.this, id);
-                mediaPlayer1.start();
-                Resources resources = getApplicationContext().getResources();
-                Drawable pause = resources.getDrawable(R.drawable.pause);
-                btn_play.setBackground(pause);
-            } else {
-                Log.d(TAG, "MyReceiver error");
-            }
+    public void saveNowPlay(int nowIndex){
+       try {
+           SharedPreferences sp =getSharedPreferences("NowPlay", getBaseContext().MODE_PRIVATE);
+           SharedPreferences.Editor editor =sp.edit();
+            editor.putString("index", String.valueOf(nowIndex));
+            editor.commit();
+        }catch (Exception e){
+
         }
     }
-*/
-    public void updataMediaState(){
-        playProgessBar.setMax(MusicService.mediaPlayer.getDuration()/100);
-        playProgessBar.setProgress(MusicService.mediaPlayer.getCurrentPosition()/100);
+
+    public Integer getNowPlay(){
+        try {
+            SharedPreferences sp =getSharedPreferences("NowPlay", getBaseContext().MODE_PRIVATE);
+            String index = sp.getString("index", "0");
+            int nowIndex = Integer.valueOf(index);
+            return nowIndex;
+        }catch (Exception e){
+
+        }
+        return 0;
+    }
+
+    public void updateMediaState(){
+        Log.d("EchoMUsc1111111111",String.valueOf(musicService.mediaPlayer.getDuration()));
+        playProgessBar.setMax(musicService.mediaPlayer.getDuration()/100);
+        playProgessBar.setProgress(musicService.mediaPlayer.getCurrentPosition()/100);
+
+        String title = musicService.nowMusicInfo.getTitle();
+        String author = musicService.nowMusicInfo.getArtist();
+        if(title.length()>=11){
+            title = title.substring(0,11)+"..";
+        }
+        titleTv.setText(title);
+        authorTv.setText(author);
+
         //初始化按钮
         switch (EchoActivity.current_status){
             case MusicService.STATUS_PLAYING:

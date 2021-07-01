@@ -39,11 +39,11 @@ public class LocalMusicActivity extends AppCompatActivity {
         musicListLRlv = findViewById(R.id.rlv_local_music_list);
 
         SharedPreferences sp =getSharedPreferences("MusicList", getApplicationContext().MODE_PRIVATE);
-        Log.d("test:","start");
+        //Log.d("test:","start");
         String data = null;
         try {
             data = sp.getString("musicData", "");
-            Log.d("test:",String.valueOf(data));
+            //Log.d("test:",String.valueOf(data));
             Gson gson = new Gson();
             Type listType = new TypeToken<List<MusicInfo>>() {}.getType();
             List<MusicInfo> musicList = gson.fromJson(data, listType);
