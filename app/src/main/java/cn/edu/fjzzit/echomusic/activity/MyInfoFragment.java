@@ -1,5 +1,6 @@
 package cn.edu.fjzzit.echomusic.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,7 +28,7 @@ public class MyInfoFragment extends Fragment {
     TextView my_fans_num;
     TextView my_news_num;
     MyInfo myInfo;
-    
+    private LinearLayout localMusic;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_my_info, container, false);          //关联布局文件
@@ -38,6 +40,7 @@ public class MyInfoFragment extends Fragment {
         my_d_num = (TextView) view.findViewById(R.id.my_d_num);
         my_fans_num = (TextView) view.findViewById(R.id.my_fans_num);
         my_news_num = (TextView) view.findViewById(R.id.my_news_num);
+        localMusic = view.findViewById(R.id.ly_local_music);
 
         //新页面接收数据
         Bundle bundle = getActivity().getIntent().getExtras();
@@ -54,6 +57,16 @@ public class MyInfoFragment extends Fragment {
             my_fans_num.setText(myInfo.getFans());
             my_news_num.setText(myInfo.getNews());
         }
+
+        //本地音乐按钮
+        localMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(getContext(), LocalMusicActivity.class);
+                getContext().startActivity(intent);
+            }
+        });
 
         return view;
     }

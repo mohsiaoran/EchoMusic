@@ -77,7 +77,7 @@ public class MusicService extends Service {
         }
     }
 
-    public List<MusicInfo> getLocalMusic(){
+    public List<MusicInfo> getLocalMusicList(){
 
         return null;
     }
