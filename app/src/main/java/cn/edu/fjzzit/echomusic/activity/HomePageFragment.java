@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,6 +37,7 @@ public class HomePageFragment extends Fragment {
     private ImageView planIv; //计划图标
     private ImageView listImage; //曲集
     private ImageView sortImage; //分类图标
+    private TextView chosenMore; //精选更多
     private ViewPager viewPager;  //轮播图模块
     private int[] mImg;
     private ArrayList<ImageView> mImgList;
@@ -53,6 +55,7 @@ public class HomePageFragment extends Fragment {
         topImage = view.findViewById(R.id.top_iv);
         listImage = view.findViewById(R.id.list_iv);
         sortImage =view.findViewById(R.id.sort_iv);
+        chosenMore =view.findViewById(R.id.chosen_more_tv);
 
         // 轮播图相关
         viewPager = (ViewPager) view.findViewById(R.id.loopviewpager);
@@ -128,6 +131,18 @@ public class HomePageFragment extends Fragment {
                 // TODO Auto-generated method stub
                 Intent intent = new Intent();
                 intent.setClass(getContext(), ListActivity.class);
+                getContext().startActivity(intent);
+
+            }
+        });
+
+        //跳转到精选更多
+        chosenMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent intent = new Intent();
+                intent.setClass(getContext(),ChosenActivity.class);
                 getContext().startActivity(intent);
 
             }
