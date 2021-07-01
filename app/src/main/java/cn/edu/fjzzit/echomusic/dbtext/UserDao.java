@@ -67,11 +67,11 @@ public class UserDao {
         }
     }
 
-    //搜索
-    //insert  into `musicinfo`(`musicId`,`title`,`auther`,`resUrl`) values
-    //(1,'canon','Johann Pachelbel','canon'),
-    //(2,'nocturne','Fryderyk','nocturne'),
-    //(3,'alla turca','Mozart','alla turca');
+    /*搜索
+    insert  into `musicinfo`(`musicId`,`title`,`auther`,`resUrl`) values
+    (1,'canon','Johann Pachelbel','canon'),
+    (2,'nocturne','Fryderyk','nocturne'),
+    (3,'alla turca','Mozart','alla turca');*/
     public void search(List<String> list, String s) {
         if (conn==null){
             Log.i(TAG,"search:conn is null");
@@ -98,29 +98,29 @@ public class UserDao {
         }
     }
     //登录
-    //USE `echo_music`;
-    //
-    ///*Table structure for table `myinfo` */
-    //
-    //DROP TABLE IF EXISTS `myinfo`;
-    //
-    //CREATE TABLE `myinfo` (
-    //  `id` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-    //  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-    //  `level` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-    //  `sign` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-    //  `attention` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-    //  `dynamic` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-    //  `fans` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-    //  `news` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-    //  KEY `fk_id` (`id`),
-    //  CONSTRAINT `fk_id` FOREIGN KEY (`id`) REFERENCES `userinfo` (`username`)
-    //) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-    //
-    ///*Data for the table `myinfo` */
-    //
-    //insert  into `myinfo`(`id`,`name`,`level`,`sign`,`attention`,`dynamic`,`fans`,`news`) values
-    //('101','李四','LV.2','法外狂徒','108','666','10000','500');
+  /*  USE `echo_music`;
+
+    *//*Table structure for table `myinfo` *//*
+
+    DROP TABLE IF EXISTS `myinfo`;
+
+    CREATE TABLE `myinfo` (
+      `id` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+      `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+      `level` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+      `sign` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+      `attention` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+      `dynamic` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+      `fans` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+      `news` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+      KEY `fk_id` (`id`),
+      CONSTRAINT `fk_id` FOREIGN KEY (`id`) REFERENCES `userinfo` (`username`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+    *//*Data for the table `myinfo` *//*
+
+    insert  into `myinfo`(`id`,`name`,`level`,`sign`,`attention`,`dynamic`,`fans`,`news`) values
+    ('101','李四','LV.2','法外狂徒','108','666','10000','500');*/
     public MyInfo getMyInfo(String id){
         MyInfo myInfo = new MyInfo();
         if (conn==null){
