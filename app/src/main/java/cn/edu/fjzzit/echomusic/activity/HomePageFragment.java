@@ -28,7 +28,8 @@ public class HomePageFragment extends Fragment {
     String TAG="";
     EditText editTextTextPersonName;
     private ImageView topImage;//排行榜图标
-    private ImageView planIv;
+    private ImageView planIv; //计划图标
+    private ImageView listImage;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);          //关联布局文件
@@ -38,6 +39,7 @@ public class HomePageFragment extends Fragment {
         topImage = view.findViewById(R.id.top_iv);
         planIv = view.findViewById(R.id.plan_iv);
         topImage = view.findViewById(R.id.top_iv);
+        listImage = view.findViewById(R.id.list_iv);
 
         // 当搜索框获得焦点和点击时时跳转到搜索页面
         editTextTextPersonName = (EditText) view.findViewById(R.id.editTextTextPersonName);
@@ -88,7 +90,17 @@ public class HomePageFragment extends Fragment {
             }
         });
 
+        //跳转曲集
+        listImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent intent = new Intent();
+                intent.setClass(getContext(), ListActivity.class);
+                getContext().startActivity(intent);
 
+            }
+        });
         return view;
     }
 
