@@ -279,7 +279,7 @@
                 <LinearLayout
                     android:id="@+id/ly_songbook"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:layout_height="50dp"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -300,7 +300,7 @@
                 <LinearLayout
                     android:id="@+id/ly_favorite"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:layout_height="50dp"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -321,7 +321,7 @@
                 <LinearLayout
                     android:id="@+id/ly_local_music"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:layout_height="50dp"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -342,7 +342,7 @@
                 <LinearLayout
                     android:id="@+id/ly_download"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:layout_height="50dp"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -363,7 +363,7 @@
                 <LinearLayout
                     android:id="@+id/ly_purchased_music"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:layout_height="50dp"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -384,7 +384,7 @@
                 <LinearLayout
                     android:id="@+id/ly_histoy"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:layout_height="50dp"
                     android:orientation="horizontal">
 
                     <ImageView

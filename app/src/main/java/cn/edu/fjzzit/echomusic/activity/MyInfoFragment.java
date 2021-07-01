@@ -26,6 +26,7 @@ public class MyInfoFragment extends Fragment {
     TextView my_fans_num;
     TextView my_news_num;
     MyInfo myInfo;
+    
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_my_info, container, false);          //关联布局文件

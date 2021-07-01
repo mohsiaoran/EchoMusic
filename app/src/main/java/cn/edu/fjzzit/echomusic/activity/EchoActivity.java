@@ -118,12 +118,14 @@ public class EchoActivity extends AppCompatActivity{
         verifyStoragePermissions(this);
 
         //初始化
+
         playBar = findViewById(R.id.music_play_bar);
         barPlayBtn = findViewById(R.id.btn_play);
         playProgessBar = findViewById(R.id.play_bar_progressBar);
         musicImg = findViewById(R.id.play_bar_music_info_img);
         bindServiceConnection();
         musicService = new MusicService();
+        current_status=musicService.STATUS_PAUSED;
         musicService.animator = ObjectAnimator.ofFloat(musicImg, "rotation", 0, 359);
 
         updataMediaState();
@@ -202,51 +204,6 @@ public class EchoActivity extends AppCompatActivity{
             }
         });
 
-
-        /*//定位音乐播放图标
-        btn_play=(Button) findViewById(R.id.btn_play);
-        if(mediaPlayer1 == null){
-            mediaPlayer1 = MediaPlayer.create(EchoActivity.this, R.raw.canon); //默认播放canon
-        }
-
-        //添加音乐播放按钮的监听器
-        btn_play.setOnClickListener(new View.OnClickListener(){
-            //音乐播放与暂停
-            @Override
-            public void onClick(View v) {
-                if(flag.equals("true")){
-                    // 音频开始
-                    mediaPlayer1.start();
-                    playState = true;
-                    // 切换暂停图标
-                    Resources resources = getApplicationContext().getResources();
-                    Drawable pause = resources.getDrawable(R.drawable.pause);
-                    btn_play.setBackground(pause);
-                    playProgessBar.setMax(mediaPlayer1.getDuration());
-                    timer = new Timer();
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            if(playState){
-                                //Log.d(TAG, " test");
-                                playProgessBar.setProgress(mediaPlayer1.getCurrentPosition());
-                            }
-                        }
-                    },0,50);
-                    flag = "false";
-                }else{
-                    // 音频暂停
-                    mediaPlayer1.pause();
-                    playState = false;
-                    timer.purge(); //定时器停止
-                    // 切换播放图标
-                    Resources resources = getApplicationContext().getResources();
-                    Drawable play = resources.getDrawable(R.drawable.play);
-                    btn_play.setBackground(play);
-                    flag = "true";
-                }
-            }
-        });*/
 
         // 弹出底部音乐列表
         View musicList= (View) findViewById(R.id.musicList);

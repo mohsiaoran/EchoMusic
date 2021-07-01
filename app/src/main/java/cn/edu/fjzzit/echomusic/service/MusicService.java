@@ -10,8 +10,11 @@ import android.os.Environment;
 import android.os.IBinder;
 import android.view.animation.LinearInterpolator;
 
+import java.util.List;
+
 import cn.edu.fjzzit.echomusic.R;
 import cn.edu.fjzzit.echomusic.activity.EchoActivity;
+import cn.edu.fjzzit.echomusic.entity.MusicInfo;
 
 public class MusicService extends Service {
     //广播标识
@@ -74,7 +77,12 @@ public class MusicService extends Service {
         }
     }
 
-    public  void AnimatorAction() {
+    public List<MusicInfo> getLocalMusic(){
+
+        return null;
+    }
+
+    public void AnimatorAction() {
         if (mediaPlayer.isPlaying()) {
             animator.setDuration(5000);
             animator.setInterpolator(new LinearInterpolator()); // 均速旋转
