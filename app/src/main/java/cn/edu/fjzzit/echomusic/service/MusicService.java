@@ -3,13 +3,21 @@ package cn.edu.fjzzit.echomusic.service;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.Environment;
 import android.os.IBinder;
+import android.util.Log;
 import android.view.animation.LinearInterpolator;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.List;
 
 import cn.edu.fjzzit.echomusic.R;
@@ -57,30 +65,49 @@ public class MusicService extends Service {
     public static int isReturnTo = 0;
     public static MediaPlayer mediaPlayer = new MediaPlayer();
     public static ObjectAnimator animator;
+    public List<MusicInfo> musicInfoList;
+    public MusicInfo nowMusicInfo;
+    public int nowIndex=0;
     public MusicService() {
+        //获取播放列表
+        musicInfoList = EchoActivity.musicList;
+        nowIndex = EchoActivity.nowPlayIndex;
+
+        nowMusicInfo = musicInfoList.get(nowIndex);
         initMediaPlayer();
+
     }
 
     public void initMediaPlayer() {
         try {
             if (!mediaPlayer.isPlaying()) {
+                //getNowPlay();
                 //String file_path = "/storage/0123-4567/K.Will-Melt.mp3";
-                String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/canon.mp3";
+                //String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/canon.mp3";
                 //String file_path = "/data/K.Will-Melt.mp3";
                 //mediaPlayer.create(getBaseContext(), R.raw.canon);
-                mediaPlayer.setDataSource(file_path);
+                //Log.d("nowIndex",String.valueOf(nowIndex));
+                //Log.d("path",nowMusicInfo.getDataPath());
+                mediaPlayer.setDataSource(nowMusicInfo.getDataPath());
                 mediaPlayer.prepare();
-                mediaPlayer.setLooping(true);  // 设置循环播放
+                mediaPlayer.setLooping(false);  // 设置循环播放
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public List<MusicInfo> getLocalMusicList(){
+    public void saveNowPlay(){
+        SharedPreferences sp =getSharedPreferences("NowPlay", EchoActivity.MODE_PRIVATE);
+        try {
+            SharedPreferences.Editor editor =sp.edit();
+            editor.putString("index", String.valueOf(nowIndex));
+            editor.commit();
+        }catch (Exception e){
 
-        return null;
+        }
     }
+
 
     public void AnimatorAction() {
         if (mediaPlayer.isPlaying()) {
@@ -115,6 +142,7 @@ public class MusicService extends Service {
             }
         }
     }
+
     public void stop() {
         which = "stop";
         animator.pause();
@@ -127,6 +155,37 @@ public class MusicService extends Service {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void prevOrNextMusic(int i) {
+        Log.d("test","test");
+        switch (i){
+            case 0:
+                if (musicInfoList.size()>nowIndex-1){
+                    nowIndex = musicInfoList.size()-1;
+                }else{
+                    nowIndex -= 1;
+                }
+                break;
+            case 1:
+                if (musicInfoList.size()<nowIndex+1){
+                    nowIndex = 0;
+                }else{
+                    nowIndex += 1;
+                }
+                break;
+        }
+
+        try {
+            nowMusicInfo = musicInfoList.get(nowIndex);
+            mediaPlayer.reset();
+            mediaPlayer.setDataSource(musicInfoList.get(nowIndex).getDataPath());
+            mediaPlayer.prepare();
+            // 开始播放
+            mediaPlayer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

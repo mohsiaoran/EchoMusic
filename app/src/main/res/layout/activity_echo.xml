@@ -49,10 +49,10 @@
 
         <TextView
             android:id="@+id/play_bar_music_title"
-            android:layout_width="200dp"
+            android:layout_width="230dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="音乐"
+            android:text="twe"
             android:textColor="#000000"
             android:textColorHighlight="#000000"
             android:textColorHint="#000000"
