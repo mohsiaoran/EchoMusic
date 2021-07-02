@@ -189,15 +189,17 @@ public class MusicService extends Service {
 
         try {
             nowMusicInfo = musicInfoList.get(nowIndex);
-            mediaPlayer.reset();
-            mediaPlayer.setDataSource(musicInfoList.get(nowIndex).getDataPath());
-            mediaPlayer.prepare();
-            // 开始播放
-            mediaPlayer.start();
-            EchoActivity.current_status=STATUS_PLAYING;
-            Intent intent = new Intent("com.test.send.message");
-            intent.putExtra("state", "play");         //向广播接收器传递数据
-            sendBroadcast(intent);
+            if(nowMusicInfo !=null) {
+                mediaPlayer.reset();
+                mediaPlayer.setDataSource(musicInfoList.get(nowIndex).getDataPath());
+                mediaPlayer.prepare();
+                // 开始播放
+                mediaPlayer.start();
+                EchoActivity.current_status = STATUS_PLAYING;
+                Intent intent = new Intent("com.test.send.message");
+                intent.putExtra("state", "play");         //向广播接收器传递数据
+                sendBroadcast(intent);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
