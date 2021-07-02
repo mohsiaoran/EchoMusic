@@ -247,6 +247,7 @@ public class EchoActivity extends AppCompatActivity{
         });
 
 
+
         // 弹出底部音乐列表
         View musicList= (View) findViewById(R.id.musicList);
         //添加监听器
@@ -299,26 +300,30 @@ public class EchoActivity extends AppCompatActivity{
     }
 
     public void updateMediaState(){
-        Log.d("EchoMUsc1111111111",String.valueOf(musicService.mediaPlayer.getDuration()));
-        playProgessBar.setMax(musicService.mediaPlayer.getDuration()/100);
-        playProgessBar.setProgress(musicService.mediaPlayer.getCurrentPosition()/100);
+        if(musicService.nowMusicInfo==null){
+            Toast.makeText(getBaseContext(),"没有音乐",Toast.LENGTH_LONG).show();
+        }else {
+            //Log.d("EchoMUsc1111111111",String.valueOf(musicService.mediaPlayer.getDuration()));
+            playProgessBar.setMax(musicService.mediaPlayer.getDuration() / 100);
+            playProgessBar.setProgress(musicService.mediaPlayer.getCurrentPosition() / 100);
 
-        String title = musicService.nowMusicInfo.getTitle();
-        String author = musicService.nowMusicInfo.getArtist();
-        if(title.length()>=11){
-            title = title.substring(0,11)+"..";
-        }
-        titleTv.setText(title);
-        authorTv.setText(author);
+            String title = musicService.nowMusicInfo.getTitle();
+            String author = musicService.nowMusicInfo.getArtist();
+            if (title.length() >= 11) {
+                title = title.substring(0, 11) + "..";
+            }
+            titleTv.setText(title);
+            authorTv.setText(author);
 
-        //初始化按钮
-        switch (EchoActivity.current_status){
-            case MusicService.STATUS_PLAYING:
-                barPlayBtn.setBackgroundResource(R.drawable.pause);//设置按钮为暂停
-                break;
-            case MusicService.STATUS_PAUSED:
-                barPlayBtn.setBackgroundResource(R.drawable.play);//设置按钮为播放
-                break;
+            //初始化按钮
+            switch (EchoActivity.current_status) {
+                case MusicService.STATUS_PLAYING:
+                    barPlayBtn.setBackgroundResource(R.drawable.pause);//设置按钮为暂停
+                    break;
+                case MusicService.STATUS_PAUSED:
+                    barPlayBtn.setBackgroundResource(R.drawable.play);//设置按钮为播放
+                    break;
+            }
         }
     }
 
