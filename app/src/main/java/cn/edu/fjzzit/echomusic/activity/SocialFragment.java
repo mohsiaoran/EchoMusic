@@ -1,5 +1,6 @@
 package cn.edu.fjzzit.echomusic.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -30,17 +31,27 @@ public class SocialFragment extends Fragment {
     private TabLayout nav;
     private List<Fragment> fragmentList = new ArrayList<>();
     private int[] titleList = new int[]{R.string.dynamic_state,R.string.attention};
-
+    private View social;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_social, container, false);          //关联布局文件
 
         vp = view.findViewById(R.id.social_vp);//获得ViewPager2控件
         nav= view.findViewById(R.id.social_nav);
+        social = view.findViewById(R.id.social_msg_btn);
 
         init();
         vp.setCurrentItem(0,false);
 
+        //点击信息跳转至消息界面
+        social.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getActivity(), MessageActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }

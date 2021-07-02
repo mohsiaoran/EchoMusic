@@ -27,7 +27,8 @@
             android:name=".service.MusicService"
             android:enabled="true"
             android:exported="true" />
-
+        <activity android:name=".activity.IncentivesActivity"/>
+        <activity android:name=".activity.MessageActivity"/>
         <activity android:name=".activity.TopDetailActivity" />
         <activity android:name=".activity.PlayActivity" />
         <activity android:name=".activity.PlanActivity" />
@@ -39,6 +40,8 @@
         <activity android:name=".activity.ListActivity" />
         <activity android:name=".activity.SortActivity" />
         <activity android:name=".activity.ChosenActivity" />
+        <activity android:name=".activity.ToturialActivity" />
+        <activity android:name=".activity.ActActivity" />
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
