@@ -13,8 +13,6 @@ import android.os.IBinder;
 import android.util.Log;
 import android.view.animation.LinearInterpolator;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
