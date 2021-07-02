@@ -70,10 +70,15 @@ public class MusicService extends Service {
     public int nowIndex=0;
     public MusicService() {
         //获取播放列表
+
         musicInfoList = EchoActivity.musicList;
         nowIndex = EchoActivity.nowPlayIndex;
 
-        nowMusicInfo = musicInfoList.get(nowIndex);
+        try {
+            nowMusicInfo = musicInfoList.get(nowIndex);
+        }catch (Exception e){
+
+        }
         initMediaPlayer();
 
     }
