@@ -70,6 +70,7 @@ public class LocalMusicActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 List<MusicInfo> musicInfoList = MusicUtils.getMusicData(getBaseContext());
+                Log.d("musicuntis:",String.valueOf(musicInfoList.size()));
                 Gson gson = new Gson();
                 String musicData = gson.toJson(musicInfoList);
 

@@ -65,7 +65,9 @@ import cn.edu.fjzzit.echomusic.service.MusicService;
 public class EchoActivity extends AppCompatActivity{
     private LinearLayout homePageBtn,creationBtn,socialBtn,myInfoBtn;
     private ImageView homePageIcon,creationIcon,socialIcon,myInfoIcon;
-    private TextView homePageTxt,creationTxt,socialTxt,myInfoTxt,titleTv,authorTv;
+    private TextView homePageTxt,creationTxt,socialTxt,myInfoTxt;
+    public TextView titleTv;
+    public TextView authorTv;
     private ViewPager2 vp;
     private TabLayout nav;
     private List<Fragment> fragmentList = new ArrayList<>();
@@ -78,7 +80,6 @@ public class EchoActivity extends AppCompatActivity{
     private String TAG = "TAG";
     public static MediaPlayer mediaPlayer1 = null;
     public static boolean playState = false;
-    //private MyReceiver myreceiver;
     private static String sID = "2131623937";
     private ImageView musicImg;
     private ConstraintLayout playBar;
@@ -165,22 +166,7 @@ public class EchoActivity extends AppCompatActivity{
         switch (current_status) {
             case MusicService.STATUS_PLAYING:
                 //Log.d("test:","1");
-                timer = new Timer();
-                timer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        //Log.d("test",String.valueOf(mediaPlayer.getCurrentPosition()));
-                        playProgessBar.setProgress(MusicService.mediaPlayer.getCurrentPosition() / 100);
-                        current_progress = playProgessBar.getProgress();
-                        //Log.d("progress:",String.valueOf(current_progress));
-                        if (current_status == MusicService.STATUS_PAUSED) {
-                            timer.cancel();//stop
-                        }
-                        if (playProgessBar.getProgress()==playProgessBar.getMax()){
-                            barPlayBtn.setBackgroundResource(R.drawable.play);//设置按钮为播放
-                        }
-                    }
-                }, 0, 50);
+               startTimer();
                 break;
         }
 
@@ -219,18 +205,7 @@ public class EchoActivity extends AppCompatActivity{
                             mUpdateHandler.sendEmptyMessage(MusicService.STATUS_PLAYING);
                             playProgessBar.setMax(MusicService.mediaPlayer.getDuration()/100);
 
-                            timer = new Timer();
-                            timer.schedule(new TimerTask() {
-                                @Override
-                                public void run() {
-                                    //Log.d("test",String.valueOf(mediaPlayer.getCurrentPosition()));
-                                    playProgessBar.setProgress(MusicService.mediaPlayer.getCurrentPosition()/100);
-                                    current_progress = playProgessBar.getProgress();
-                                    //Log.d("progress:",String.valueOf(current_progress));
-                                    if(current_status==MusicService.STATUS_PAUSED) {
-                                        timer.cancel();//stop
-                                    }
-                                }},0,50);
+                            startTimer();
                             break;
                         case MusicService.STATUS_PLAYING:
                             //Log.d("test:","2");
@@ -245,7 +220,6 @@ public class EchoActivity extends AppCompatActivity{
 
             }
         });
-
 
 
         // 弹出底部音乐列表
@@ -273,8 +247,54 @@ public class EchoActivity extends AppCompatActivity{
 
         //进度条处理
 
+        //注册广播接收器
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("com.test.send.message");
+        registerReceiver(MyReceiver, intentFilter);
 
     }
+
+    private void startTimer(){
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                //Log.d("test",String.valueOf(mediaPlayer.getCurrentPosition()));
+                playProgessBar.setProgress(MusicService.mediaPlayer.getCurrentPosition() / 100);
+                current_progress = playProgessBar.getProgress();
+                //Log.d("progress:",String.valueOf(current_progress));
+                if (current_status == MusicService.STATUS_PAUSED) {
+                    timer.cancel();//stop
+                }
+                if (playProgessBar.getProgress()==playProgessBar.getMax()){
+                    barPlayBtn.setBackgroundResource(R.drawable.play);//设置按钮为播放
+                }
+            }
+        }, 0, 50);
+    }
+
+    public BroadcastReceiver MyReceiver = new BroadcastReceiver() {
+        @Override
+
+        public void onReceive(Context context, Intent intent) {
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String action = intent.getAction();
+                    Log.d(TAG, "action = " + action);
+                    if (action.equals("com.test.send.message")) {
+                        // 接收到广播传来的数据
+                        String ID =intent.getStringExtra("state");
+                        updateMediaState();
+                    }else{
+
+                    }
+                }
+            });
+            thread.start();
+        }
+
+    };
 
     public void saveNowPlay(int nowIndex){
        try {
@@ -298,16 +318,22 @@ public class EchoActivity extends AppCompatActivity{
         }
         return 0;
     }
+    public void next(int index){
+        updateMediaState();
+        musicService.setPlay(index);
+    }
 
     public void updateMediaState(){
+        //Log.d("Echo12315123",musicService.nowMusicInfo.getTitle());
         if(musicService.nowMusicInfo==null){
-            Toast.makeText(getBaseContext(),"没有音乐",Toast.LENGTH_LONG).show();
+            Toast.makeText(EchoActivity.this,"没有音乐",Toast.LENGTH_LONG).show();
         }else {
             //Log.d("EchoMUsc1111111111",String.valueOf(musicService.mediaPlayer.getDuration()));
             playProgessBar.setMax(musicService.mediaPlayer.getDuration() / 100);
             playProgessBar.setProgress(musicService.mediaPlayer.getCurrentPosition() / 100);
 
             String title = musicService.nowMusicInfo.getTitle();
+            //Log.d("Echo12315123",title);
             String author = musicService.nowMusicInfo.getArtist();
             if (title.length() >= 11) {
                 title = title.substring(0, 11) + "..";
@@ -318,9 +344,15 @@ public class EchoActivity extends AppCompatActivity{
             //初始化按钮
             switch (EchoActivity.current_status) {
                 case MusicService.STATUS_PLAYING:
+                    startTimer();
                     barPlayBtn.setBackgroundResource(R.drawable.pause);//设置按钮为暂停
                     break;
                 case MusicService.STATUS_PAUSED:
+                    timer.cancel();
+                    barPlayBtn.setBackgroundResource(R.drawable.play);//设置按钮为播放
+                    break;
+                case MusicService.STATUS_STOPPED:
+                    startTimer();
                     barPlayBtn.setBackgroundResource(R.drawable.play);//设置按钮为播放
                     break;
             }

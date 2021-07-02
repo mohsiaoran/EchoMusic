@@ -14,6 +14,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 import cn.edu.fjzzit.echomusic.R;
+import cn.edu.fjzzit.echomusic.activity.EchoActivity;
 import cn.edu.fjzzit.echomusic.entity.ChosenInfo;
 import cn.edu.fjzzit.echomusic.entity.MusicInfo;
 import cn.edu.fjzzit.echomusic.service.MusicService;
@@ -46,8 +47,14 @@ public class LocalMusicAdapter extends RecyclerView.Adapter<LocalMusicAdapter.Vi
             MusicInfo musicInfo = musicInfoList.get(position);
             holder.num.setText(String.valueOf(position+1));
             holder.title.setText(musicInfo.getTitle());
-            holder.author.setText(musicInfo.getArtist());}
-
+            holder.author.setText(musicInfo.getArtist());
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    EchoActivity.musicService.setPlay(position);
+                }
+            });
+        }
     }
 
     @Override
