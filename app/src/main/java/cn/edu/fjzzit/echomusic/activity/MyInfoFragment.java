@@ -2,9 +2,6 @@ package cn.edu.fjzzit.echomusic.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import cn.edu.fjzzit.echomusic.R;
-import cn.edu.fjzzit.echomusic.dbtext.UserDao;
 import cn.edu.fjzzit.echomusic.entity.MyInfo;
 
 public class MyInfoFragment extends Fragment {
@@ -29,6 +25,11 @@ public class MyInfoFragment extends Fragment {
     TextView my_news_num;
     MyInfo myInfo;
     private LinearLayout localMusic;
+    private View browsing_history;
+    private View purchased_music;
+    private View my_songbook;
+    private View my_download;
+    private View my_favorite;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_my_info, container, false);          //关联布局文件
@@ -41,6 +42,57 @@ public class MyInfoFragment extends Fragment {
         my_fans_num = (TextView) view.findViewById(R.id.my_fans_num);
         my_news_num = (TextView) view.findViewById(R.id.my_news_num);
         localMusic = view.findViewById(R.id.ly_local_music);
+
+
+        my_songbook = view.findViewById(R.id.my_songbook);
+        my_songbook.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SongBookActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        my_favorite = view.findViewById(R.id.my_favorite);
+        my_favorite.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MyfavoriteActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        my_download = view.findViewById(R.id.my_download);
+        my_download.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MyDownloadActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        purchased_music = view.findViewById(R.id.purchased_music);
+        purchased_music.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), PursedActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        browsing_history = view.findViewById(R.id.browsing_history);
+        browsing_history.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), PlayHistoryActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //新页面接收数据
         Bundle bundle = getActivity().getIntent().getExtras();

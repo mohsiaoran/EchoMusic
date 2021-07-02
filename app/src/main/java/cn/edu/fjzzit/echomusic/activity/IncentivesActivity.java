@@ -32,6 +32,7 @@ public class IncentivesActivity extends AppCompatActivity {
                 finish();
             }
         });
+
         incetives_listview = (ListView) findViewById(R.id.incetives_listview);
         dataList_incetives=new ArrayList<Map<String,Object>>();
         simp_adapter_incetives=new SimpleAdapter(this, getData(),R.layout.tip_item, new String[]{"contentText", "timeText"}, new int[]{R.id.contentText, R.id.timeText});//新建适配器
