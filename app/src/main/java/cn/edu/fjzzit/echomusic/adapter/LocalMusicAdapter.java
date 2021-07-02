@@ -15,6 +15,7 @@ import java.util.List;
 
 import cn.edu.fjzzit.echomusic.R;
 import cn.edu.fjzzit.echomusic.activity.EchoActivity;
+import cn.edu.fjzzit.echomusic.activity.LocalMusicActivity;
 import cn.edu.fjzzit.echomusic.entity.ChosenInfo;
 import cn.edu.fjzzit.echomusic.entity.MusicInfo;
 import cn.edu.fjzzit.echomusic.service.MusicService;
@@ -52,6 +53,7 @@ public class LocalMusicAdapter extends RecyclerView.Adapter<LocalMusicAdapter.Vi
                 @Override
                 public void onClick(View v) {
                     EchoActivity.musicService.setPlay(position);
+                    LocalMusicActivity.context.finish();
                 }
             });
         }

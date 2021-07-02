@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,11 +30,14 @@ import cn.edu.fjzzit.echomusic.utils.MusicUtils;
 public class LocalMusicActivity extends AppCompatActivity {
     private Button scanMusicBtn;
     private RecyclerView musicListLRlv;
+    public static Activity context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_local_music);
+
+        context =this;
 
         scanMusicBtn = findViewById(R.id.btn_scan_music);
         musicListLRlv = findViewById(R.id.rlv_local_music_list);

@@ -277,21 +277,15 @@ public class EchoActivity extends AppCompatActivity{
         @Override
 
         public void onReceive(Context context, Intent intent) {
-            Thread thread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    String action = intent.getAction();
-                    Log.d(TAG, "action = " + action);
-                    if (action.equals("com.test.send.message")) {
-                        // 接收到广播传来的数据
-                        String ID =intent.getStringExtra("state");
-                        updateMediaState();
-                    }else{
+            String action = intent.getAction();
+            Log.d(TAG, "action = " + action);
+            if (action.equals("com.test.send.message")) {
+                // 接收到广播传来的数据
+                String ID =intent.getStringExtra("state");
+                updateMediaState();
+            }else{
 
-                    }
-                }
-            });
-            thread.start();
+            }
         }
 
     };
