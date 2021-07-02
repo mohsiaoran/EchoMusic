@@ -80,7 +80,7 @@ public class MusicService extends Service {
 
     public void initMediaPlayer() {
         try {
-            if (!mediaPlayer.isPlaying()) {
+            if (!mediaPlayer.isPlaying()&&nowMusicInfo!=null) {
                 //getNowPlay();
                 //String file_path = "/storage/0123-4567/K.Will-Melt.mp3";
                 //String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/canon.mp3";

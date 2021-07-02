@@ -238,19 +238,23 @@ public class PlayActivity extends AppCompatActivity {
     }
 
     private void updateCOMPO(){
-        seekBar.setMax(mediaPlayer.getDuration()/100);
-        seekBar.setProgress(mediaPlayer.getCurrentPosition()/100);
-        //时间赋值
-        nowTv.setText(getTime(mediaPlayer.getCurrentPosition()/1000));
-        totalTv.setText(getTime(mediaPlayer.getDuration()/1000));
+        if(EchoActivity.musicService.nowMusicInfo==null){
+            Toast.makeText(getBaseContext(),"没有音乐",Toast.LENGTH_LONG).show();
+        }else {
+            seekBar.setMax(mediaPlayer.getDuration() / 100);
+            seekBar.setProgress(mediaPlayer.getCurrentPosition() / 100);
+            //时间赋值
+            nowTv.setText(getTime(mediaPlayer.getCurrentPosition() / 1000));
+            totalTv.setText(getTime(mediaPlayer.getDuration() / 1000));
 
-        String title = EchoActivity.musicService.nowMusicInfo.getTitle();
-        String author = EchoActivity.musicService.nowMusicInfo.getArtist();
-        if(title.length()>=15){
-            title = title.substring(0,15)+"..";
+            String title = EchoActivity.musicService.nowMusicInfo.getTitle();
+            String author = EchoActivity.musicService.nowMusicInfo.getArtist();
+            if (title.length() >= 15) {
+                title = title.substring(0, 15) + "..";
+            }
+            titleTv.setText(title);
+            authorTv.setText(author);
         }
-        titleTv.setText(title);
-        authorTv.setText(author);
     }
 
 
