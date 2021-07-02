@@ -78,7 +78,6 @@ public class EchoActivity extends AppCompatActivity{
             R.drawable.tab_icon_my_info};
     private String flag = "true";
     private String TAG = "TAG";
-    public static MediaPlayer mediaPlayer1 = null;
     public static boolean playState = false;
     private static String sID = "2131623937";
     private ImageView musicImg;
@@ -89,7 +88,7 @@ public class EchoActivity extends AppCompatActivity{
     public static int nowPlayIndex;
     //当前播放的歌曲,播放状态,播放进度,当前的歌曲的总时长,当前播放模式
     public static int current_number,current_status,current_progress,duration,current_PlayMode;
-    private Timer timer;
+    public static Timer timer;
 
 
     //handler
@@ -254,7 +253,7 @@ public class EchoActivity extends AppCompatActivity{
 
     }
 
-    private void startTimer(){
+    public static void startTimer(){
         timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override

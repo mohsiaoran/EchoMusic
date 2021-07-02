@@ -3,11 +3,8 @@ package cn.edu.fjzzit.echomusic.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -87,15 +84,19 @@ public class PlayActivity extends AppCompatActivity {
                     break;
                 case MusicService.COMMAND_NEXT:
                     timer.cancel();
+                    EchoActivity.timer.cancel();
                     EchoActivity.musicService.prevOrNextMusic(0);
                     updateCOMPO();
                     setTimer();
+                    EchoActivity.startTimer();
                     break;
                 case MusicService.COMMAND_PREVIOUS:
                     timer.cancel();
+                    EchoActivity.timer.cancel();
                     EchoActivity.musicService.prevOrNextMusic(1);
                     updateCOMPO();
                     setTimer();
+                    EchoActivity.startTimer();
                     break;
             }
             return false;
@@ -225,30 +226,7 @@ public class PlayActivity extends AppCompatActivity {
                 mUpdateHandler.sendEmptyMessage(MusicService.COMMAND_PREVIOUS);
             }
         });
-
-        //广播接收
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("com.test.send.message");
-        registerReceiver(MyReceiver, intentFilter);
-
     }
-
-    public BroadcastReceiver MyReceiver = new BroadcastReceiver() {
-        @Override
-
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            //Log.d(TAG, "action = " + action);
-            if (action.equals("com.test.send.message")) {
-                // 接收到广播传来的数据
-                String ID =intent.getStringExtra("state");
-                updateCOMPO();
-            }else{
-
-            }
-        }
-
-    };
 
     private void setTimer(){
         timer = new Timer();
@@ -280,6 +258,18 @@ public class PlayActivity extends AppCompatActivity {
             }
             titleTv.setText(title);
             authorTv.setText(author);
+            Log.d("play   btn:",String.valueOf(EchoActivity.current_status));
+            switch (EchoActivity.current_status) {
+                case MusicService.STATUS_PLAYING:
+                    playPageBtn.setBackgroundResource(R.drawable.pause_lg);
+                    break;
+                case MusicService.STATUS_PAUSED:
+                    playPageBtn.setBackgroundResource(R.drawable.play_lg);
+                    break;
+                case MusicService.STATUS_STOPPED:
+                    playPageBtn.setBackgroundResource(R.drawable.play_lg);
+                    break;
+            }
         }
     }
 
