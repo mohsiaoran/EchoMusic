@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/msg_title_bar"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/already" />
+
+        <ImageButton
+            android:id="@+id/imageButton5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/noready" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/official_news"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="官方消息" />
+
+    <ListView
+        android:id="@+id/official_listview"
+        android:layout_width="match_parent"
+        android:layout_height="173dp" />
+
+    <TextView
+        android:id="@+id/my_news"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我的消息" />
+
+    <ListView
+        android:id="@+id/my_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>

@@ -74,11 +74,18 @@ public class MusicService extends Service {
 
         try {
             nowMusicInfo = musicInfoList.get(nowIndex);
+            initMediaPlayer();
         }catch (Exception e){
 
         }
-        initMediaPlayer();
 
+
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                prevOrNextMusic(1);
+            }
+        });
     }
 
     public void initMediaPlayer() {
@@ -162,17 +169,17 @@ public class MusicService extends Service {
     }
 
     public void prevOrNextMusic(int i) {
-        Log.d("test","test");
+        //Log.d("test","test");
         switch (i){
             case 0:
-                if (musicInfoList.size()>nowIndex-1){
+                if (musicInfoList.size()>=nowIndex-1){
                     nowIndex = musicInfoList.size()-1;
                 }else{
                     nowIndex -= 1;
                 }
                 break;
             case 1:
-                if (musicInfoList.size()<nowIndex+1){
+                if (musicInfoList.size()<=nowIndex+1){
                     nowIndex = 0;
                 }else{
                     nowIndex += 1;
@@ -187,10 +194,34 @@ public class MusicService extends Service {
             mediaPlayer.prepare();
             // 开始播放
             mediaPlayer.start();
+            EchoActivity.current_status=STATUS_PLAYING;
+            Intent intent = new Intent("com.test.send.message");
+            intent.putExtra("state", "play");         //向广播接收器传递数据
+            sendBroadcast(intent);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    public void setPlay(int index){
+        try{
+            nowIndex = index;
+            nowMusicInfo = musicInfoList.get(index);
+            mediaPlayer.reset();
+            mediaPlayer.setDataSource(nowMusicInfo.getDataPath());
+            mediaPlayer.prepare();
+            // 开始播放
+            mediaPlayer.start();
+            EchoActivity.current_status=STATUS_PLAYING;
+            Intent intent = new Intent("com.test.send.message");
+            intent.putExtra("state", "play");         //向广播接收器传递数据
+            sendBroadcast(intent);
+
+        }catch (Exception e){
+
+        }
+    }
+
 
 
     @Override

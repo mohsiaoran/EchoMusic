@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,11 +25,11 @@ import cn.edu.fjzzit.echomusic.entity.ChosenInfo;
 import cn.edu.fjzzit.echomusic.entity.ToturialInfo;
 
 public class CreationFragment extends Fragment {
-
     private RecyclerView mToturialRecyclerView;
     private ImageView toturialImage;//教程图标
     private TextView toturialMore; //精选更多
     private TextView actMore; //精选更多
+    private ImageView repay_iv;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_creation, container, false);          //关联布局文件
@@ -39,6 +40,16 @@ public class CreationFragment extends Fragment {
         toturialImage =view.findViewById(R.id.toturial_iv);
 
         List<ToturialInfo> toturialInfoList = new ArrayList<ToturialInfo>();
+
+        repay_iv = (ImageView) view.findViewById(R.id.repay_iv);
+        repay_iv.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), IncentivesActivity.class);
+                startActivity(intent);
+            }
+        });
 
         for (int i=0;i<3;i++){
             ToturialInfo toturialInfo = new ToturialInfo("","钢琴课"+i,String.valueOf(100*i),"");
