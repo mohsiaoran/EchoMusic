@@ -72,5 +72,11 @@
     <string name="new_top">新歌榜</string>
     <string name="download_top">下载榜</string>
     <string name="history_top">历史榜</string>
+    <string name="myIns">我的作曲</string>
+    <string name="insdraft">草稿箱</string>
+    <string name="instoturial">寻找教程</string>
+    <string name="ins_work">工作台</string>
+    <string name="ins_upload">上传</string>
+    <string name="mycomposition">我的谱曲</string>
     <!--待定ing-->
 </resources>

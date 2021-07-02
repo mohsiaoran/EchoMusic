@@ -26,6 +26,9 @@ import cn.edu.fjzzit.echomusic.entity.ToturialInfo;
 
 public class CreationFragment extends Fragment {
     private RecyclerView mToturialRecyclerView;
+    private ImageView insImage;//作曲图标
+    private ImageView compositionImage;//谱曲图标
+    private ImageView hallImage;//创作广场图标
     private ImageView toturialImage;//教程图标
     private TextView toturialMore; //精选更多
     private TextView actMore; //精选更多
@@ -37,6 +40,10 @@ public class CreationFragment extends Fragment {
         mToturialRecyclerView = view.findViewById(R.id.toturial_rlv);
         toturialMore =view.findViewById(R.id.tutorial_more_tv);
         actMore =view.findViewById(R.id.activity_more_tv);
+
+        insImage=view.findViewById(R.id.ins_iv);
+        compositionImage=view.findViewById(R.id.composition_iv);
+        hallImage=view.findViewById(R.id.hall_iv);
         toturialImage =view.findViewById(R.id.toturial_iv);
 
         List<ToturialInfo> toturialInfoList = new ArrayList<ToturialInfo>();
@@ -61,7 +68,6 @@ public class CreationFragment extends Fragment {
         ToturialAdapter toturialAdapter = new ToturialAdapter(toturialInfoList, view.getContext());
         mToturialRecyclerView.setAdapter(toturialAdapter);
 
-
         //跳转到教程详情
         toturialImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +75,42 @@ public class CreationFragment extends Fragment {
                 // TODO Auto-generated method stub
                 Intent intent = new Intent();
                 intent.setClass(getContext(),ToturialActivity.class);
+                getContext().startActivity(intent);
+
+            }
+        });
+
+        //跳转到作曲详情
+        insImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent intent = new Intent();
+                intent.setClass(getContext(),InsActivity.class);
+                getContext().startActivity(intent);
+
+            }
+        });
+
+        //跳转到谱曲详情
+        compositionImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent intent = new Intent();
+                intent.setClass(getContext(),CompositionActivity.class);
+                getContext().startActivity(intent);
+
+            }
+        });
+
+        //跳转到创作广场详情
+        hallImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent intent = new Intent();
+                intent.setClass(getContext(),HallActivity.class);
                 getContext().startActivity(intent);
 
             }

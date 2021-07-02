@@ -42,6 +42,9 @@
         <activity android:name=".activity.ChosenActivity" />
         <activity android:name=".activity.ToturialActivity" />
         <activity android:name=".activity.ActActivity" />
+        <activity android:name=".activity.InsActivity" />
+        <activity android:name=".activity.CompositionActivity" />
+        <activity android:name=".activity.HallActivity" />
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

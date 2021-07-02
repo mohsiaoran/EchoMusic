@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ins_ly"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.InsActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ins_head_ly"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/return_btn"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="?attr/actionModeCloseDrawable"
+            android:clickable="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/ins_text"
+            android:layout_width="82dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="6dp"
+            android:text="@string/compose"
+            android:textColor="#121111"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/return_btn"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/ins_ll"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ins_head_ly">
+
+        <LinearLayout
+            android:id="@+id/ins_my"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ins_my_iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                app:srcCompat="@drawable/make" />
+
+            <TextView
+                android:id="@+id/ins_my_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/myIns"
+                android:textColor="#151515"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ins_draft"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ins_draft_iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                app:srcCompat="@drawable/folder" />
+
+            <TextView
+                android:id="@+id/ins_draft_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/insdraft"
+                android:textColor="#151515" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ins_toturial"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ins_toturial_iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                app:srcCompat="@drawable/contacts" />
+
+            <TextView
+                android:id="@+id/ins_toturial_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/instoturial"
+                android:textColor="#131313" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ins_hall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ins_hall_iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                app:srcCompat="@drawable/mutile" />
+
+            <TextView
+                android:id="@+id/ins_hall_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/creation_square"
+                android:textColor="#131313" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/work_btn"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="152dp"
+        android:background="@drawable/shape_corner"
+        android:text="@string/ins_work"
+        android:textColor="#F6F1F1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ins_ll" />
+
+    <Button
+        android:id="@+id/upload_btn"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_corner"
+        android:text="@string/ins_upload"
+        android:textColor="#FAF3F3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/work_btn"
+        app:layout_constraintVertical_bias="0.25" />
+</androidx.constraintlayout.widget.ConstraintLayout>
