@@ -26,12 +26,14 @@ public class CreationFragment extends Fragment {
 
     private RecyclerView mToturialRecyclerView;
     private TextView toturialMore; //精选更多
+    private TextView actMore; //精选更多
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_creation, container, false);          //关联布局文件
 
         mToturialRecyclerView = view.findViewById(R.id.toturial_rlv);
         toturialMore =view.findViewById(R.id.tutorial_more_tv);
+        actMore =view.findViewById(R.id.activity_more_tv);
 
         List<ToturialInfo> toturialInfoList = new ArrayList<ToturialInfo>();
 
@@ -54,6 +56,19 @@ public class CreationFragment extends Fragment {
                 Intent intent = new Intent();
                 intent.setClass(getContext(),ToturialActivity.class);
                 getContext().startActivity(intent);
+
+            }
+        });
+
+        //跳转到活动更多
+        actMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent intent = new Intent();
+                intent.setClass(getContext(),ActActivity.class);
+                getContext().startActivity(intent);
+
 
             }
         });
