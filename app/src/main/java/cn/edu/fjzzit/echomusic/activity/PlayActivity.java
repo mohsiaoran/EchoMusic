@@ -84,15 +84,19 @@ public class PlayActivity extends AppCompatActivity {
                     break;
                 case MusicService.COMMAND_NEXT:
                     timer.cancel();
+                    EchoActivity.timer.cancel();
                     EchoActivity.musicService.prevOrNextMusic(0);
                     updateCOMPO();
                     setTimer();
+                    EchoActivity.startTimer();
                     break;
                 case MusicService.COMMAND_PREVIOUS:
                     timer.cancel();
+                    EchoActivity.timer.cancel();
                     EchoActivity.musicService.prevOrNextMusic(1);
                     updateCOMPO();
                     setTimer();
+                    EchoActivity.startTimer();
                     break;
             }
             return false;
@@ -254,6 +258,18 @@ public class PlayActivity extends AppCompatActivity {
             }
             titleTv.setText(title);
             authorTv.setText(author);
+            Log.d("play   btn:",String.valueOf(EchoActivity.current_status));
+            switch (EchoActivity.current_status) {
+                case MusicService.STATUS_PLAYING:
+                    playPageBtn.setBackgroundResource(R.drawable.pause_lg);
+                    break;
+                case MusicService.STATUS_PAUSED:
+                    playPageBtn.setBackgroundResource(R.drawable.play_lg);
+                    break;
+                case MusicService.STATUS_STOPPED:
+                    playPageBtn.setBackgroundResource(R.drawable.play_lg);
+                    break;
+            }
         }
     }
 
