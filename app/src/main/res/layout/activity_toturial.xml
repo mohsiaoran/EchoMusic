@@ -31,7 +31,7 @@
             android:layout_height="27dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="6dp"
-            android:text="@string/recommended_tutorials"
+            android:text="@string/tutorial"
             android:textColor="#121111"
             android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/return_btn"
