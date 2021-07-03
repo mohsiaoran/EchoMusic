@@ -47,9 +47,21 @@ public class SortActivity extends AppCompatActivity {
     }
 
     private void toSorts() {
-        for (int i = 0; i < 8; i++) {
-            SortInfo sortInfo = new SortInfo(R.drawable.social_attention_shape_corner,"钢琴曲");
+
+            SortInfo sortInfo = new SortInfo(R.drawable.a5,"吉他");
             sortInfos.add(sortInfo);
-        }
+
+            SortInfo sortInfo1 = new SortInfo(R.drawable.a6,"流行曲");
+            sortInfos.add(sortInfo1);
+
+            SortInfo sortInfo2 = new SortInfo(R.drawable.a21,"古筝");
+            sortInfos.add(sortInfo2);
+
+            SortInfo sortInfo3 = new SortInfo(R.drawable.a47,"钢琴");
+            sortInfos.add(sortInfo3);
+
+            SortInfo sortInfo4 = new SortInfo(R.drawable.a49,"小提琴");
+            sortInfos.add(sortInfo4);
+
     }
 }

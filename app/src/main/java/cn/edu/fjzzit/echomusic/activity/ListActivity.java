@@ -45,9 +45,18 @@ public class ListActivity extends AppCompatActivity {
     }
 
     private void toLists() {
-        for (int i = 0; i < 18; i++) {
-            ListInfo listInfo = new ListInfo(R.drawable.social_attention_shape_corner,"年轻人的曲子");
+        for (int i = 0; i < 3; i++) {
+            ListInfo listInfo = new ListInfo(R.drawable.a8,"年轻人的曲子");
             listInfos.add(listInfo);
+
+            ListInfo listInfo1 = new ListInfo(R.drawable.a10,"笛声");
+            listInfos.add(listInfo1);
+
+            ListInfo listInfo2 = new ListInfo(R.drawable.a34,"流行轻音乐");
+            listInfos.add(listInfo2);
+
+            ListInfo listInfo3 = new ListInfo(R.drawable.a18,"自我修养");
+            listInfos.add(listInfo3);
         }
     }
 }

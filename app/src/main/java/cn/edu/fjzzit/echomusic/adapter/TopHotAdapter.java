@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -38,6 +39,7 @@ public class TopHotAdapter extends RecyclerView.Adapter<TopHotAdapter.ViewHolder
         TopInfo topInfo = topInfoList.get(position);
         holder.title.setText(topInfo.getTitle());
         holder.author.setText(topInfo.getAuthor());
+        holder.image.setImageResource(topInfo.getImage());
         if (topInfo.getContent().length() > 14) {
             String content = topInfo.getContent().substring(0, 14) + "...";
             holder.content.setText(content);
@@ -58,12 +60,14 @@ public class TopHotAdapter extends RecyclerView.Adapter<TopHotAdapter.ViewHolder
         TextView title;
         TextView author;
         TextView content;
+        ImageView image;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.top_title_tv);
             author = itemView.findViewById(R.id.top_author_tv);
             content = itemView.findViewById(R.id.top_content_tv);
+            image = itemView.findViewById(R.id.top_img_iv);
         }
     }
 }
