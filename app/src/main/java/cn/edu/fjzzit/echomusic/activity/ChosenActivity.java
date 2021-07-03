@@ -48,7 +48,7 @@ public class ChosenActivity extends AppCompatActivity {
     private void toChosens() {
 
         for (int i=0;i<10;i++){
-            ChosenInfo chosenInfo = new ChosenInfo(0,"Piano Concerto","Author","C大调第三钢琴协奏曲");
+            ChosenInfo chosenInfo = new ChosenInfo(R.drawable.a14,"Piano Concerto","朗朗","C大调第三钢琴协奏曲");
             chosenInfoList.add(chosenInfo);
         }
     }
