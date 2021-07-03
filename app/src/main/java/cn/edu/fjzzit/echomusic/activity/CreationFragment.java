@@ -33,6 +33,9 @@ public class CreationFragment extends Fragment {
     private TextView toturialMore; //精选更多
     private TextView actMore; //精选更多
     private ImageView repay_iv;
+    private ImageView collect_manager_iv;
+    private View browse_iv;
+    private View my_manager_iv;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_creation, container, false);          //关联布局文件
@@ -47,16 +50,44 @@ public class CreationFragment extends Fragment {
         toturialImage =view.findViewById(R.id.toturial_iv);
 
         List<ToturialInfo> toturialInfoList = new ArrayList<ToturialInfo>();
-
+        // 点击进入收藏页面
+        collect_manager_iv = (ImageView) view.findViewById(R.id.collect_manager_iv);
+        collect_manager_iv.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), WorkManagementActivity.class);
+                startActivity(intent);
+            }
+        });
+        // 点击进入创作激励
         repay_iv = (ImageView) view.findViewById(R.id.repay_iv);
         repay_iv.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), IncentivesActivity.class);
                 startActivity(intent);
             }
         });
+        // 点击进入浏览历史页面
+        browse_iv = (ImageView) view.findViewById(R.id.browse_iv);
+        browse_iv.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), historyActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // 点击进入作品管理页面
+        my_manager_iv = (ImageView) view.findViewById(R.id.my_manager_iv);
+        my_manager_iv.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), OpusManagmentActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         for (int i=0;i<3;i++){
             ToturialInfo toturialInfo = new ToturialInfo("","钢琴课"+i,String.valueOf(100*i),"");

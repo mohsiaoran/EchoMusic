@@ -27,6 +27,14 @@
             android:name=".service.MusicService"
             android:enabled="true"
             android:exported="true" />
+        <activity android:name=".activity.MyfavoriteActivity"/>
+        <activity android:name=".activity.MyDownloadActivity"/>
+        <activity android:name=".activity.SongBookActivity"/>
+        <activity android:name=".activity.PursedActivity"/>
+        <activity android:name=".activity.PlayHistoryActivity"/>
+        <activity android:name=".activity.historyActivity"/>
+        <activity android:name=".activity.OpusManagmentActivity"/>
+        <activity android:name=".activity.WorkManagementActivity"/>
         <activity android:name=".activity.IncentivesActivity"/>
         <activity android:name=".activity.MessageActivity"/>
         <activity android:name=".activity.TopDetailActivity" />
