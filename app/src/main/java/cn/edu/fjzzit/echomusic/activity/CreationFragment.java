@@ -89,10 +89,12 @@ public class CreationFragment extends Fragment {
         });
 
 
-        for (int i=0;i<3;i++){
-            ToturialInfo toturialInfo = new ToturialInfo("","钢琴课"+i,String.valueOf(100*i),"");
-            toturialInfoList.add(toturialInfo);
-        }
+            ToturialInfo toturialInfo1 = new ToturialInfo(R.drawable.a47,"余老师钢琴课",String.valueOf(5233),"");
+            toturialInfoList.add(toturialInfo1);
+            ToturialInfo toturialInfo2 = new ToturialInfo(R.drawable.a49,"林老师提琴课",String.valueOf(2416),"");
+            toturialInfoList.add(toturialInfo2);
+            ToturialInfo toturialInfo3 = new ToturialInfo(R.drawable.a15,"王老师吉他课",String.valueOf(4324),"");
+            toturialInfoList.add(toturialInfo3);
 
         RecyclerView.LayoutManager toturialLayouManager = new LinearLayoutManager(view.getContext());
         mToturialRecyclerView.setLayoutManager(toturialLayouManager);

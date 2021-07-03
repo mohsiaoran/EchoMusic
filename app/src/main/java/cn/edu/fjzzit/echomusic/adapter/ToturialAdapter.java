@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,6 +38,7 @@ public class ToturialAdapter extends RecyclerView.Adapter<ToturialAdapter.ViewHo
         ToturialInfo toturialInfo = toturialInfoList.get(position);
         holder.title.setText(toturialInfo.getTitle());
         holder.good.setText(toturialInfo.getGood());
+        holder.image.setImageResource(toturialInfo.getImgRes());
     }
 
     @Override
@@ -47,10 +49,12 @@ public class ToturialAdapter extends RecyclerView.Adapter<ToturialAdapter.ViewHo
     public class  ViewHolder extends RecyclerView.ViewHolder{
         TextView title;
         TextView good;
+        ImageView image;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.toturial_title_tv);
             good = itemView.findViewById(R.id.toturial_good_tv);
+            image=itemView.findViewById(R.id.toturial_img_iv);
         }
     }
 }

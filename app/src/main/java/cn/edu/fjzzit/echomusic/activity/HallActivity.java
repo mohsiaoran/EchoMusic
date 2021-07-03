@@ -46,7 +46,7 @@ public class HallActivity extends AppCompatActivity {
     private void toHalls() {
 
         for (int i=0;i<10;i++){
-            HallInfo hallInfo = new HallInfo("音乐奇才","2021-7-3",1,"Author","","Piano Concerto","C大调第三钢琴协奏曲");
+            HallInfo hallInfo = new HallInfo("音乐小天使","2021-7-3",1,"音乐小天使",R.drawable.a8,"宅女钢琴曲","宅家卡农");
             hallInfoList.add(hallInfo);
         }
     }

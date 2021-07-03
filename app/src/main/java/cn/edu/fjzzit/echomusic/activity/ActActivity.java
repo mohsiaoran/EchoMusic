@@ -47,9 +47,16 @@ public class ActActivity extends AppCompatActivity {
     }
 
     private void toActs() {
-        for (int i = 0; i < 12; i++) {
-            ActInfo actInfo = new ActInfo(R.drawable.social_attention_shape_corner);
-            actInfos.add(actInfo);
-        }
+
+            ActInfo actInfo1 = new ActInfo(R.drawable.a4);
+            actInfos.add(actInfo1);
+            ActInfo actInfo2 = new ActInfo(R.drawable.a7);
+            actInfos.add(actInfo2);
+            ActInfo actInfo3 = new ActInfo(R.drawable.a35);
+            actInfos.add(actInfo3);
+            ActInfo actInfo4 = new ActInfo(R.drawable.a41);
+            actInfos.add(actInfo4);
+
+
     }
 }

@@ -3,12 +3,12 @@ package cn.edu.fjzzit.echomusic.entity;
 
 //教程
 public class ToturialInfo {
-    private String imgRes;
+    private int imgRes;
     private String title;
     private String good;
     private String url;
 
-    public ToturialInfo(String imgRes, String content, String good, String url) {
+    public ToturialInfo(int imgRes, String content, String good, String url) {
         this.imgRes = imgRes;
         this.title = content;
         this.good = good;
@@ -18,11 +18,11 @@ public class ToturialInfo {
     public ToturialInfo() {
     }
 
-    public String getImgRes() {
+    public int getImgRes() {
         return imgRes;
     }
 
-    public void setImgRes(String imgRes) {
+    public void setImgRes(int imgRes) {
         this.imgRes = imgRes;
     }
 

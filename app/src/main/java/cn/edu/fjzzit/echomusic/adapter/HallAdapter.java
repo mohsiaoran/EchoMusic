@@ -40,7 +40,7 @@ public class HallAdapter extends RecyclerView.Adapter<HallAdapter.ViewHolder>{
         holder.postTime.setText(hallInfo.getPostTime());
         holder.author.setText(hallInfo.getAuthor());
         holder.title.setText(hallInfo.getTitle());
-
+        holder.image.setImageResource(hallInfo.getImage());
         if(hallInfo.getContent().length()>14){
             String content=hallInfo.getContent().substring(0,14)+"...";
             holder.content.setText(content);
@@ -65,6 +65,7 @@ public class HallAdapter extends RecyclerView.Adapter<HallAdapter.ViewHolder>{
         TextView author;
         TextView title;
         TextView content;
+        ImageView image;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             userName = itemView.findViewById(R.id.hall_username);
@@ -72,6 +73,7 @@ public class HallAdapter extends RecyclerView.Adapter<HallAdapter.ViewHolder>{
             author = itemView.findViewById(R.id.hall_author_tv);
             title = itemView.findViewById(R.id.hall_title_tv);
             content = itemView.findViewById(R.id.hall_content_tv);
+            image =itemView.findViewById(R.id.hall_img_iv);
         }
     }
 }

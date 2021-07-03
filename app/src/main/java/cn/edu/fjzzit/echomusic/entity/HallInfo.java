@@ -5,11 +5,11 @@ public class HallInfo {
     private String postTime;
     private int state;
     private String author;
-    private String image;
+    private int image;
     private String title;
     private String content;
 
-    public HallInfo (String userName ,String postTime,int state,String author,String image, String title ,String content){
+    public HallInfo (String userName ,String postTime,int state,String author,int image, String title ,String content){
         this.userName=userName;
         this.postTime=postTime;
         this.state=state;
@@ -49,7 +49,7 @@ public class HallInfo {
         this.postTime = postTime;
     }
 
-    public String getImage() {
+    public int getImage() {
         return image;
     }
 
@@ -61,7 +61,7 @@ public class HallInfo {
         this.author = author;
     }
 
-    public void setImage(String image) {
+    public void setImage(int image) {
         this.image = image;
     }
 

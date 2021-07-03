@@ -13,6 +13,7 @@
         android:id="@+id/act_img_iv"
         android:layout_width="180dp"
         android:layout_height="120dp"
+        android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/gray_div" />

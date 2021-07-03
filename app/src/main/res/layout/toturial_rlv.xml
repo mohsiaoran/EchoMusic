@@ -15,8 +15,7 @@
         android:layout_width="180dp"
         android:layout_height="120dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/gray_div" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/toturial_title_tv"

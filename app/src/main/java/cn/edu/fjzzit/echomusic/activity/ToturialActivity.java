@@ -46,9 +46,13 @@ public class ToturialActivity extends AppCompatActivity {
     }
 
     private void toToturials() {
-        for (int i = 0; i < 8; i++) {
-            ToturialInfo toturialInfo = new ToturialInfo("","钢琴课"+i,String.valueOf(100*i),"");
-            toturialInfos.add(toturialInfo);
+        for (int i = 0; i < 3; i++) {
+            ToturialInfo toturialInfo1 = new ToturialInfo(R.drawable.a47,"余老师钢琴课"+"第"+i+"阶段",String.valueOf(100*i),"");
+            toturialInfos.add(toturialInfo1);
+            ToturialInfo toturialInfo2 = new ToturialInfo(R.drawable.a49,"林老师提琴课"+"第"+i+"阶段",String.valueOf(100*i),"");
+            toturialInfos.add(toturialInfo2);
+            ToturialInfo toturialInfo3 = new ToturialInfo(R.drawable.a15,"王老师吉他课"+"第"+i+"阶段",String.valueOf(100*i),"");
+            toturialInfos.add(toturialInfo3);
         }
     }
 }

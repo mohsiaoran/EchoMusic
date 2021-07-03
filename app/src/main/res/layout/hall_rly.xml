@@ -84,8 +84,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.489"
-            app:srcCompat="@drawable/social_attention_shape_corner" />
+            app:layout_constraintVertical_bias="0.489" />
 
         <TextView
             android:id="@+id/hall_title_tv"
