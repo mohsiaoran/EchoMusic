@@ -2,13 +2,13 @@ package cn.edu.fjzzit.echomusic.entity;
 
 //排行榜
 public class TopInfo {
-    private String image;
+    private int imageId;
     private String title;
     private String author;
     private String content;
 
-    public TopInfo(String image, String title, String author, String content) {
-        this.image = image;
+    public TopInfo(int imageId, String title, String author, String content) {
+        this.imageId = imageId;
         this.title = title;
         this.author = author;
         this.content = content;
@@ -18,12 +18,12 @@ public class TopInfo {
 
     }
 
-    public String getImage() {
-        return image;
+    public int getImage() {
+        return imageId;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImage(int image) {
+        this.imageId = image;
     }
 
     public String getTitle() {

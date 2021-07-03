@@ -27,7 +27,7 @@ public class TopHotFragment extends Fragment {
         List<TopInfo> topInfoList = new ArrayList<TopInfo>();
 
         for (int i=0;i<4;i++){
-            TopInfo topInfo = new TopInfo("","Piano Concerto","Author","C大调第三钢琴协奏曲");
+            TopInfo topInfo = new TopInfo(R.drawable.a1,"Piano Concerto","Author","C大调第三钢琴协奏曲");
             topInfoList.add(topInfo);
         }
 
