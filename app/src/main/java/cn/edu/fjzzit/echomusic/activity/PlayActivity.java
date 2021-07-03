@@ -235,14 +235,18 @@ public class PlayActivity extends AppCompatActivity {
         prevBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mUpdateHandler.sendEmptyMessage(MusicService.COMMAND_NEXT);
+                if(!MusicService.pnst) {
+                    mUpdateHandler.sendEmptyMessage(MusicService.COMMAND_NEXT);
+                }
             }
         });
 
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mUpdateHandler.sendEmptyMessage(MusicService.COMMAND_PREVIOUS);
+                if(!MusicService.pnst) {
+                    mUpdateHandler.sendEmptyMessage(MusicService.COMMAND_PREVIOUS);
+                }
             }
         });
         

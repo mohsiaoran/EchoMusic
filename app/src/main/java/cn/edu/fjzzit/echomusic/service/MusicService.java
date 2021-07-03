@@ -67,7 +67,7 @@ public class MusicService extends Service {
     public List<MusicInfo> musicInfoList;
     public MusicInfo nowMusicInfo;
     public int nowIndex=0;
-    private boolean pnst =false;
+    public static boolean pnst =false;
     public MusicService() {
         //获取播放列表
 
@@ -211,6 +211,7 @@ public class MusicService extends Service {
                     Intent intent = new Intent("com.test.send.message");
                     intent.putExtra("state", "play");         //向广播接收器传递数据
                     sendBroadcast(intent);
+                    mediaPlayer.pause();
                     mediaPlayer.reset();
                     mediaPlayer.setDataSource(musicInfoList.get(nowIndex).getDataPath());
                     mediaPlayer.prepare();
@@ -233,6 +234,7 @@ public class MusicService extends Service {
         try{
             nowIndex = index;
             nowMusicInfo = musicInfoList.get(index);
+            mediaPlayer.pause();
             mediaPlayer.reset();
             mediaPlayer.setDataSource(nowMusicInfo.getDataPath());
             mediaPlayer.prepare();
