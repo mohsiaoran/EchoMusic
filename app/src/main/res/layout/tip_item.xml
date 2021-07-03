@@ -6,7 +6,7 @@
 
     <TextView
         android:id="@+id/contentText"
-        android:layout_width="250dp"
+        android:layout_width="340dp"
         android:layout_height="match_parent"
         android:text="消息内容"
         android:textSize="20sp" />
@@ -14,7 +14,8 @@
     <TextView
         android:id="@+id/timeText"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
         android:text="时间"
         android:textSize="15sp" />
 
