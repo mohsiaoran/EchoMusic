@@ -203,7 +203,6 @@ public class EchoActivity extends AppCompatActivity{
                             break;
                     }
                 }
-
             }
         });
 
@@ -218,6 +217,13 @@ public class EchoActivity extends AppCompatActivity{
                 dialogActivity.show();
             }
         });
+
+        //注册“网络变化”的广播接收器
+        //myreceiver = new MyReceiver();
+        //实例化过滤器并设置要过滤的广播
+
+        //注册广播
+        //EchoActivity.this.registerReceiver(myreceiver, intentFilter);
 
         //播放bar点击事件
         playBar.setOnClickListener(new View.OnClickListener() {

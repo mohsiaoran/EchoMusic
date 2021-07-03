@@ -36,6 +36,7 @@ public class CreationFragment extends Fragment {
     private ImageView collect_manager_iv;
     private View browse_iv;
     private View my_manager_iv;
+    private View camera;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_creation, container, false);          //关联布局文件
@@ -48,6 +49,16 @@ public class CreationFragment extends Fragment {
         compositionImage=view.findViewById(R.id.composition_iv);
         hallImage=view.findViewById(R.id.hall_iv);
         toturialImage =view.findViewById(R.id.toturial_iv);
+
+        camera =view.findViewById(R.id.camera);
+        camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SpeechActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
         List<ToturialInfo> toturialInfoList = new ArrayList<ToturialInfo>();
         // 点击进入收藏页面
