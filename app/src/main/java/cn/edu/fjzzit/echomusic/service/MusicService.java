@@ -79,11 +79,11 @@ public class MusicService extends Service {
 
         }
 
-
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 prevOrNextMusic(1);
+
             }
         });
     }

@@ -9,14 +9,14 @@
     android:layout_marginEnd="20dp"
     android:layout_marginBottom="10dp">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/chosen_img_iv"
         android:layout_width="100dp"
         android:layout_height="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/social_attention_shape_corner" />
+        app:shapeAppearanceOverlay="@style/radius15" />
 
     <TextView
         android:id="@+id/chosen_title_tv"

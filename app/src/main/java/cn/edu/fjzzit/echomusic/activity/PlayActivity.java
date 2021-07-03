@@ -3,8 +3,11 @@ package cn.edu.fjzzit.echomusic.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -102,6 +105,23 @@ public class PlayActivity extends AppCompatActivity {
             return false;
         }
     });
+
+    public BroadcastReceiver MyReceiver = new BroadcastReceiver() {
+        @Override
+
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            //Log.d(TAG, "action = " + action);
+            if (action.equals("com.test.send.message")) {
+                // 接收到广播传来的数据
+                String ID =intent.getStringExtra("state");
+                updateCOMPO();
+            }else{
+
+            }
+        }
+
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -226,6 +246,7 @@ public class PlayActivity extends AppCompatActivity {
                 mUpdateHandler.sendEmptyMessage(MusicService.COMMAND_PREVIOUS);
             }
         });
+        
     }
 
     private void setTimer(){

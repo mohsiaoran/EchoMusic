@@ -3,12 +3,12 @@ package cn.edu.fjzzit.echomusic.entity;
 
 //首页推荐
 public class ChosenInfo {
-    private String image;
+    private int image;
     private String title;
     private String author;
     private String content;
 
-    public ChosenInfo(String image, String title, String author, String content) {
+    public ChosenInfo(int image, String title, String author, String content) {
         this.image = image;
         this.title = title;
         this.author = author;
@@ -19,11 +19,11 @@ public class ChosenInfo {
 
     }
 
-    public String getImage() {
+    public int getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(int image) {
         this.image = image;
     }
 

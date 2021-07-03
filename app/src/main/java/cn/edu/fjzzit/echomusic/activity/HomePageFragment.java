@@ -79,10 +79,13 @@ public class HomePageFragment extends Fragment {
 
         List<ChosenInfo> chosenInfoList = new ArrayList<ChosenInfo>();
 
-        for (int i=0;i<3;i++){
-            ChosenInfo chosenInfo = new ChosenInfo("","Piano Concerto","Author","C大调第三钢琴协奏曲");
-            chosenInfoList.add(chosenInfo);
-        }
+        ChosenInfo chosenInfo = new ChosenInfo(R.drawable.a14,"Piano Concerto","朗朗","C大调第三钢琴协奏曲");
+        chosenInfoList.add(chosenInfo);
+        chosenInfo = new ChosenInfo(R.drawable.a9,"不朽的旋律","中国国家交响乐团","来自中国的声音");
+        chosenInfoList.add(chosenInfo);
+        chosenInfo = new ChosenInfo(R.drawable.a13,"重逢有日","柴亮/代博/瑞鸣音乐","激情演绎奥斯卡经典名曲");
+        chosenInfoList.add(chosenInfo);
+
 
         RecyclerView.LayoutManager chosenLayouManager = new LinearLayoutManager(view.getContext());
         mChosenRecyclerView.setLayoutManager(chosenLayouManager);

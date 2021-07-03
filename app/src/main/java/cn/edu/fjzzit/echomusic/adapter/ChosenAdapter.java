@@ -4,10 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.List;
 
@@ -38,6 +41,7 @@ public class ChosenAdapter extends RecyclerView.Adapter<ChosenAdapter.ViewHolder
         ChosenInfo chosenInfo = chosenInfoList.get(position);
         holder.title.setText(chosenInfo.getTitle());
         holder.author.setText(chosenInfo.getAuthor());
+        holder.csImg.setBackgroundResource(chosenInfo.getImage());
         if(chosenInfo.getContent().length()>14){
             String content=chosenInfo.getContent().substring(0,14)+"...";
             holder.content.setText(content);
@@ -59,11 +63,13 @@ public class ChosenAdapter extends RecyclerView.Adapter<ChosenAdapter.ViewHolder
         TextView title;
         TextView author;
         TextView content;
+        ShapeableImageView csImg;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.chosen_title_tv);
             author = itemView.findViewById(R.id.chosen_author_tv);
             content = itemView.findViewById(R.id.chosen_content_tv);
+            csImg = itemView.findViewById(R.id.chosen_img_iv);
         }
     }
 }
