@@ -23,6 +23,21 @@ public class WorkManagementActivity extends AppCompatActivity {
     private List<Map<String,Object>> dataList_work;
     private SimpleAdapter simp_adapter_work;
 
+    int[] mImg = new int[]{
+            R.drawable.a43,
+            R.drawable.a43,
+            R.drawable.a43,
+            R.drawable.a43,
+            R.drawable.a43,
+            R.drawable.a43,
+            R.drawable.a43,
+            R.drawable.a43,
+            R.drawable.a43,
+            R.drawable.a43,
+            R.drawable.a43,
+            R.drawable.a43
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +60,9 @@ public class WorkManagementActivity extends AppCompatActivity {
     }
 
     private List<Map<String,Object>> getData(){
-        for(int i=0;i<20;i++){
+        for(int i=0;i<12;i++){
             Map<String,Object>map=new HashMap<String, Object>();
+            map.put("imageView4", mImg[i]);
             map.put("textView10", "教程"+i);    //显示的信息
             dataList_work.add(map);
         }

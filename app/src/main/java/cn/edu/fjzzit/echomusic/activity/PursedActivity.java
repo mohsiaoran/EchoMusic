@@ -20,6 +20,22 @@ public class PursedActivity extends AppCompatActivity {
     private SimpleAdapter simp_adapter_pursed;
     private View pursed_return_btn;
 
+    int[] mImg = new int[]{
+            R.drawable.a24,
+            R.drawable.a9,
+            R.drawable.a10,
+            R.drawable.a11,
+            R.drawable.a12,
+            R.drawable.a13,
+            R.drawable.a14,
+            R.drawable.a15,
+            R.drawable.a16,
+            R.drawable.a17,
+            R.drawable.a18,
+            R.drawable.a25
+    };
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +56,9 @@ public class PursedActivity extends AppCompatActivity {
     }
 
     private List<Map<String,Object>> getData(){
-        for(int i=0;i<20;i++){
+        for(int i=0;i<12;i++){
             Map<String,Object>map=new HashMap<String, Object>();
+            map.put("opus_img", mImg[i]);
             map.put("opus_text", "购买记录"+i);    //显示的信息
             dataList_purse.add(map);
         }
