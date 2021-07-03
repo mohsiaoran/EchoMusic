@@ -189,7 +189,7 @@ public class EchoActivity extends AppCompatActivity{
                         case MusicService.STATUS_STOPPED:
                             //Log.d("test:","1");
                             mUpdateHandler.sendEmptyMessage(MusicService.STATUS_PLAYING);
-                            playProgessBar.setMax(MusicService.mediaPlayer.getDuration()/100);
+                            updateMediaState();
 
                             startTimer();
                             break;
@@ -257,9 +257,8 @@ public class EchoActivity extends AppCompatActivity{
                 //Log.d("progress:",String.valueOf(current_progress));
                 if (current_status == MusicService.STATUS_PAUSED) {
                     timer.cancel();//stop
-                }
-                if (playProgessBar.getProgress()==playProgessBar.getMax()){
-                    barPlayBtn.setBackgroundResource(R.drawable.play);//设置按钮为播放
+                }else if (playProgessBar.getProgress()==playProgessBar.getMax()){
+
                 }
             }
         }, 0, 50);

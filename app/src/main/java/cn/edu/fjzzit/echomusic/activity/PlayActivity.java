@@ -34,13 +34,12 @@ import cn.edu.fjzzit.echomusic.service.MusicService;
 public class PlayActivity extends AppCompatActivity {
 
     ImageButton returnBtn;
-    SeekBar seekBar;
+    public static SeekBar seekBar;
     TextView nowTv,totalTv;
     Button playPageBtn;
     private TextView titleTv,authorTv;
     private Button prevBtn,nextBtn;
-    private MediaPlayer mediaPlayer;
-    private Timer timer;
+    public static Timer timer;
     private int playState;
     private MusicService musicService;
     private SimpleDateFormat time = new SimpleDateFormat("mm:ss");
@@ -86,20 +85,20 @@ public class PlayActivity extends AppCompatActivity {
                 case MusicService.STATUS_COMPLETED:
                     break;
                 case MusicService.COMMAND_NEXT:
-                    timer.cancel();
-                    EchoActivity.timer.cancel();
+
                     EchoActivity.musicService.prevOrNextMusic(0);
-                    updateCOMPO();
                     setTimer();
                     EchoActivity.startTimer();
+                    updateCOMPO();
                     break;
                 case MusicService.COMMAND_PREVIOUS:
                     timer.cancel();
                     EchoActivity.timer.cancel();
                     EchoActivity.musicService.prevOrNextMusic(1);
-                    updateCOMPO();
+
                     setTimer();
                     EchoActivity.startTimer();
+                    updateCOMPO();
                     break;
             }
             return false;
@@ -141,7 +140,7 @@ public class PlayActivity extends AppCompatActivity {
 
 
         //从页面获取媒体信息
-        mediaPlayer = MusicService.mediaPlayer;
+        //mediaPlayer = MusicService.mediaPlayer;
         playState = EchoActivity.current_status;
 
         seekBar.getThumb().setColorFilter(Color.LTGRAY, PorterDuff.Mode.SRC_ATOP);
@@ -182,7 +181,7 @@ public class PlayActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(final SeekBar seekBar) {
                 int progress = seekBar.getProgress();
-                mediaPlayer.seekTo(progress*100);
+                MusicService.mediaPlayer.seekTo(progress*100);
                 timer.cancel();
                 setTimer();
             }
@@ -249,15 +248,15 @@ public class PlayActivity extends AppCompatActivity {
         
     }
 
-    private void setTimer(){
+    public static void setTimer(){
         timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 //Log.d("test",String.valueOf(mediaPlayer.getCurrentPosition()));
-                seekBar.setProgress(mediaPlayer.getCurrentPosition()/100);
+                seekBar.setProgress(MusicService.mediaPlayer.getCurrentPosition()/100);
             }},0,50);
-        if(playState==MusicService.STATUS_PAUSED){
+        if(EchoActivity.current_status==MusicService.STATUS_PAUSED){
             timer.cancel();//stop
         }
     }
@@ -266,11 +265,11 @@ public class PlayActivity extends AppCompatActivity {
         if(EchoActivity.musicService.nowMusicInfo==null){
             Toast.makeText(getBaseContext(),"没有音乐",Toast.LENGTH_LONG).show();
         }else {
-            seekBar.setMax(mediaPlayer.getDuration() / 100);
-            seekBar.setProgress(mediaPlayer.getCurrentPosition() / 100);
+            seekBar.setMax(MusicService.mediaPlayer.getDuration() / 100);
+            seekBar.setProgress(MusicService.mediaPlayer.getCurrentPosition() / 100);
             //时间赋值
-            nowTv.setText(getTime(mediaPlayer.getCurrentPosition() / 1000));
-            totalTv.setText(getTime(mediaPlayer.getDuration() / 1000));
+            nowTv.setText(getTime(MusicService.mediaPlayer.getCurrentPosition() / 1000));
+            totalTv.setText(getTime(MusicService.mediaPlayer.getDuration() / 1000));
 
             String title = EchoActivity.musicService.nowMusicInfo.getTitle();
             String author = EchoActivity.musicService.nowMusicInfo.getArtist();

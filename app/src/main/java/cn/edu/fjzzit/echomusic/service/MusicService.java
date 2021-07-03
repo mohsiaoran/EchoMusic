@@ -20,6 +20,7 @@ import java.util.List;
 
 import cn.edu.fjzzit.echomusic.R;
 import cn.edu.fjzzit.echomusic.activity.EchoActivity;
+import cn.edu.fjzzit.echomusic.activity.PlayActivity;
 import cn.edu.fjzzit.echomusic.entity.MusicInfo;
 
 public class MusicService extends Service {
@@ -66,6 +67,7 @@ public class MusicService extends Service {
     public List<MusicInfo> musicInfoList;
     public MusicInfo nowMusicInfo;
     public int nowIndex=0;
+    private boolean pnst =false;
     public MusicService() {
         //获取播放列表
 
@@ -138,9 +140,11 @@ public class MusicService extends Service {
         which = "pause";
 
         if(mediaPlayer.isPlaying()){
+            EchoActivity.current_status =STATUS_PAUSED;
             mediaPlayer.pause();
             animator.pause();
         } else {
+            EchoActivity.current_status =STATUS_PLAYING;
             mediaPlayer.start();
             if ((flag == 1) || (isReturnTo == 1)) {
                 animator.setDuration(5000);
@@ -171,41 +175,58 @@ public class MusicService extends Service {
 
     public void prevOrNextMusic(int i) {
         //Log.d("test","test");
-        switch (i){
-            case 0:
-                if (0 == nowIndex){
-                    nowIndex = musicInfoList.size()-1;
-                }else{
-                    nowIndex -= 1;
+
+        if (pnst==false){
+            pnst =true;
+            try {
+                PlayActivity.timer.cancel();
+            }catch (Exception e){
+
+            }
+
+            EchoActivity.timer.cancel();
+            switch (i){
+                case 0:
+                    if (0 == nowIndex){
+                        nowIndex = musicInfoList.size()-1;
+                    }else{
+                        nowIndex -= 1;
+                    }
+                    break;
+                case 1:
+                    if (musicInfoList.size()-1 == nowIndex){
+                        nowIndex = 0;
+                    }else{
+                        nowIndex += 1;
+                    }
+                    break;
+            }
+            Log.d("MusicServiceNowIndex", String.valueOf(nowIndex));
+            try {
+
+                nowMusicInfo = musicInfoList.get(nowIndex);
+                if(nowMusicInfo !=null) {
+                    //广播
+                    EchoActivity.current_status = STATUS_PLAYING;
+                    Intent intent = new Intent("com.test.send.message");
+                    intent.putExtra("state", "play");         //向广播接收器传递数据
+                    sendBroadcast(intent);
+                    mediaPlayer.reset();
+                    mediaPlayer.setDataSource(musicInfoList.get(nowIndex).getDataPath());
+                    mediaPlayer.prepare();
+                    // 开始播放
+                    mediaPlayer.start();
+                    EchoActivity.current_status = STATUS_PLAYING;
+
+                    PlayActivity.setTimer();
+                    EchoActivity.startTimer();
                 }
-                break;
-            case 1:
-                if (musicInfoList.size()-1 == nowIndex){
-                    nowIndex = 0;
-                }else{
-                    nowIndex += 1;
-                }
-                break;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
-        try {
-            nowMusicInfo = musicInfoList.get(nowIndex);
-            if(nowMusicInfo !=null) {
-                //广播
-                EchoActivity.current_status = STATUS_PLAYING;
-                Intent intent = new Intent("com.test.send.message");
-                intent.putExtra("state", "play");         //向广播接收器传递数据
-                sendBroadcast(intent);
-                mediaPlayer.reset();
-                mediaPlayer.setDataSource(musicInfoList.get(nowIndex).getDataPath());
-                mediaPlayer.prepare();
-                // 开始播放
-                mediaPlayer.start();
-                EchoActivity.current_status = STATUS_PLAYING;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        pnst =false;
     }
 
     public void setPlay(int index){
